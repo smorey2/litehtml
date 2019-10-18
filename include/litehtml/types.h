@@ -30,25 +30,28 @@ namespace litehtml
 		int	right;
 		int top;
 		int bottom;
+		int front;
+		int back;
 
 		margins()
 		{
-			left = right = top = bottom = 0;
+			left = right = top = bottom = front = back = 0;
 		}
 
 		int width()		const	{ return left + right; } 
 		int height()	const	{ return top + bottom; } 
+		int depth()		const	{ return front + back; } 
 	};
 
 	struct size
 	{
 		int		width;
 		int		height;
+		int		depth;
 
 		size()
 		{
-			width	= 0;
-			height	= 0;
+			width = height = depth = 0;
 		}
 	};
 
@@ -58,57 +61,69 @@ namespace litehtml
 
 		int	x;
 		int	y;
+		int	z;
 		int	width;
 		int	height;
+		int	depth;
 
 		position()
 		{
-			x = y = width = height = 0;
+			x = y = z = width = height = depth = 0;
 		}
 
-		position(int x, int y, int width, int height)
+		position(int x, int y, int z, int width, int height, int depth)
 		{
 			this->x			= x;
 			this->y			= y;
+			this->z			= z;
 			this->width		= width;
 			this->height	= height;
+			this->depth		= depth;
 		}
 
 		int right()		const		{ return x + width;		}
 		int bottom()	const		{ return y + height;	}
 		int left()		const		{ return x;				}
 		int top()		const		{ return y;				}
+		int front()		const		{ return z;				}
+		int back()		const		{ return z + depth;		}
 
 		void operator+=(const margins& mg)
 		{
 			x		-= mg.left;
 			y		-= mg.top;
+			z		-= mg.front;
 			width	+= mg.left + mg.right;
 			height	+= mg.top + mg.bottom;
+			depth	+= mg.front + mg.back;
 		}
 		void operator-=(const margins& mg)
 		{
 			x		+= mg.left;
 			y		+= mg.top;
+			z		+= mg.front;
 			width	-= mg.left + mg.right;
 			height	-= mg.top + mg.bottom;
+			depth	-= mg.front + mg.back;
 		}
 
 		void clear()
 		{
-			x = y = width = height = 0;
+			x = y = z = width = height = depth = 0;
 		}
 
 		void operator=(const size& sz)
 		{
 			width	= sz.width;
 			height	= sz.height;
+			depth	= sz.depth;
 		}
 
-		void move_to(int x, int y)
+		void move_to(int x, int y, int z)
 		{
 			this->x = x;
 			this->y = y;
+			this->z = z;
 		}
 
 		bool does_intersect(const position* val) const
@@ -119,26 +134,33 @@ namespace litehtml
 				left()			<= val->right()		&& 
 				right()			>= val->left()		&& 
 				bottom()		>= val->top()		&& 
-				top()			<= val->bottom()	)
+				top()			>= val->bottom()	&& 
+				front()			>= val->back()		&& 
+				back()			<= val->front()		)
 				|| (
 				val->left()		<= right()			&& 
 				val->right()	>= left()			&& 
 				val->bottom()	>= top()			&& 
-				val->top()		<= bottom()			);
+				val->top()		>= bottom()			&& 
+				val->front()	>= back()			&& 
+				val->back()		<= front()			);
 		}
 
 		bool empty() const
 		{
-			if(!width && !height)
+			if(!width && !height && !depth)
 			{
 				return true;
 			}
 			return false;
 		}
 
-		bool is_point_inside(int x, int y) const
+		bool is_point_inside(int x, int y, int z) const
 		{
-			if(x >= left() && x <= right() && y >= top() && y <= bottom())
+			if(
+				x >= left() && x <= right() &&
+				y >= top() && y <= bottom() &&
+				z >= front() && z <= back() )
 			{
 				return true;
 			}
@@ -635,7 +657,7 @@ namespace litehtml
 		media_orientation_landscape,
 	};
 
-#define media_feature_strings		_t("none;width;min-width;max-width;height;min-height;max-height;device-width;min-device-width;max-device-width;device-height;min-device-height;max-device-height;orientation;aspect-ratio;min-aspect-ratio;max-aspect-ratio;device-aspect-ratio;min-device-aspect-ratio;max-device-aspect-ratio;color;min-color;max-color;color-index;min-color-index;max-color-index;monochrome;min-monochrome;max-monochrome;resolution;min-resolution;max-resolution")
+#define media_feature_strings		_t("none;width;min-width;max-width;height;min-height;max-height;depth;min-depth;max-depth;device-width;min-device-width;max-device-width;device-height;min-device-height;max-device-height;device-depth;min-device-depth;max-device-depth;orientation;aspect-ratio;min-aspect-ratio;max-aspect-ratio;device-aspect-ratio;min-device-aspect-ratio;max-device-aspect-ratio;color;min-color;max-color;color-index;min-color-index;max-color-index;monochrome;min-monochrome;max-monochrome;resolution;min-resolution;max-resolution")
 
 	enum media_feature
 	{
@@ -649,6 +671,10 @@ namespace litehtml
 		media_feature_min_height,
 		media_feature_max_height,
 
+		media_feature_depth,
+		media_feature_min_depth,
+		media_feature_max_depth,
+
 		media_feature_device_width,
 		media_feature_min_device_width,
 		media_feature_max_device_width,
@@ -656,6 +682,10 @@ namespace litehtml
 		media_feature_device_height,
 		media_feature_min_device_height,
 		media_feature_max_device_height,
+
+		media_feature_device_depth,
+		media_feature_min_device_depth,
+		media_feature_max_device_depth,
 
 		media_feature_orientation,
 
@@ -715,8 +745,10 @@ namespace litehtml
 		media_type	type;
 		int			width;			// (pixels) For continuous media, this is the width of the viewport including the size of a rendered scroll bar (if any). For paged media, this is the width of the page box.
 		int			height;			// (pixels) The height of the targeted display area of the output device. For continuous media, this is the height of the viewport including the size of a rendered scroll bar (if any). For paged media, this is the height of the page box.
+		int			depth;			// (pixels) The depth of the targeted display area of the output device. For continuous media, this is the depth of the viewport including the size of a rendered scroll bar (if any). For paged media, this is the depth of the page box.
 		int			device_width;	// (pixels) The width of the rendering surface of the output device. For continuous media, this is the width of the screen. For paged media, this is the width of the page sheet size.
 		int			device_height;	// (pixels) The height of the rendering surface of the output device. For continuous media, this is the height of the screen. For paged media, this is the height of the page sheet size.
+		int			device_depth;	// (pixels) The depth of the rendering surface of the output device. For continuous media, this is the depth of the screen. For paged media, this is the depth of the page sheet size.
 		int			color;			// The number of bits per color component of the output device. If the device is not a color device, the value is zero.
 		int			color_index;	// The number of entries in the color lookup table of the output device. If the device does not use a color lookup table, the value is zero.
 		int			monochrome;		// The number of bits per pixel in a monochrome frame buffer. If the device is not a monochrome device, the output device value will be 0.

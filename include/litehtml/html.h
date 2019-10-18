@@ -16,6 +16,7 @@
 #include "html_tag.h"
 #include "web_color.h"
 #include "media_query.h"
+#include "script.h"
 
 namespace litehtml
 {
@@ -40,8 +41,8 @@ namespace litehtml
 		virtual int					get_default_font_size() const = 0;
 		virtual const litehtml::tchar_t*	get_default_font_name() const = 0;
 		virtual void				draw_list_marker(litehtml::uint_ptr hdc, const litehtml::list_marker& marker) = 0;
-		virtual void				load_image(const litehtml::tchar_t* src, const litehtml::tchar_t* baseurl, bool redraw_on_ready) = 0;
-		virtual void				get_image_size(const litehtml::tchar_t* src, const litehtml::tchar_t* baseurl, litehtml::size& sz) = 0;
+		virtual void				load_image(const litehtml::tchar_t* src, const litehtml::tchar_t* baseurl, const litehtml::string_map* attrs, bool redraw_on_ready) = 0;
+		virtual void				get_image_size(const litehtml::tchar_t* src, const litehtml::tchar_t* baseurl, const litehtml::string_map* attrs, litehtml::size& sz) = 0;
 		virtual void				draw_background(litehtml::uint_ptr hdc, const litehtml::background_paint& bg) = 0;
 		virtual void				draw_borders(litehtml::uint_ptr hdc, const litehtml::borders& borders, const litehtml::position& draw_pos, bool root) = 0;
 

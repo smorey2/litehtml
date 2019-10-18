@@ -47,6 +47,7 @@ litehtml::background_paint::background_paint() : color(0, 0, 0, 0)
 {
 	position_x		= 0;
 	position_y		= 0;
+	position_z		= 0;
 	attachment		= background_attachment_scroll;
 	repeat			= background_repeat_repeat;
 	is_root			= false;
@@ -66,6 +67,7 @@ litehtml::background_paint::background_paint( const background_paint& val )
 	image_size		= val.image_size;
 	position_x		= val.position_x;
 	position_y		= val.position_y;
+	position_z		= val.position_z;
 	is_root			= val.is_root;
 }
 

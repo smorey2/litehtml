@@ -18,6 +18,7 @@ namespace litehtml
 		int calculatedTop;
 		int top;
 		int left;
+		int front;
 		int right;
 
 		int width()
@@ -72,10 +73,13 @@ namespace litehtml
 		css_borders				m_css_borders;
 		css_length				m_css_width;
 		css_length				m_css_height;
+		css_length				m_css_depth;
 		css_length				m_css_min_width;
 		css_length				m_css_min_height;
+		css_length				m_css_min_depth;
 		css_length				m_css_max_width;
 		css_length				m_css_max_height;
+		css_length				m_css_max_depth;
 		css_offsets				m_css_offsets;
 		css_length				m_css_text_indent;
 
@@ -91,8 +95,10 @@ namespace litehtml
 		std::unique_ptr<table_grid>	m_grid;
 		css_length				m_css_border_spacing_x;
 		css_length				m_css_border_spacing_y;
+		css_length				m_css_border_spacing_z;
 		int						m_border_spacing_x;
 		int						m_border_spacing_y;
+		int						m_border_spacing_z;
 		border_collapse			m_border_collapse;
 
 		virtual void			select_all(const css_selector& selector, elements_vector& res) override;
@@ -103,7 +109,7 @@ namespace litehtml
 
 		/* render functions */
 
-		virtual int					render(int x, int y, int max_width, bool second_pass = false) override;
+		virtual int					render(int x, int y, int z, int max_width, bool second_pass = false) override;
 
 		virtual int					render_inline(const element::ptr &container, int max_width) override;
 		virtual int					place_element(const element::ptr &el, int max_width) override;
@@ -127,10 +133,13 @@ namespace litehtml
 		virtual css_length			get_css_right() const override;
 		virtual css_length			get_css_top() const override;
 		virtual css_length			get_css_bottom() const override;
+		virtual css_length			get_css_front() const override;
+		virtual css_length			get_css_back() const override;
 		virtual css_length			get_css_width() const override;
 		virtual css_offsets			get_css_offsets() const override;
 		virtual void				set_css_width(css_length& w) override;
 		virtual css_length			get_css_height() const override;
+		virtual css_length			get_css_depth() const override;
 		virtual element_clear		get_clear() const override;
 		virtual size_t				get_children_count() const override;
 		virtual element::ptr		get_child(int idx) const override;
@@ -151,7 +160,7 @@ namespace litehtml
 		virtual bool				on_lbutton_down() override;
 		virtual bool				on_lbutton_up() override;
 		virtual void				on_click() override;
-		virtual bool				find_styles_changes(position::vector& redraw_boxes, int x, int y) override;
+		virtual bool				find_styles_changes(position::vector& redraw_boxes, int x, int y, int z) override;
 		virtual const tchar_t*		get_cursor() override;
 		virtual void				init_font() override;
 		virtual bool				set_pseudo_class(const tchar_t* pclass, bool add) override;
@@ -162,8 +171,8 @@ namespace litehtml
 		virtual style_display		get_display() const override;
 		virtual visibility			get_visibility() const override;
 		virtual void				parse_styles(bool is_reparse = false) override;
-		virtual void				draw(uint_ptr hdc, int x, int y, const position* clip) override;
-		virtual void				draw_background(uint_ptr hdc, int x, int y, const position* clip) override;
+		virtual void				draw(uint_ptr hdc, int x, int y, int z, const position* clip) override;
+		virtual void				draw_background(uint_ptr hdc, int x, int y, int z, const position* clip) override;
 
 		virtual const tchar_t*		get_style_property(const tchar_t* name, bool inherited, const tchar_t* def = 0) override;
 		virtual uint_ptr			get_font(font_metrics* fm = 0) override;
@@ -201,19 +210,19 @@ namespace litehtml
 		virtual int					get_line_left(int y) override;
 		virtual int					get_line_right(int y, int def_right) override;
 		virtual void				get_line_left_right(int y, int def_right, int& ln_left, int& ln_right) override;
-		virtual void				add_float(const element::ptr &el, int x, int y) override;
+		virtual void				add_float(const element::ptr &el, int x, int y, int z) override;
 		virtual void				update_floats(int dy, const element::ptr &parent) override;
 		virtual void				add_positioned(const element::ptr &el) override;
 		virtual int					find_next_line_top(int top, int width, int def_right) override;
 		virtual void				apply_vertical_align() override;
-		virtual void				draw_children(uint_ptr hdc, int x, int y, const position* clip, draw_flag flag, int zindex) override;
+		virtual void				draw_children(uint_ptr hdc, int x, int y, int z, const position* clip, draw_flag flag, int zindex) override;
 		virtual int					get_zindex() const override;
-		virtual void				draw_stacking_context(uint_ptr hdc, int x, int y, const position* clip, bool with_positioned) override;
-		virtual void				calc_document_size(litehtml::size& sz, int x = 0, int y = 0) override;
-		virtual void				get_redraw_box(litehtml::position& pos, int x = 0, int y = 0) override;
+		virtual void				draw_stacking_context(uint_ptr hdc, int x, int y, int z, const position* clip, bool with_positioned) override;
+		virtual void				calc_document_size(litehtml::size& sz, int x = 0, int y = 0, int z = 0) override;
+		virtual void				get_redraw_box(litehtml::position& pos, int x = 0, int y = 0, int z = 0) override;
 		virtual void				add_style(const litehtml::style& st) override;
-		virtual element::ptr		get_element_by_point(int x, int y, int client_x, int client_y) override;
-		virtual element::ptr		get_child_by_point(int x, int y, int client_x, int client_y, draw_flag flag, int zindex) override;
+		virtual element::ptr		get_element_by_point(int x, int y, int z, int client_x, int client_y, int client_z) override;
+		virtual element::ptr		get_child_by_point(int x, int y, int z, int client_x, int client_y, int client_z, draw_flag flag, int zindex) override;
 
 		virtual bool				is_nth_child(const element::ptr& el, int num, int off, bool of_type) const override;
 		virtual bool				is_nth_last_child(const element::ptr& el, int num, int off, bool of_type) const override;
@@ -221,10 +230,10 @@ namespace litehtml
 		virtual const background*	get_background(bool own_only = false) override;
 
 	protected:
-		void						draw_children_box(uint_ptr hdc, int x, int y, const position* clip, draw_flag flag, int zindex);
-		void						draw_children_table(uint_ptr hdc, int x, int y, const position* clip, draw_flag flag, int zindex);
-		int							render_box(int x, int y, int max_width, bool second_pass = false);
-		int							render_table(int x, int y, int max_width, bool second_pass = false);
+		void						draw_children_box(uint_ptr hdc, int x, int y, int z, const position* clip, draw_flag flag, int zindex);
+		void						draw_children_table(uint_ptr hdc, int x, int y, int z, const position* clip, draw_flag flag, int zindex);
+		int							render_box(int x, int y, int z, int max_width, bool second_pass = false);
+		int							render_table(int x, int y, int z, int max_width, bool second_pass = false);
 		int							fix_line_width(int max_width, element_float flt);
 		void						parse_background();
 		void						init_background_paint( position pos, background_paint &bg_paint, const background* bg );

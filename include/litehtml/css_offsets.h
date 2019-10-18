@@ -11,6 +11,8 @@ namespace litehtml
 		css_length	top;
 		css_length	right;
 		css_length	bottom;
+		css_length	front;
+		css_length	back;
 
 		css_offsets()
 		{
@@ -23,6 +25,8 @@ namespace litehtml
 			top		= val.top;
 			right	= val.right;
 			bottom	= val.bottom;
+			front	= val.front;
+			back	= val.back;
 		}
 
 		css_offsets& operator=(const css_offsets& val)
@@ -31,6 +35,8 @@ namespace litehtml
 			top		= val.top;
 			right	= val.right;
 			bottom	= val.bottom;
+			front	= val.front;
+			back	= val.back;
 			return *this;
 		}
 	};

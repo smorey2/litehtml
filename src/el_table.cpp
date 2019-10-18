@@ -9,6 +9,7 @@ litehtml::el_table::el_table(const std::shared_ptr<litehtml::document>& doc) : h
 {
 	m_border_spacing_x	= 0;
 	m_border_spacing_y	= 0;
+	m_border_spacing_z	= 0;
 	m_border_collapse	= border_collapse_separate;
 }
 
@@ -38,23 +39,30 @@ void litehtml::el_table::parse_styles(bool is_reparse)
 	{
 		m_css_border_spacing_x.fromString(get_style_property(_t("-litehtml-border-spacing-x"), true, _t("0px")));
 		m_css_border_spacing_y.fromString(get_style_property(_t("-litehtml-border-spacing-y"), true, _t("0px")));
+		m_css_border_spacing_z.fromString(get_style_property(_t("-litehtml-border-spacing-z"), true, _t("0px")));
 
 		int fntsz = get_font_size();
 		document::ptr doc = get_document();
 		m_border_spacing_x = doc->cvt_units(m_css_border_spacing_x, fntsz);
 		m_border_spacing_y = doc->cvt_units(m_css_border_spacing_y, fntsz);
+		m_border_spacing_z = doc->cvt_units(m_css_border_spacing_z, fntsz);
 	} else
 	{
 		m_border_spacing_x	= 0;
 		m_border_spacing_y	= 0;
+		m_border_spacing_z	= 0;
 		m_padding.bottom	= 0;
 		m_padding.top		= 0;
 		m_padding.left		= 0;
 		m_padding.right		= 0;
+		m_padding.front		= 0;
+		m_padding.back		= 0;
 		m_css_padding.bottom.set_value(0, css_units_px);
 		m_css_padding.top.set_value(0, css_units_px);
 		m_css_padding.left.set_value(0, css_units_px);
 		m_css_padding.right.set_value(0, css_units_px);
+		m_css_padding.front.set_value(0, css_units_px);
+		m_css_padding.back.set_value(0, css_units_px);
 	}
 }
 

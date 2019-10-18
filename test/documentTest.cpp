@@ -27,8 +27,8 @@ static void DrawTest() {
   context ctx;
   container_test container;
   litehtml::document::ptr doc = document::createFromString(_t("<html>Body</html>"), &container, &ctx);
-  position pos(0, 0, 100, 100);
-  doc->draw((uint_ptr)0, 0, 0, &pos);
+  position pos(0, 0, 0, 100, 100, 0);
+  doc->draw((uint_ptr)0, 0, 0, 0, &pos);
 }
 
 static void CvtUnitsTest() {
@@ -54,9 +54,9 @@ static void MouseEventsTest() {
   container_test container;
   litehtml::document::ptr doc = std::make_shared<litehtml::document>(&container, nullptr);
   position::vector redraw_boxes;
-  doc->on_mouse_over(0, 0, 0, 0, redraw_boxes);
-  doc->on_lbutton_down(0, 0, 0, 0, redraw_boxes);
-  doc->on_lbutton_up(0, 0, 0, 0, redraw_boxes);
+  doc->on_mouse_over(0, 0, 0, 0, 0, 0, redraw_boxes);
+  doc->on_lbutton_down(0, 0, 0, 0, 0, 0, redraw_boxes);
+  doc->on_lbutton_up(0, 0, 0, 0, 0, 0, redraw_boxes);
   doc->on_mouse_leave(redraw_boxes);
 }
 

@@ -18,6 +18,11 @@ int litehtml::block_box::width()
 	return m_element->width();
 }
 
+int litehtml::block_box::depth()
+{
+	return m_element->depth();
+}
+
 void litehtml::block_box::add_element(const element::ptr &el)
 {
 	m_element = el;
@@ -111,6 +116,11 @@ int litehtml::line_box::width()
 	return m_width;
 }
 
+int litehtml::line_box::depth()
+{
+	return m_depth;
+}
+
 void litehtml::line_box::add_element(const element::ptr &el)
 {
 	el->m_skip	= false;
@@ -140,6 +150,7 @@ void litehtml::line_box::add_element(const element::ptr &el)
 
 			el->m_pos.x	= m_box_left + m_width + el_shift_left + el->content_margins_left();
 			el->m_pos.y	= m_box_top + el->content_margins_top();
+			el->m_pos.z	= m_box_front + el->content_margins_front();
 			m_width		+= el->width() + el_shift_left + el_shift_right;
 		}
 	}
@@ -252,7 +263,7 @@ void litehtml::line_box::finish(bool last_box)
 		}
 	}
 
-	css_offsets offsets;
+	//css_offsets offsets;
 
 	for (const auto& el : m_items)
 	{

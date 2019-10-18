@@ -266,7 +266,7 @@ int litehtml::document::render( int max_width, render_type rt )
 			m_root->render_positioned(rt);
 		} else
 		{
-			ret = m_root->render(0, 0, max_width);
+			ret = m_root->render(0, 0, 0, max_width);
 			if(m_root->fetch_positioned())
 			{
 				m_fixed_boxes.clear();
@@ -274,18 +274,19 @@ int litehtml::document::render( int max_width, render_type rt )
 			}
 			m_size.width	= 0;
 			m_size.height	= 0;
+			m_size.depth	= 0;
 			m_root->calc_document_size(m_size);
 		}
 	}
 	return ret;
 }
 
-void litehtml::document::draw( uint_ptr hdc, int x, int y, const position* clip )
+void litehtml::document::draw( uint_ptr hdc, int x, int y, int z, const position* clip )
 {
 	if(m_root)
 	{
-		m_root->draw(hdc, x, y, clip);
-		m_root->draw_stacking_context(hdc, x, y, clip, true);
+		m_root->draw(hdc, x, y, z, clip);
+		m_root->draw_stacking_context(hdc, x, y, z, clip, true);
 	}
 }
 
@@ -375,14 +376,14 @@ void litehtml::document::add_stylesheet( const tchar_t* str, const tchar_t* base
 	}
 }
 
-bool litehtml::document::on_mouse_over( int x, int y, int client_x, int client_y, position::vector& redraw_boxes )
+bool litehtml::document::on_mouse_over( int x, int y, int z, int client_x, int client_y, int client_z, position::vector& redraw_boxes )
 {
 	if(!m_root)
 	{
 		return false;
 	}
 
-	element::ptr over_el = m_root->get_element_by_point(x, y, client_x, client_y);
+	element::ptr over_el = m_root->get_element_by_point(x, y, z, client_x, client_y, client_z);
 
 	bool state_was_changed = false;
 
@@ -413,7 +414,7 @@ bool litehtml::document::on_mouse_over( int x, int y, int client_x, int client_y
 	
 	if(state_was_changed)
 	{
-		return m_root->find_styles_changes(redraw_boxes, 0, 0);
+		return m_root->find_styles_changes(redraw_boxes, 0, 0, 0);
 	}
 	return false;
 }
@@ -428,20 +429,20 @@ bool litehtml::document::on_mouse_leave( position::vector& redraw_boxes )
 	{
 		if(m_over_element->on_mouse_leave())
 		{
-			return m_root->find_styles_changes(redraw_boxes, 0, 0);
+			return m_root->find_styles_changes(redraw_boxes, 0, 0, 0);
 		}
 	}
 	return false;
 }
 
-bool litehtml::document::on_lbutton_down( int x, int y, int client_x, int client_y, position::vector& redraw_boxes )
+bool litehtml::document::on_lbutton_down( int x, int y, int z, int client_x, int client_y, int client_z, position::vector& redraw_boxes )
 {
 	if(!m_root)
 	{
 		return false;
 	}
 
-	element::ptr over_el = m_root->get_element_by_point(x, y, client_x, client_y);
+	element::ptr over_el = m_root->get_element_by_point(x, y, z, client_x, client_y, client_z);
 
 	bool state_was_changed = false;
 
@@ -479,13 +480,13 @@ bool litehtml::document::on_lbutton_down( int x, int y, int client_x, int client
 
 	if(state_was_changed)
 	{
-		return m_root->find_styles_changes(redraw_boxes, 0, 0);
+		return m_root->find_styles_changes(redraw_boxes, 0, 0, 0);
 	}
 
 	return false;
 }
 
-bool litehtml::document::on_lbutton_up( int x, int y, int client_x, int client_y, position::vector& redraw_boxes )
+bool litehtml::document::on_lbutton_up( int x, int y, int z, int client_x, int client_y, int client_z, position::vector& redraw_boxes )
 {
 	if(!m_root)
 	{
@@ -495,7 +496,7 @@ bool litehtml::document::on_lbutton_up( int x, int y, int client_x, int client_y
 	{
 		if(m_over_element->on_lbutton_up())
 		{
-			return m_root->find_styles_changes(redraw_boxes, 0, 0);
+			return m_root->find_styles_changes(redraw_boxes, 0, 0, 0);
 		}
 	}
 	return false;

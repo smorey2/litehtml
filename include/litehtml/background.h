@@ -36,6 +36,7 @@ namespace litehtml
 	public:
 		tstring					image;
 		tstring					baseurl;
+		string_map*				attrs;
 		background_attachment	attachment;
 		background_repeat		repeat;
 		web_color				color;
@@ -46,6 +47,7 @@ namespace litehtml
 		size					image_size;
 		int						position_x;
 		int						position_y;
+		int						position_z;
 		bool					is_root;
 	public:
 		background_paint();

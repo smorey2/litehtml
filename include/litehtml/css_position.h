@@ -9,8 +9,10 @@ namespace litehtml
 	{
 		css_length	x;
 		css_length	y;
+		css_length	z;
 		css_length	width;
 		css_length	height;
+		css_length	depth;
 
 		css_position()
 		{
@@ -21,16 +23,20 @@ namespace litehtml
 		{
 			x		= val.x;
 			y		= val.y;
+			z		= val.z;
 			width	= val.width;
 			height	= val.height;
+			depth	= val.depth;
 		}
 
 		css_position& operator=(const css_position& val)
 		{
 			x		= val.x;
 			y		= val.y;
+			z		= val.z;
 			width	= val.width;
 			height	= val.height;
+			depth	= val.depth;
 			return *this;
 		}
 	};

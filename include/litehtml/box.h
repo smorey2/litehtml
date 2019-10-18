@@ -19,12 +19,14 @@ namespace litehtml
 	protected:
 		int		m_box_top;
 		int		m_box_left;
+		int		m_box_front;
 		int		m_box_right;
 	public:
-		box(int top, int left, int right)
+		box(int top, int left, int front, int right)
 		{
 			m_box_top	= top;
 			m_box_left	= left;
+			m_box_front	= front;
 			m_box_right	= right;
 		}
 		virtual ~box() {}
@@ -33,10 +35,13 @@ namespace litehtml
 		int		top()		{ return m_box_top;				}
 		int		right()		{ return m_box_left + width();	}
 		int		left()		{ return m_box_left;			}
+		int		front()		{ return m_box_front;			}
+		int		back()		{ return m_box_front + depth(); }
 
 		virtual litehtml::box_type	get_type() = 0;
 		virtual int					height() = 0;
 		virtual int					width() = 0;
+		virtual int					depth() = 0;
 		virtual void				add_element(const element::ptr &el) = 0;
 		virtual bool				can_hold(const element::ptr &el, white_space ws) = 0;
 		virtual void				finish(bool last_box = false) = 0;
@@ -55,7 +60,7 @@ namespace litehtml
 	{
 		element::ptr m_element;
 	public:
-		block_box(int top, int left, int right) : box(top, left, right)
+		block_box(int top, int left, int front, int right) : box(top, left, front, right)
 		{
 			m_element = 0;
 		}
@@ -63,6 +68,7 @@ namespace litehtml
 		virtual litehtml::box_type	get_type();
 		virtual int					height();
 		virtual int					width();
+		virtual int					depth();
 		virtual void				add_element(const element::ptr &el);
 		virtual bool				can_hold(const element::ptr &el, white_space ws);
 		virtual void				finish(bool last_box = false);
@@ -82,15 +88,17 @@ namespace litehtml
 		elements_vector			m_items;
 		int						m_height;
 		int						m_width;
+		int						m_depth;
 		int						m_line_height;
 		font_metrics			m_font_metrics;
 		int						m_baseline;
 		text_align				m_text_align;
 	public:
-		line_box(int top, int left, int right, int line_height, font_metrics& fm, text_align align) : box(top, left, right)
+		line_box(int top, int left, int front, int right, int line_height, font_metrics& fm, text_align align) : box(top, left, front, right)
 		{
 			m_height		= 0;
 			m_width			= 0;
+			m_depth			= 0;
 			m_font_metrics	= fm;
 			m_line_height	= line_height;
 			m_baseline		= 0;
@@ -100,6 +108,7 @@ namespace litehtml
 		virtual litehtml::box_type	get_type();
 		virtual int					height();
 		virtual int					width();
+		virtual int					depth();
 		virtual void				add_element(const element::ptr &el);
 		virtual bool				can_hold(const element::ptr &el, white_space ws);
 		virtual void				finish(bool last_box = false);

@@ -18,8 +18,8 @@ int container_test::pt_to_px(int pt) { return (int)((double)pt * 96 / 72.0); }
 int container_test::get_default_font_size() const { return 16; }
 const litehtml::tchar_t* container_test::get_default_font_name() const { return _t("Times New Roman"); }
 void container_test::draw_list_marker(litehtml::uint_ptr hdc, const litehtml::list_marker& marker) {}
-void container_test::load_image(const litehtml::tchar_t* src, const litehtml::tchar_t* baseurl, bool redraw_on_ready) {}
-void container_test::get_image_size(const litehtml::tchar_t* src, const litehtml::tchar_t* baseurl, litehtml::size& sz) {}
+void container_test::load_image(const litehtml::tchar_t* src, const litehtml::tchar_t* baseurl, const litehtml::string_map* attrs, bool redraw_on_ready) {}
+void container_test::get_image_size(const litehtml::tchar_t* src, const litehtml::tchar_t* baseurl, const litehtml::string_map* attrs, litehtml::size& sz) {}
 void container_test::draw_background(litehtml::uint_ptr hdc, const litehtml::background_paint& bg) {}
 void container_test::make_url(const litehtml::tchar_t* url, const litehtml::tchar_t* basepath, litehtml::tstring& out) { out = url; }
 void container_test::draw_borders(litehtml::uint_ptr hdc, const litehtml::borders& borders, const litehtml::position& draw_pos, bool root) {}

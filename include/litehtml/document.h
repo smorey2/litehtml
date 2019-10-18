@@ -56,6 +56,7 @@ namespace litehtml
 	private:
 		std::shared_ptr<element>			m_root;
 		document_container*					m_container;
+		iscript*							m_script;
 		fonts_map							m_fonts;
 		css_text::vector					m_css;
 		litehtml::css						m_styles;
@@ -74,18 +75,19 @@ namespace litehtml
 		virtual ~document();
 
 		litehtml::document_container*	container()	{ return m_container; }
+		litehtml::iscript*				script() { return m_script; }
 		uint_ptr						get_font(const tchar_t* name, int size, const tchar_t* weight, const tchar_t* style, const tchar_t* decoration, font_metrics* fm);
 		int								render(int max_width, render_type rt = render_all);
-		void							draw(uint_ptr hdc, int x, int y, const position* clip);
+		void							draw(uint_ptr hdc, int x, int y, int z, const position* clip);
 		web_color						get_def_color()	{ return m_def_color; }
 		int								cvt_units(const tchar_t* str, int fontSize, bool* is_percent = 0) const;
 		int								cvt_units(css_length& val, int fontSize, int size = 0) const;
 		int								width() const;
 		int								height() const;
 		void							add_stylesheet(const tchar_t* str, const tchar_t* baseurl, const tchar_t* media);
-		bool							on_mouse_over(int x, int y, int client_x, int client_y, position::vector& redraw_boxes);
-		bool							on_lbutton_down(int x, int y, int client_x, int client_y, position::vector& redraw_boxes);
-		bool							on_lbutton_up(int x, int y, int client_x, int client_y, position::vector& redraw_boxes);
+		bool							on_mouse_over(int x, int y, int z, int client_x, int client_y, int client_z, position::vector& redraw_boxes);
+		bool							on_lbutton_down(int x, int y, int z, int client_x, int client_y, int client_z, position::vector& redraw_boxes);
+		bool							on_lbutton_up(int x, int y, int z, int client_x, int client_y, int client_z, position::vector& redraw_boxes);
 		bool							on_mouse_leave(position::vector& redraw_boxes);
 		litehtml::element::ptr			create_element(const tchar_t* tag_name, const string_map& attributes);
 		element::ptr					root();

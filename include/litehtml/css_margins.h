@@ -11,6 +11,8 @@ namespace litehtml
 		css_length	right;
 		css_length	top;
 		css_length	bottom;
+		css_length	front;
+		css_length	back;
 
 		css_margins()
 		{
@@ -23,6 +25,8 @@ namespace litehtml
 			right	= val.right;
 			top		= val.top;
 			bottom	= val.bottom;
+			front	= val.front;
+			back	= val.back;
 		}
 
 		css_margins& operator=(const css_margins& val)
@@ -31,6 +35,8 @@ namespace litehtml
 			right	= val.right;
 			top		= val.top;
 			bottom	= val.bottom;
+			front	= val.front;
+			back	= val.back;
 			return *this;
 		}
 	};

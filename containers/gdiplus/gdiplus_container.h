@@ -21,7 +21,7 @@ protected:
 	virtual void		draw_ellipse(HDC hdc, int x, int y, int width, int height, const litehtml::web_color& color, int line_width);
 	virtual void		fill_ellipse(HDC hdc, int x, int y, int width, int height, const litehtml::web_color& color);
 	virtual void		fill_rect(HDC hdc, int x, int y, int width, int height, const litehtml::web_color& color, const litehtml::css_border_radius& radius);
-	virtual void		get_img_size(litehtml::uint_ptr img, litehtml::size& sz);
+	virtual void		get_img_size(litehtml::uint_ptr img, const litehtml::string_map& attrs, litehtml::size& sz);
 	virtual void		draw_img(HDC hdc, litehtml::uint_ptr img, const litehtml::position& pos);
 	virtual void		free_image(litehtml::uint_ptr img);
 	virtual void		draw_img_bg(HDC hdc, litehtml::uint_ptr img, const litehtml::position& draw_pos, const litehtml::position& pos, litehtml::background_repeat repeat, litehtml::background_attachment attachment);

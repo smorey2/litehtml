@@ -18,11 +18,10 @@ litehtml::media_query::media_query( const media_query& val )
 
 litehtml::media_query::ptr litehtml::media_query::create_from_string(const tstring& str, const std::shared_ptr<document>& doc)
 {
-	media_query::ptr query = std::make_shared<media_query>();
-
 	string_vector tokens;
 	split_string(str, tokens, _t(" \t\r\n"), _t(""), _t("("));
 
+	media_query::ptr query = std::make_shared<media_query>();
 	for(string_vector::iterator tok = tokens.begin(); tok != tokens.end(); tok++)
 	{
 		if((*tok) == _t("not"))
@@ -92,10 +91,8 @@ litehtml::media_query::ptr litehtml::media_query::create_from_string(const tstri
 		} else
 		{
 			query->m_media_type = (media_type) value_index((*tok), media_type_strings, media_type_all);
-
 		}
 	}
-
 	return query;
 }
 
@@ -113,12 +110,10 @@ bool litehtml::media_query::check( const media_features& features ) const
 			}
 		}
 	}
-
 	if(m_not)
 	{
 		res = !res;
 	}
-
 	return res;
 }
 
@@ -126,16 +121,14 @@ bool litehtml::media_query::check( const media_features& features ) const
 
 litehtml::media_query_list::ptr litehtml::media_query_list::create_from_string(const tstring& str, const std::shared_ptr<document>& doc)
 {
-	media_query_list::ptr list = std::make_shared<media_query_list>();
-
 	string_vector tokens;
 	split_string(str, tokens, _t(","));
 
+	media_query_list::ptr list = std::make_shared<media_query_list>();
 	for(string_vector::iterator tok = tokens.begin(); tok != tokens.end(); tok++)
 	{
 		trim(*tok);
 		lcase(*tok);
-
 		litehtml::media_query::ptr query = media_query::create_from_string(*tok, doc);
 		if(query)
 		{
@@ -146,14 +139,12 @@ litehtml::media_query_list::ptr litehtml::media_query_list::create_from_string(c
 	{
 		list = 0;
 	}
-
 	return list;
 }
 
 bool litehtml::media_query_list::apply_media_features( const media_features& features )
 {
 	bool apply = false;
-	
 	for(media_query::vector::iterator iter = m_queries.begin(); iter != m_queries.end() && !apply; iter++)
 	{
 		if((*iter)->check(features))
@@ -213,6 +204,27 @@ bool litehtml::media_query_expression::check( const media_features& features ) c
 			return true;
 		}
 		break;
+	case media_feature_depth:
+		if(check_as_bool)
+		{
+			return (features.depth != 0);
+		} else if(features.depth == val)
+		{
+			return true;
+		}
+		break;
+	case media_feature_min_depth:
+		if(features.depth >= val)
+		{
+			return true;
+		}
+		break;
+	case media_feature_max_depth:
+		if(features.depth <= val)
+		{
+			return true;
+		}
+		break;
 
 	case media_feature_device_width:
 		if(check_as_bool)
@@ -252,6 +264,27 @@ bool litehtml::media_query_expression::check( const media_features& features ) c
 		break;
 	case media_feature_max_device_height:
 		if(features.device_height <= val)
+		{
+			return true;
+		}
+		break;
+	case media_feature_device_depth:
+		if(check_as_bool)
+		{
+			return (features.device_depth != 0);
+		} else if(features.device_depth == val)
+		{
+			return true;
+		}
+		break;
+	case media_feature_min_device_depth:
+		if(features.device_depth >= val)
+		{
+			return true;
+		}
+		break;
+	case media_feature_max_device_depth:
+		if(features.device_depth <= val)
 		{
 			return true;
 		}

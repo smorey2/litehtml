@@ -43,32 +43,44 @@ namespace litehtml
 		int							right()						const;
 		int							top()						const;
 		int							bottom()					const;
+		int							front()						const;
+		int							back()						const;
 		int							height()					const;
 		int							width()						const;
+		int							depth()						const;
 
 		int							content_margins_top()		const;
 		int							content_margins_bottom()	const;
 		int							content_margins_left()		const;
 		int							content_margins_right()		const;
+		int							content_margins_front()		const;
+		int							content_margins_back()		const;
 		int							content_margins_width()		const;
 		int							content_margins_height()	const;
+		int							content_margins_depth()	const;
 
 		int							margin_top()				const;
 		int							margin_bottom()				const;
 		int							margin_left()				const;
 		int							margin_right()				const;
+		int							margin_front()				const;
+		int							margin_back()				const;
 		margins						get_margins()				const;
 
 		int							padding_top()				const;
 		int							padding_bottom()			const;
 		int							padding_left()				const;
 		int							padding_right()				const;
+		int							padding_front()				const;
+		int							padding_back()				const;
 		margins						get_paddings()				const;
 
 		int							border_top()				const;
 		int							border_bottom()				const;
 		int							border_left()				const;
 		int							border_right()				const;
+		int							border_front()				const;
+		int							border_back()				const;
 		margins						get_borders()				const;
 
 		bool						in_normal_flow()			const;
@@ -98,7 +110,7 @@ namespace litehtml
 		virtual element::ptr		select_one(const tstring& selector);
 		virtual element::ptr		select_one(const css_selector& selector);
 
-		virtual int					render(int x, int y, int max_width, bool second_pass = false);
+		virtual int					render(int x, int y, int z, int max_width, bool second_pass = false);
 		virtual int					render_inline(const ptr &container, int max_width);
 		virtual int					place_element(const ptr &el, int max_width);
 		virtual void				calc_outlines( int parent_width );
@@ -125,10 +137,13 @@ namespace litehtml
 		virtual css_length			get_css_right() const;
 		virtual css_length			get_css_top() const;
 		virtual css_length			get_css_bottom() const;
+		virtual css_length			get_css_front() const;
+		virtual css_length			get_css_back() const;
 		virtual css_offsets			get_css_offsets() const;
 		virtual css_length			get_css_width() const;
 		virtual void				set_css_width(css_length& w);
 		virtual css_length			get_css_height() const;
+		virtual css_length			get_css_depth() const;
 
 		virtual void				set_attr(const tchar_t* name, const tchar_t* val);
 		virtual const tchar_t*		get_attr(const tchar_t* name, const tchar_t* def = 0) const;
@@ -143,10 +158,10 @@ namespace litehtml
 		virtual bool				on_lbutton_down();
 		virtual bool				on_lbutton_up();
 		virtual void				on_click();
-		virtual bool				find_styles_changes(position::vector& redraw_boxes, int x, int y);
+		virtual bool				find_styles_changes(position::vector& redraw_boxes, int x, int y, int z);
 		virtual const tchar_t*		get_cursor();
 		virtual void				init_font();
-		virtual bool				is_point_inside(int x, int y);
+		virtual bool				is_point_inside(int x, int y, int z);
 		virtual bool				set_pseudo_class(const tchar_t* pclass, bool add);
 		virtual bool				set_class(const tchar_t* pclass, bool add);
 		virtual bool				is_replaced() const;
@@ -157,8 +172,8 @@ namespace litehtml
 		virtual element_position	get_element_position(css_offsets* offsets = 0) const;
 		virtual void				get_inline_boxes(position::vector& boxes);
 		virtual void				parse_styles(bool is_reparse = false);
-		virtual void				draw(uint_ptr hdc, int x, int y, const position* clip);
-		virtual void				draw_background( uint_ptr hdc, int x, int y, const position* clip );
+		virtual void				draw(uint_ptr hdc, int x, int y, int z, const position* clip);
+		virtual void				draw_background( uint_ptr hdc, int x, int y, int z, const position* clip );
 		virtual const tchar_t*		get_style_property(const tchar_t* name, bool inherited, const tchar_t* def = 0);
 		virtual uint_ptr			get_font(font_metrics* fm = 0);
 		virtual int					get_font_size() const;
@@ -182,22 +197,23 @@ namespace litehtml
 		virtual int					get_line_left(int y);
 		virtual int					get_line_right(int y, int def_right);
 		virtual void				get_line_left_right(int y, int def_right, int& ln_left, int& ln_right);
-		virtual void				add_float(const ptr &el, int x, int y);
+		virtual void				add_float(const ptr &el, int x, int y, int z);
 		virtual void				update_floats(int dy, const ptr &parent);
 		virtual void				add_positioned(const ptr &el);
 		virtual int					find_next_line_top(int top, int width, int def_right);
 		virtual int					get_zindex() const;
-		virtual void				draw_stacking_context(uint_ptr hdc, int x, int y, const position* clip, bool with_positioned);
-		virtual void				draw_children( uint_ptr hdc, int x, int y, const position* clip, draw_flag flag, int zindex );
+		virtual void				draw_stacking_context(uint_ptr hdc, int x, int y, int z, const position* clip, bool with_positioned);
+		virtual void				draw_children( uint_ptr hdc, int x, int y, int z, const position* clip, draw_flag flag, int zindex );
 		virtual bool				is_nth_child(const element::ptr& el, int num, int off, bool of_type) const;
 		virtual bool				is_nth_last_child(const element::ptr& el, int num, int off, bool of_type) const;
 		virtual bool				is_only_child(const element::ptr& el, bool of_type) const;
 		virtual bool				get_predefined_height(int& p_height) const;
-		virtual void				calc_document_size(litehtml::size& sz, int x = 0, int y = 0);
-		virtual void				get_redraw_box(litehtml::position& pos, int x = 0, int y = 0);
+		virtual bool				get_predefined_depth(int& p_depth) const;
+		virtual void				calc_document_size(litehtml::size& sz, int x = 0, int y = 0, int z = 0);
+		virtual void				get_redraw_box(litehtml::position& pos, int x = 0, int y = 0, int z = 0);
 		virtual void				add_style(const litehtml::style& st);
-		virtual element::ptr		get_element_by_point(int x, int y, int client_x, int client_y);
-		virtual element::ptr		get_child_by_point(int x, int y, int client_x, int client_y, draw_flag flag, int zindex);
+		virtual element::ptr		get_element_by_point(int x, int y, int z, int client_x, int client_y, int client_z);
+		virtual element::ptr		get_child_by_point(int x, int y, int z, int client_x, int client_y, int client_z, draw_flag flag, int zindex);
 		virtual const background*	get_background(bool own_only = false);
 	};
 
@@ -225,6 +241,16 @@ namespace litehtml
 		return top() + height();
 	}
 
+	inline int litehtml::element::front() const
+	{
+		return m_pos.front() - margin_front() - m_padding.front - m_borders.front;
+	}
+
+	inline int litehtml::element::back() const
+	{
+		return front() + depth();
+	}
+
 	inline int litehtml::element::height() const
 	{
 		return m_pos.height + margin_top() + margin_bottom() + m_padding.height() + m_borders.height();
@@ -233,6 +259,11 @@ namespace litehtml
 	inline int litehtml::element::width() const
 	{
 		return m_pos.width + margin_left() + margin_right() + m_padding.width() + m_borders.width();
+	}
+
+	inline int litehtml::element::depth() const
+	{
+		return m_pos.depth + margin_front() + margin_back() + m_padding.depth() + m_borders.depth();
 	}
 
 	inline int litehtml::element::content_margins_top() const
@@ -255,6 +286,16 @@ namespace litehtml
 		return margin_right() + m_padding.right + m_borders.right;
 	}
 
+	inline int litehtml::element::content_margins_front() const
+	{
+		return margin_front() + m_padding.front + m_borders.front;
+	}
+
+	inline int litehtml::element::content_margins_back() const
+	{
+		return margin_back() + m_padding.back + m_borders.back;
+	}
+
 	inline int litehtml::element::content_margins_width() const
 	{
 		return content_margins_left() + content_margins_right();
@@ -263,6 +304,11 @@ namespace litehtml
 	inline int litehtml::element::content_margins_height() const
 	{
 		return content_margins_top() + content_margins_bottom();
+	}
+
+	inline int litehtml::element::content_margins_depth() const
+	{
+		return content_margins_front() + content_margins_back();
 	}
 
 	inline litehtml::margins litehtml::element::get_paddings()	const
@@ -295,6 +341,16 @@ namespace litehtml
 		return m_padding.right;
 	}
 
+	inline int litehtml::element::padding_front() const
+	{
+		return m_padding.front;
+	}
+
+	inline int litehtml::element::padding_back() const
+	{
+		return m_padding.back;
+	}
+
 	inline bool litehtml::element::in_normal_flow() const
 	{
 		if(get_element_position() != element_position_absolute && get_display() != display_none)
@@ -322,6 +378,16 @@ namespace litehtml
 	inline int litehtml::element::border_right() const
 	{
 		return m_borders.right;
+	}
+
+	inline int litehtml::element::border_front() const
+	{
+		return m_borders.front;
+	}
+
+	inline int litehtml::element::border_back() const
+	{
+		return m_borders.back;
 	}
 
 	inline bool litehtml::element::skip()
@@ -369,6 +435,16 @@ namespace litehtml
 		return m_margins.right;
 	}
 
+	inline int litehtml::element::margin_front() const
+	{
+		return m_margins.front;
+	}
+
+	inline int litehtml::element::margin_back() const
+	{
+		return m_margins.back;
+	}
+
 	inline litehtml::margins litehtml::element::get_margins() const
 	{
 		margins ret;
@@ -376,6 +452,8 @@ namespace litehtml
 		ret.right	= margin_right();
 		ret.top		= margin_top();
 		ret.bottom	= margin_bottom();
+		ret.front	= margin_front();
+		ret.back	= margin_back();
 
 		return ret;
 	}

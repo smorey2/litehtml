@@ -14,7 +14,7 @@ litehtml::el_image::~el_image( void )
 
 void litehtml::el_image::get_content_size( size& sz, int max_width )
 {
-	get_document()->container()->get_image_size(m_src.c_str(), 0, sz);
+	get_document()->container()->get_image_size(m_src.c_str(), 0, 0, sz);
 }
 
 int litehtml::el_image::calc_max_height(int image_height)
@@ -45,26 +45,28 @@ bool litehtml::el_image::is_replaced() const
 	return true;
 }
 
-int litehtml::el_image::render( int x, int y, int max_width, bool second_pass )
+int litehtml::el_image::render( int x, int y, int z, int max_width, bool second_pass )
 {
 	int parent_width = max_width;
 
 	calc_outlines(parent_width);
 
-	m_pos.move_to(x, y);
+	m_pos.move_to(x, y, z);
 
 	document::ptr doc = get_document();
 
 	litehtml::size sz;
-	doc->container()->get_image_size(m_src.c_str(), 0, sz);
+	doc->container()->get_image_size(m_src.c_str(), 0, 0, sz);
 
 	m_pos.width		= sz.width;
 	m_pos.height	= sz.height;
+    m_pos.depth 	= sz.depth;
 
 	if(m_css_height.is_predefined() && m_css_width.is_predefined())
 	{
 		m_pos.height	= sz.height;
 		m_pos.width		= sz.width;
+		m_pos.depth 	= sz.depth;
 
 		// check for max-width
 		if(!m_css_max_width.is_predefined())
@@ -74,13 +76,7 @@ int litehtml::el_image::render( int x, int y, int max_width, bool second_pass )
 			{
 				m_pos.width = max_width;
 			}
-			if(sz.width)
-			{
-				m_pos.height = (int) ((float) m_pos.width * (float) sz.height / (float)sz.width);
-			} else
-			{
-				m_pos.height = sz.height;
-			}
+			m_pos.height = sz.width ? (int)((float)m_pos.width * (float)sz.height / (float)sz.width) : sz.height;
 		}
 
 		// check for max-height
@@ -91,13 +87,7 @@ int litehtml::el_image::render( int x, int y, int max_width, bool second_pass )
 			{
 				m_pos.height = max_height;
 			}
-			if(sz.height)
-			{
-				m_pos.width = (int) (m_pos.height * (float)sz.width / (float)sz.height);
-			} else
-			{
-				m_pos.width = sz.width;
-			}
+			m_pos.width = sz.height ? (int)(m_pos.height * (float)sz.width / (float)sz.height) : sz.width;
 		}
 	} else if(!m_css_height.is_predefined() && m_css_width.is_predefined())
 	{
@@ -116,16 +106,10 @@ int litehtml::el_image::render( int x, int y, int max_width, bool second_pass )
 			}
 		}
 
-		if(sz.height)
-		{
-			m_pos.width = (int) (m_pos.height * (float)sz.width / (float)sz.height);
-		} else
-		{
-			m_pos.width = sz.width;
-		}
+		m_pos.width = sz.height ? (int)(m_pos.height * (float)sz.width / (float)sz.height) : sz.width;
 	} else if(m_css_height.is_predefined() && !m_css_width.is_predefined())
 	{
-		m_pos.width = (int) m_css_width.calc_percent(parent_width);
+		m_pos.width = (int)m_css_width.calc_percent(parent_width);
 
 		// check for max-width
 		if(!m_css_max_width.is_predefined())
@@ -137,17 +121,12 @@ int litehtml::el_image::render( int x, int y, int max_width, bool second_pass )
 			}
 		}
 
-		if(sz.width)
-		{
-			m_pos.height = (int) ((float) m_pos.width * (float) sz.height / (float)sz.width);
-		} else
-		{
-			m_pos.height = sz.height;
-		}
+		m_pos.height = sz.width ? (int)((float) m_pos.width * (float)sz.height / (float)sz.width) : sz.height;
 	} else
 	{
-		m_pos.width		= (int) m_css_width.calc_percent(parent_width);
+		m_pos.width		= (int)m_css_width.calc_percent(parent_width);
 		m_pos.height	= 0;
+		m_pos.depth		= 0;
 		if (!get_predefined_height(m_pos.height))
 		{
 			m_pos.height = (int)m_css_height.val();
@@ -178,6 +157,7 @@ int litehtml::el_image::render( int x, int y, int max_width, bool second_pass )
 
 	m_pos.x	+= content_margins_left();
 	m_pos.y += content_margins_top();
+	m_pos.z += content_margins_front();
 
 	return m_pos.width + content_margins_left() + content_margins_right();
 }
@@ -196,13 +176,19 @@ void litehtml::el_image::parse_attributes()
 	{
 		m_style.add_property(_t("width"), attr_width, 0, false);
 	}
+	const tchar_t* attr_depth = get_attr(_t("depth"));
+	if(attr_depth)
+	{
+		m_style.add_property(_t("depth"), attr_depth, 0, false);
+	}
 }
 
-void litehtml::el_image::draw( uint_ptr hdc, int x, int y, const position* clip )
+void litehtml::el_image::draw( uint_ptr hdc, int x, int y, int z, const position* clip )
 {
 	position pos = m_pos;
 	pos.x += x;
 	pos.y += y;
+	pos.z += z;
 
 	position el_pos = pos;
 	el_pos += m_padding;
@@ -227,6 +213,7 @@ void litehtml::el_image::draw( uint_ptr hdc, int x, int y, const position* clip 
 		if (pos.width > 0 && pos.height > 0) {
 			background_paint bg;
 			bg.image				= m_src;
+			bg.attrs				= 0;
 			bg.clip_box				= pos;
 			bg.origin_box			= pos;
 			bg.border_box			= pos;
@@ -235,9 +222,11 @@ void litehtml::el_image::draw( uint_ptr hdc, int x, int y, const position* clip 
 			bg.repeat				= background_repeat_no_repeat;
 			bg.image_size.width		= pos.width;
 			bg.image_size.height	= pos.height;
-			bg.border_radius		= m_css_borders.radius.calc_percents(bg.border_box.width, bg.border_box.height);
+			bg.image_size.depth		= pos.depth;
+			bg.border_radius		= m_css_borders.radius.calc_percents(bg.border_box.width, bg.border_box.height, bg.border_box.depth);
 			bg.position_x			= pos.x;
 			bg.position_y			= pos.y;
+			bg.position_z			= pos.z;
 			get_document()->container()->draw_background(hdc, bg);
 		}
 	}
@@ -250,7 +239,7 @@ void litehtml::el_image::draw( uint_ptr hdc, int x, int y, const position* clip 
 		border_box += m_borders;
 
 		borders bdr = m_css_borders;
-		bdr.radius = m_css_borders.radius.calc_percents(border_box.width, border_box.height);
+		bdr.radius = m_css_borders.radius.calc_percents(border_box.width, border_box.height, border_box.depth);
 
 		get_document()->container()->draw_borders(hdc, bdr, border_box, have_parent() ? false : true);
 	}
@@ -264,10 +253,10 @@ void litehtml::el_image::parse_styles( bool is_reparse /*= false*/ )
 	{
 		if(!m_css_height.is_predefined() && !m_css_width.is_predefined())
 		{
-			get_document()->container()->load_image(m_src.c_str(), 0, true);
+			get_document()->container()->load_image(m_src.c_str(), 0, 0, true);
 		} else
 		{
-			get_document()->container()->load_image(m_src.c_str(), 0, false);
+			get_document()->container()->load_image(m_src.c_str(), 0, 0, false);
 		}
 	}
 }

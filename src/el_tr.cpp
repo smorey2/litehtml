@@ -41,9 +41,11 @@ void litehtml::el_tr::get_inline_boxes( position::vector& boxes )
 		{
 			pos.x		= el->left() + el->margin_left();
 			pos.y		= el->top() - m_padding.top - m_borders.top;
+			pos.z		= el->front() - m_padding.front - m_borders.front;
 
 			pos.width	= el->right() - pos.x - el->margin_right() - el->margin_left();
 			pos.height	= el->height() + m_padding.top + m_padding.bottom + m_borders.top + m_borders.bottom;
+			pos.depth	= el->depth() + m_padding.front + m_padding.back + m_borders.front + m_borders.back;
 
 			boxes.push_back(pos);
 		}

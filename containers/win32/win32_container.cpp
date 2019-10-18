@@ -159,7 +159,7 @@ void litehtml::win32_container::draw_list_marker( uint_ptr hdc, list_style_type 
 	release_clip((HDC) hdc);
 }
 
-void litehtml::win32_container::load_image( const wchar_t* src, const wchar_t* baseurl, bool redraw_on_ready )
+void litehtml::win32_container::load_image( const wchar_t* src, const wchar_t* baseurl, const litehtml::string_map* attrs, bool redraw_on_ready )
 {
 	std::wstring url;
 	make_url(src, baseurl, url);
@@ -173,7 +173,7 @@ void litehtml::win32_container::load_image( const wchar_t* src, const wchar_t* b
 	}
 }
 
-void litehtml::win32_container::get_image_size( const wchar_t* src, const wchar_t* baseurl, litehtml::size& sz )
+void litehtml::win32_container::get_image_size( const wchar_t* src, const wchar_t* baseurl, const litehtml::string_map* attrs, litehtml::size& sz )
 {
 	std::wstring url;
 	make_url(src, baseurl, url);

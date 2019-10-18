@@ -239,7 +239,7 @@ void container_linux::draw_list_marker( litehtml::uint_ptr hdc, const litehtml::
 	}
 }
 
-void container_linux::load_image( const litehtml::tchar_t* src, const litehtml::tchar_t* baseurl, bool redraw_on_ready )
+void container_linux::load_image( const litehtml::tchar_t* src, const litehtml::tchar_t* baseurl, const litehtml::string_map* attrs, bool redraw_on_ready )
 {
 	litehtml::tstring url;
 	make_url(src, baseurl, url);
@@ -260,7 +260,7 @@ void container_linux::load_image( const litehtml::tchar_t* src, const litehtml::
 	}
 }
 
-void container_linux::get_image_size( const litehtml::tchar_t* src, const litehtml::tchar_t* baseurl, litehtml::size& sz )
+void container_linux::get_image_size( const litehtml::tchar_t* src, const litehtml::tchar_t* baseurl, const litehtml::string_map* attrs, litehtml::size& sz )
 {
 	litehtml::tstring url;
 	make_url(src, baseurl, url);
