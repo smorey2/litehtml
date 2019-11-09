@@ -30,7 +30,7 @@ namespace litehtml
 		margins						m_padding;
 		margins						m_borders;
 		bool						m_skip;
-		
+
 		virtual void select_all(const css_selector& selector, elements_vector& res);
 	public:
 		element(const std::shared_ptr<litehtml::document>& doc);
@@ -113,7 +113,7 @@ namespace litehtml
 		virtual int					render(int x, int y, int z, int max_width, bool second_pass = false);
 		virtual int					render_inline(const ptr &container, int max_width);
 		virtual int					place_element(const ptr &el, int max_width);
-		virtual void				calc_outlines( int parent_width );
+		virtual void				calc_outlines(int parent_width);
 		virtual void				calc_auto_margins(int parent_width);
 		virtual void				apply_vertical_align();
 		virtual bool				fetch_positioned();
@@ -173,7 +173,7 @@ namespace litehtml
 		virtual void				get_inline_boxes(position::vector& boxes);
 		virtual void				parse_styles(bool is_reparse = false);
 		virtual void				draw(uint_ptr hdc, int x, int y, int z, const position* clip);
-		virtual void				draw_background( uint_ptr hdc, int x, int y, int z, const position* clip );
+		virtual void				draw_background(uint_ptr hdc, int x, int y, int z, const position* clip);
 		virtual const tchar_t*		get_style_property(const tchar_t* name, bool inherited, const tchar_t* def = 0);
 		virtual uint_ptr			get_font(font_metrics* fm = 0);
 		virtual int					get_font_size() const;
@@ -203,7 +203,7 @@ namespace litehtml
 		virtual int					find_next_line_top(int top, int width, int def_right);
 		virtual int					get_zindex() const;
 		virtual void				draw_stacking_context(uint_ptr hdc, int x, int y, int z, const position* clip, bool with_positioned);
-		virtual void				draw_children( uint_ptr hdc, int x, int y, int z, const position* clip, draw_flag flag, int zindex );
+		virtual void				draw_children(uint_ptr hdc, int x, int y, int z, const position* clip, draw_flag flag, int zindex);
 		virtual bool				is_nth_child(const element::ptr& el, int num, int off, bool of_type) const;
 		virtual bool				is_nth_last_child(const element::ptr& el, int num, int off, bool of_type) const;
 		virtual bool				is_only_child(const element::ptr& el, bool of_type) const;
@@ -353,7 +353,7 @@ namespace litehtml
 
 	inline bool litehtml::element::in_normal_flow() const
 	{
-		if(get_element_position() != element_position_absolute && get_display() != display_none)
+		if (get_element_position() != element_position_absolute && get_display() != display_none)
 		{
 			return true;
 		}
@@ -448,12 +448,12 @@ namespace litehtml
 	inline litehtml::margins litehtml::element::get_margins() const
 	{
 		margins ret;
-		ret.left	= margin_left();
-		ret.right	= margin_right();
-		ret.top		= margin_top();
-		ret.bottom	= margin_bottom();
-		ret.front	= margin_front();
-		ret.back	= margin_back();
+		ret.left = margin_left();
+		ret.right = margin_right();
+		ret.top = margin_top();
+		ret.bottom = margin_bottom();
+		ret.front = margin_front();
+		ret.back = margin_back();
 
 		return ret;
 	}

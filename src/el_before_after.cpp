@@ -6,10 +6,11 @@
 
 litehtml::el_before_after_base::el_before_after_base(const std::shared_ptr<litehtml::document>& doc, bool before) : html_tag(doc)
 {
-	if(before)
+	if (before)
 	{
 		set_tagName(_t("::before"));
-	} else
+	}
+	else
 	{
 		set_tagName(_t("::after"));
 	}
@@ -17,7 +18,6 @@ litehtml::el_before_after_base::el_before_after_base(const std::shared_ptr<liteh
 
 litehtml::el_before_after_base::~el_before_after_base()
 {
-
 }
 
 void litehtml::el_before_after_base::add_style(const litehtml::style& st)
@@ -25,50 +25,54 @@ void litehtml::el_before_after_base::add_style(const litehtml::style& st)
 	html_tag::add_style(st);
 
 	tstring content = get_style_property(_t("content"), false, _t(""));
-	if(!content.empty())
+	if (!content.empty())
 	{
 		int idx = value_index(content.c_str(), content_property_string);
-		if(idx < 0)
+		if (idx < 0)
 		{
 			tstring fnc;
 			tstring::size_type i = 0;
-			while(i < content.length() && i != tstring::npos)
+			while (i < content.length() && i != tstring::npos)
 			{
-				if(content.at(i) == _t('"'))
+				if (content.at(i) == _t('"'))
 				{
 					fnc.clear();
 					i++;
 					tstring::size_type pos = content.find(_t('"'), i);
 					tstring txt;
-					if(pos == tstring::npos)
+					if (pos == tstring::npos)
 					{
 						txt = content.substr(i);
 						i = tstring::npos;
-					} else
+					}
+					else
 					{
 						txt = content.substr(i, pos - i);
 						i = pos + 1;
 					}
 					add_text(txt);
-				} else if(content.at(i) == _t('('))
+				}
+				else if (content.at(i) == _t('('))
 				{
 					i++;
 					litehtml::trim(fnc);
 					litehtml::lcase(fnc);
 					tstring::size_type pos = content.find(_t(')'), i);
 					tstring params;
-					if(pos == tstring::npos)
+					if (pos == tstring::npos)
 					{
 						params = content.substr(i);
 						i = tstring::npos;
-					} else
+					}
+					else
 					{
 						params = content.substr(i, pos - i);
 						i = pos + 1;
 					}
 					add_function(fnc, params);
 					fnc.clear();
-				} else
+				}
+				else
 				{
 					fnc += content.at(i);
 					i++;
@@ -78,17 +82,17 @@ void litehtml::el_before_after_base::add_style(const litehtml::style& st)
 	}
 }
 
-void litehtml::el_before_after_base::add_text( const tstring& txt )
+void litehtml::el_before_after_base::add_text(const tstring& txt)
 {
 	tstring word;
 	tstring esc;
-	for(tstring::size_type i = 0; i < txt.length(); i++)
+	for (tstring::size_type i = 0; i < txt.length(); i++)
 	{
-		if( (txt.at(i) == _t(' ')) || (txt.at(i) == _t('\t')) || (txt.at(i) == _t('\\') && !esc.empty()) )
+		if ((txt.at(i) == _t(' ')) || (txt.at(i) == _t('\t')) || (txt.at(i) == _t('\\') && !esc.empty()))
 		{
-			if(esc.empty())
+			if (esc.empty())
 			{
-				if(!word.empty())
+				if (!word.empty())
 				{
 					element::ptr el = std::make_shared<el_text>(word.c_str(), get_document());
 					appendChild(el);
@@ -97,32 +101,35 @@ void litehtml::el_before_after_base::add_text( const tstring& txt )
 
 				element::ptr el = std::make_shared<el_space>(txt.substr(i, 1).c_str(), get_document());
 				appendChild(el);
-			} else
+			}
+			else
 			{
 				word += convert_escape(esc.c_str() + 1);
 				esc.clear();
-				if(txt.at(i) == _t('\\'))
+				if (txt.at(i) == _t('\\'))
 				{
 					esc += txt.at(i);
 				}
 			}
-		} else
+		}
+		else
 		{
-			if(!esc.empty() || txt.at(i) == _t('\\'))
+			if (!esc.empty() || txt.at(i) == _t('\\'))
 			{
 				esc += txt.at(i);
-			} else
+			}
+			else
 			{
 				word += txt.at(i);
 			}
 		}
 	}
 
-	if(!esc.empty())
+	if (!esc.empty())
 	{
 		word += convert_escape(esc.c_str() + 1);
 	}
-	if(!word.empty())
+	if (!word.empty())
 	{
 		element::ptr el = std::make_shared<el_text>(word.c_str(), get_document());
 		appendChild(el);
@@ -130,71 +137,71 @@ void litehtml::el_before_after_base::add_text( const tstring& txt )
 	}
 }
 
-void litehtml::el_before_after_base::add_function( const tstring& fnc, const tstring& params )
+void litehtml::el_before_after_base::add_function(const tstring& fnc, const tstring& params)
 {
 	int idx = value_index(fnc.c_str(), _t("attr;counter;url"));
-	switch(idx)
+	switch (idx)
 	{
-	// attr
+		// attr
 	case 0:
+	{
+		tstring p_name = params;
+		trim(p_name);
+		lcase(p_name);
+		element::ptr el_parent = parent();
+		if (el_parent)
 		{
-			tstring p_name = params;
-			trim(p_name);
-			lcase(p_name);
-			element::ptr el_parent = parent();
-			if (el_parent)
+			const tchar_t* attr_value = el_parent->get_attr(p_name.c_str());
+			if (attr_value)
 			{
-				const tchar_t* attr_value = el_parent->get_attr(p_name.c_str());
-				if (attr_value)
-				{
-					add_text(attr_value);
-				}
+				add_text(attr_value);
 			}
 		}
-		break;
+	}
+	break;
 	// counter
 	case 1:
 		break;
-	// url
+		// url
 	case 2:
+	{
+		tstring p_url = params;
+		trim(p_url);
+		if (!p_url.empty())
 		{
-			tstring p_url = params;
-			trim(p_url);
-			if(!p_url.empty())
+			if (p_url.at(0) == _t('\'') || p_url.at(0) == _t('\"'))
 			{
-				if(p_url.at(0) == _t('\'') || p_url.at(0) == _t('\"'))
-				{
-					p_url.erase(0, 1);
-				}
-			}
-			if(!p_url.empty())
-			{
-				if(p_url.at(p_url.length() - 1) == _t('\'') || p_url.at(p_url.length() - 1) == _t('\"'))
-				{
-					p_url.erase(p_url.length() - 1, 1);
-				}
-			}
-			if(!p_url.empty())
-			{
-				element::ptr el = std::make_shared<el_image>(get_document());
-				el->set_attr(_t("src"), p_url.c_str());
-				el->set_attr(_t("style"), _t("display:inline-block"));
-				el->set_tagName(_t("img"));
-				appendChild(el);
-				el->parse_attributes();
+				p_url.erase(0, 1);
 			}
 		}
-		break;
+		if (!p_url.empty())
+		{
+			if (p_url.at(p_url.length() - 1) == _t('\'') || p_url.at(p_url.length() - 1) == _t('\"'))
+			{
+				p_url.erase(p_url.length() - 1, 1);
+			}
+		}
+		if (!p_url.empty())
+		{
+			element::ptr el = std::make_shared<el_image>(get_document());
+			el->set_attr(_t("src"), p_url.c_str());
+			el->set_attr(_t("style"), _t("display:inline-block"));
+			el->set_tagName(_t("img"));
+			appendChild(el);
+			el->parse_attributes();
+		}
+	}
+	break;
 	}
 }
 
-litehtml::tchar_t litehtml::el_before_after_base::convert_escape( const tchar_t* txt )
+litehtml::tchar_t litehtml::el_before_after_base::convert_escape(const tchar_t* txt)
 {
 	tchar_t* sss = 0;
-	return (tchar_t) t_strtol(txt, &sss, 16);
+	return (tchar_t)t_strtol(txt, &sss, 16);
 }
 
-void litehtml::el_before_after_base::apply_stylesheet( const litehtml::css& stylesheet )
+void litehtml::el_before_after_base::apply_stylesheet(const litehtml::css& stylesheet)
 {
 
 }

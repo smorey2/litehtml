@@ -11,10 +11,10 @@ namespace litehtml
 		unsigned char    rgbAlpha;
 		attr_color()
 		{
-			rgbAlpha	= 255;
-			rgbBlue		= 0;
-			rgbGreen	= 0;
-			rgbRed		= 0;
+			rgbAlpha = 255;
+			rgbBlue = 0;
+			rgbGreen = 0;
+			rgbRed = 0;
 		}
 	};
 
@@ -26,8 +26,8 @@ namespace litehtml
 
 		attr_border()
 		{
-			border	= borderNone;
-			width	= 0;
+			border = borderNone;
+			width = 0;
 		}
 	};
 }

@@ -4,33 +4,32 @@
 
 litehtml::el_text::el_text(const tchar_t* text, const std::shared_ptr<litehtml::document>& doc) : element(doc)
 {
-	if(text)
+	if (text)
 	{
 		m_text = text;
 	}
-	m_text_transform	= text_transform_none;
-	m_use_transformed	= false;
-	m_draw_spaces		= true;
+	m_text_transform = text_transform_none;
+	m_use_transformed = false;
+	m_draw_spaces = true;
 }
 
 litehtml::el_text::~el_text()
 {
-
 }
 
-void litehtml::el_text::get_content_size( size& sz, int max_width )
+void litehtml::el_text::get_content_size(size& sz, int max_width)
 {
 	sz = m_size;
 }
 
-void litehtml::el_text::get_text( tstring& text )
+void litehtml::el_text::get_text(tstring& text)
 {
 	text += m_text;
 }
 
-const litehtml::tchar_t* litehtml::el_text::get_style_property( const tchar_t* name, bool inherited, const tchar_t* def /*= 0*/ )
+const litehtml::tchar_t* litehtml::el_text::get_style_property(const tchar_t* name, bool inherited, const tchar_t* def /*= 0*/)
 {
-	if(inherited)
+	if (inherited)
 	{
 		element::ptr el_parent = parent();
 		if (el_parent)
@@ -43,26 +42,27 @@ const litehtml::tchar_t* litehtml::el_text::get_style_property( const tchar_t* n
 
 void litehtml::el_text::parse_styles(bool is_reparse)
 {
-	m_text_transform	= (text_transform)	value_index(get_style_property(_t("text-transform"), true,	_t("none")),	text_transform_strings,	text_transform_none);
-	if(m_text_transform != text_transform_none)
+	m_text_transform = (text_transform)value_index(get_style_property(_t("text-transform"), true, _t("none")), text_transform_strings, text_transform_none);
+	if (m_text_transform != text_transform_none)
 	{
-		m_transformed_text	= m_text;
+		m_transformed_text = m_text;
 		m_use_transformed = true;
 		get_document()->container()->transform_text(m_transformed_text, m_text_transform);
 	}
 
-	if(is_white_space())
+	if (is_white_space())
 	{
 		m_transformed_text = _t(" ");
 		m_use_transformed = true;
-	} else
+	}
+	else
 	{
-		if(m_text == _t("\t"))
+		if (m_text == _t("\t"))
 		{
 			m_transformed_text = _t("    ");
 			m_use_transformed = true;
 		}
-		if(m_text == _t("\n") || m_text == _t("\r"))
+		if (m_text == _t("\n") || m_text == _t("\r"))
 		{
 			m_transformed_text = _t("");
 			m_use_transformed = true;
@@ -76,16 +76,17 @@ void litehtml::el_text::parse_styles(bool is_reparse)
 	{
 		font = el_parent->get_font(&fm);
 	}
-	if(is_break())
+	if (is_break())
 	{
-		m_size.height	= 0;
-		m_size.width	= 0;
-		m_size.depth	= 0;
-	} else
+		m_size.height = 0;
+		m_size.width = 0;
+		m_size.depth = 0;
+	}
+	else
 	{
-		m_size.height	= fm.height;
-		m_size.width	= get_document()->container()->text_width(m_use_transformed ? m_transformed_text.c_str() : m_text.c_str(), font);
-		m_size.depth	= 0;
+		m_size.height = fm.height;
+		m_size.width = get_document()->container()->text_width(m_use_transformed ? m_transformed_text.c_str() : m_text.c_str(), font);
+		m_size.depth = 0;
 	}
 	m_draw_spaces = fm.draw_spaces;
 }
@@ -100,19 +101,19 @@ int litehtml::el_text::get_base_line()
 	return 0;
 }
 
-void litehtml::el_text::draw( uint_ptr hdc, int x, int y, int z, const position* clip )
+void litehtml::el_text::draw(uint_ptr hdc, int x, int y, int z, const position* clip)
 {
-	if(is_white_space() && !m_draw_spaces)
+	if (is_white_space() && !m_draw_spaces)
 	{
 		return;
 	}
 
 	position pos = m_pos;
-	pos.x	+= x;
-	pos.y	+= y;
-	pos.z	+= z;
+	pos.x += x;
+	pos.y += y;
+	pos.z += z;
 
-	if(pos.does_intersect(clip))
+	if (pos.does_intersect(clip))
 	{
 		element::ptr el_parent = parent();
 		if (el_parent)
@@ -136,7 +137,7 @@ int litehtml::el_text::line_height() const
 	return 0;
 }
 
-litehtml::uint_ptr litehtml::el_text::get_font( font_metrics* fm /*= 0*/ )
+litehtml::uint_ptr litehtml::el_text::get_font(font_metrics* fm /*= 0*/)
 {
 	element::ptr el_parent = parent();
 	if (el_parent)
@@ -161,11 +162,11 @@ litehtml::white_space litehtml::el_text::get_white_space() const
 litehtml::element_position litehtml::el_text::get_element_position(css_offsets* offsets) const
 {
 	element::ptr p = parent();
-	while(p && p->get_display() == display_inline)
+	while (p && p->get_display() == display_inline)
 	{
-		if(p->get_element_position() == element_position_relative)
+		if (p->get_element_position() == element_position_relative)
 		{
-			if(offsets)
+			if (offsets)
 			{
 				*offsets = p->get_css_offsets();
 			}
@@ -179,9 +180,9 @@ litehtml::element_position litehtml::el_text::get_element_position(css_offsets* 
 litehtml::css_offsets litehtml::el_text::get_css_offsets() const
 {
 	element::ptr p = parent();
-	while(p && p->get_display() == display_inline)
+	while (p && p->get_display() == display_inline)
 	{
-		if(p->get_element_position() == element_position_relative)
+		if (p->get_element_position() == element_position_relative)
 		{
 			return p->get_css_offsets();
 		}

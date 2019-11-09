@@ -24,19 +24,19 @@ namespace litehtml
 	public:
 		box(int top, int left, int front, int right)
 		{
-			m_box_top	= top;
-			m_box_left	= left;
-			m_box_front	= front;
-			m_box_right	= right;
+			m_box_top = top;
+			m_box_left = left;
+			m_box_front = front;
+			m_box_right = right;
 		}
 		virtual ~box() {}
 
-		int		bottom()	{ return m_box_top + height();	}
-		int		top()		{ return m_box_top;				}
-		int		right()		{ return m_box_left + width();	}
-		int		left()		{ return m_box_left;			}
-		int		front()		{ return m_box_front;			}
-		int		back()		{ return m_box_front + depth(); }
+		int		bottom() { return m_box_top + height(); }
+		int		top() { return m_box_top; }
+		int		right() { return m_box_left + width(); }
+		int		left() { return m_box_left; }
+		int		front() { return m_box_front; }
+		int		back() { return m_box_front + depth(); }
 
 		virtual litehtml::box_type	get_type() = 0;
 		virtual int					height() = 0;
@@ -96,13 +96,13 @@ namespace litehtml
 	public:
 		line_box(int top, int left, int front, int right, int line_height, font_metrics& fm, text_align align) : box(top, left, front, right)
 		{
-			m_height		= 0;
-			m_width			= 0;
-			m_depth			= 0;
-			m_font_metrics	= fm;
-			m_line_height	= line_height;
-			m_baseline		= 0;
-			m_text_align	= align;
+			m_height = 0;
+			m_width = 0;
+			m_depth = 0;
+			m_font_metrics = fm;
+			m_line_height = line_height;
+			m_baseline = 0;
+			m_text_align = align;
 		}
 
 		virtual litehtml::box_type	get_type();

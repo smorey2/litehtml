@@ -19,18 +19,18 @@ namespace litehtml
 		property_value(const tchar_t* val, bool imp)
 		{
 			m_important = imp;
-			m_value		= val;
+			m_value = val;
 		}
 		property_value(const property_value& val)
 		{
-			m_value		= val.m_value;
-			m_important	= val.m_important;
+			m_value = val.m_value;
+			m_important = val.m_important;
 		}
 
 		property_value& operator=(const property_value& val)
 		{
-			m_value		= val.m_value;
-			m_important	= val.m_important;
+			m_value = val.m_value;
+			m_important = val.m_important;
 			return *this;
 		}
 	};
@@ -64,10 +64,10 @@ namespace litehtml
 
 		const tchar_t* get_property(const tchar_t* name) const
 		{
-			if(name)
+			if (name)
 			{
 				props_map::const_iterator f = m_properties.find(name);
-				if(f != m_properties.end())
+				if (f != m_properties.end())
 				{
 					return f->second.m_value.c_str();
 				}

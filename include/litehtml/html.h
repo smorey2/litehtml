@@ -10,13 +10,14 @@
 #include <algorithm>
 #include <sstream>
 #include "os_types.h"
+#include "script_engine.h"
 #include "types.h"
 #include "background.h"
 #include "borders.h"
 #include "html_tag.h"
 #include "web_color.h"
 #include "media_query.h"
-#include "script.h"
+#include "node.h"
 
 namespace litehtml
 {
@@ -57,12 +58,12 @@ namespace litehtml
 		virtual void				del_clip() = 0;
 		virtual void				get_client_rect(litehtml::position& client) const = 0;
 		virtual std::shared_ptr<litehtml::element>	create_element(const litehtml::tchar_t *tag_name,
-																	 const litehtml::string_map &attributes,
-																	 const std::shared_ptr<litehtml::document> &doc) = 0;
+			const litehtml::string_map &attributes,
+			const std::shared_ptr<litehtml::document> &doc) = 0;
 
 		virtual void				get_media_features(litehtml::media_features& media) const = 0;
 		virtual void				get_language(litehtml::tstring& language, litehtml::tstring & culture) const = 0;
-		virtual litehtml::tstring	resolve_color(const litehtml::tstring& color) const  { return litehtml::tstring(); }
+		virtual litehtml::tstring	resolve_color(const litehtml::tstring& color) const { return litehtml::tstring(); }
 	};
 
 	void trim(tstring &s);
@@ -75,8 +76,8 @@ namespace litehtml
 
 	inline int round_f(float val)
 	{
-		int int_val = (int) val;
-		if(val - int_val >= 0.5)
+		int int_val = (int)val;
+		if (val - int_val >= 0.5)
 		{
 			int_val++;
 		}
@@ -85,8 +86,8 @@ namespace litehtml
 
 	inline int round_d(double val)
 	{
-		int int_val = (int) val;
-		if(val - int_val >= 0.5)
+		int int_val = (int)val;
+		if (val - int_val >= 0.5)
 		{
 			int_val++;
 		}

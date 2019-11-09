@@ -16,27 +16,26 @@ namespace litehtml
 
 		css_margins()
 		{
-
 		}
 
 		css_margins(const css_margins& val)
 		{
-			left	= val.left;
-			right	= val.right;
-			top		= val.top;
-			bottom	= val.bottom;
-			front	= val.front;
-			back	= val.back;
+			left = val.left;
+			right = val.right;
+			top = val.top;
+			bottom = val.bottom;
+			front = val.front;
+			back = val.back;
 		}
 
 		css_margins& operator=(const css_margins& val)
 		{
-			left	= val.left;
-			right	= val.right;
-			top		= val.top;
-			bottom	= val.bottom;
-			front	= val.front;
-			back	= val.back;
+			left = val.left;
+			right = val.right;
+			top = val.top;
+			bottom = val.bottom;
+			front = val.front;
+			back = val.back;
 			return *this;
 		}
 	};

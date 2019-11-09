@@ -10,13 +10,13 @@ namespace litehtml
 		int				val;
 		int				val2;
 		bool			check_as_bool;
-		
+
 		media_query_expression()
 		{
-			check_as_bool	= false;
-			feature			= media_feature_none;
-			val				= 0;
-			val2			= 0;
+			check_as_bool = false;
+			feature = media_feature_none;
+			val = 0;
+			val2 = 0;
 		}
 
 		bool check(const media_features& features) const;
@@ -58,8 +58,8 @@ namespace litehtml
 
 	inline media_query_list::media_query_list(const media_query_list& val)
 	{
-		m_is_used	= val.m_is_used;
-		m_queries	= val.m_queries;
+		m_is_used = val.m_is_used;
+		m_queries = val.m_queries;
 	}
 
 	inline media_query_list::media_query_list()

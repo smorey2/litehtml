@@ -44,7 +44,7 @@ struct cairo_clip_box
 	}
 };
 
-class cairo_container :	public litehtml::document_container
+class cairo_container : public litehtml::document_container
 {
 public:
 	typedef std::shared_ptr<CTxDIB>				image_ptr;
@@ -83,24 +83,24 @@ public:
 	virtual void						get_media_features(litehtml::media_features& media) const override;
 	virtual void						get_language(litehtml::tstring& language, litehtml::tstring & culture) const override;
 	virtual void						link(const std::shared_ptr<litehtml::document>& doc, const litehtml::element::ptr& el) override;
-    virtual litehtml::tstring			resolve_color(const litehtml::tstring& color) const override;
+	virtual litehtml::tstring			resolve_color(const litehtml::tstring& color) const override;
 
 
-	virtual void						make_url( LPCWSTR url, LPCWSTR basepath, std::wstring& out ) = 0;
+	virtual void						make_url(LPCWSTR url, LPCWSTR basepath, std::wstring& out) = 0;
 	virtual image_ptr					get_image(LPCWSTR url, bool redraw_on_ready) = 0;
 	void								clear_images();
 	void								add_image(std::wstring& url, image_ptr& img);
 	void								remove_image(std::wstring& url);
-	void								make_url_utf8( const char* url, const char* basepath, std::wstring& out );
+	void								make_url_utf8(const char* url, const char* basepath, std::wstring& out);
 
 protected:
 	virtual void						draw_ellipse(cairo_t* cr, int x, int y, int width, int height, const litehtml::web_color& color, double line_width);
 	virtual void						fill_ellipse(cairo_t* cr, int x, int y, int width, int height, const litehtml::web_color& color);
-	virtual void						rounded_rectangle( cairo_t* cr, const litehtml::position &pos, const litehtml::border_radiuses &radius );
+	virtual void						rounded_rectangle(cairo_t* cr, const litehtml::position &pos, const litehtml::border_radiuses &radius);
 
-	void								set_color(cairo_t* cr, litehtml::web_color color)	{ cairo_set_source_rgba(cr, color.red / 255.0, color.green / 255.0, color.blue / 255.0, color.alpha / 255.0); }
+	void								set_color(cairo_t* cr, litehtml::web_color color) { cairo_set_source_rgba(cr, color.red / 255.0, color.green / 255.0, color.blue / 255.0, color.alpha / 255.0); }
 private:
-	simpledib::dib*						get_dib(litehtml::uint_ptr hdc)	{ return (simpledib::dib*) hdc;				}
+	simpledib::dib*						get_dib(litehtml::uint_ptr hdc) { return (simpledib::dib*) hdc; }
 	void								apply_clip(cairo_t* cr);
 	bool								add_path_arc(cairo_t* cr, double x, double y, double rx, double ry, double a1, double a2, bool neg);
 

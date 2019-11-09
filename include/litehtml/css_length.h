@@ -34,36 +34,38 @@ namespace litehtml
 
 	inline css_length::css_length()
 	{
-		m_value			= 0;
-		m_predef		= 0;
-		m_units			= css_units_none;
-		m_is_predefined	= false;
+		m_value = 0;
+		m_predef = 0;
+		m_units = css_units_none;
+		m_is_predefined = false;
 	}
 
 	inline css_length::css_length(const css_length& val)
 	{
-		if(val.is_predefined())
+		if (val.is_predefined())
 		{
-			m_predef	= val.m_predef;
-		} else
-		{
-			m_value		= val.m_value;
+			m_predef = val.m_predef;
 		}
-		m_units			= val.m_units;
-		m_is_predefined	= val.m_is_predefined;
+		else
+		{
+			m_value = val.m_value;
+		}
+		m_units = val.m_units;
+		m_is_predefined = val.m_is_predefined;
 	}
 
 	inline css_length&	css_length::operator=(const css_length& val)
 	{
-		if(val.is_predefined())
+		if (val.is_predefined())
 		{
-			m_predef	= val.m_predef;
-		} else
-		{
-			m_value		= val.m_value;
+			m_predef = val.m_predef;
 		}
-		m_units			= val.m_units;
-		m_is_predefined	= val.m_is_predefined;
+		else
+		{
+			m_value = val.m_value;
+		}
+		m_units = val.m_units;
+		m_is_predefined = val.m_is_predefined;
 		return *this;
 	}
 
@@ -76,35 +78,35 @@ namespace litehtml
 	}
 
 	inline bool css_length::is_predefined() const
-	{ 
-		return m_is_predefined;					
+	{
+		return m_is_predefined;
 	}
 
-	inline void css_length::predef(int val)		
-	{ 
-		m_predef		= val; 
-		m_is_predefined = true;	
+	inline void css_length::predef(int val)
+	{
+		m_predef = val;
+		m_is_predefined = true;
 	}
 
 	inline int css_length::predef() const
-	{ 
-		if(m_is_predefined)
+	{
+		if (m_is_predefined)
 		{
-			return m_predef; 
+			return m_predef;
 		}
 		return 0;
 	}
 
-	inline void css_length::set_value(float val, css_units units)		
-	{ 
-		m_value			= val; 
-		m_is_predefined = false;	
-		m_units			= units;
+	inline void css_length::set_value(float val, css_units units)
+	{
+		m_value = val;
+		m_is_predefined = false;
+		m_units = units;
 	}
 
 	inline float css_length::val() const
 	{
-		if(!m_is_predefined)
+		if (!m_is_predefined)
 		{
 			return m_value;
 		}
@@ -118,14 +120,15 @@ namespace litehtml
 
 	inline int css_length::calc_percent(int width) const
 	{
-		if(!is_predefined())
+		if (!is_predefined())
 		{
-			if(units() == css_units_percentage)
+			if (units() == css_units_percentage)
 			{
-				return (int) ((double) width * (double) m_value / 100.0);
-			} else
+				return (int)((double)width * (double)m_value / 100.0);
+			}
+			else
 			{
-				return (int) val();
+				return (int)val();
 			}
 		}
 		return 0;

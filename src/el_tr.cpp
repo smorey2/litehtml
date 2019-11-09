@@ -1,26 +1,23 @@
 #include "html.h"
 #include "el_tr.h"
 
-
 litehtml::el_tr::el_tr(const std::shared_ptr<litehtml::document>& doc) : html_tag(doc)
 {
-
 }
 
 litehtml::el_tr::~el_tr()
 {
-
 }
 
 void litehtml::el_tr::parse_attributes()
 {
 	const tchar_t* str = get_attr(_t("align"));
-	if(str)
+	if (str)
 	{
 		m_style.add_property(_t("text-align"), str, 0, false);
 	}
 	str = get_attr(_t("valign"));
-	if(str)
+	if (str)
 	{
 		m_style.add_property(_t("vertical-align"), str, 0, false);
 	}
@@ -32,20 +29,20 @@ void litehtml::el_tr::parse_attributes()
 	html_tag::parse_attributes();
 }
 
-void litehtml::el_tr::get_inline_boxes( position::vector& boxes )
+void litehtml::el_tr::get_inline_boxes(position::vector& boxes)
 {
 	position pos;
-	for(auto& el : m_children)
+	for (auto& el : m_children)
 	{
-		if(el->get_display() == display_table_cell)
+		if (el->get_display() == display_table_cell)
 		{
-			pos.x		= el->left() + el->margin_left();
-			pos.y		= el->top() - m_padding.top - m_borders.top;
-			pos.z		= el->front() - m_padding.front - m_borders.front;
+			pos.x = el->left() + el->margin_left();
+			pos.y = el->top() - m_padding.top - m_borders.top;
+			pos.z = el->front() - m_padding.front - m_borders.front;
 
-			pos.width	= el->right() - pos.x - el->margin_right() - el->margin_left();
-			pos.height	= el->height() + m_padding.top + m_padding.bottom + m_borders.top + m_borders.bottom;
-			pos.depth	= el->depth() + m_padding.front + m_padding.back + m_borders.front + m_borders.back;
+			pos.width = el->right() - pos.x - el->margin_right() - el->margin_left();
+			pos.height = el->height() + m_padding.top + m_padding.bottom + m_borders.top + m_borders.bottom;
+			pos.depth = el->depth() + m_padding.front + m_padding.back + m_borders.front + m_borders.back;
 
 			boxes.push_back(pos);
 		}

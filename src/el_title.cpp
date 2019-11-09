@@ -4,12 +4,10 @@
 
 litehtml::el_title::el_title(const std::shared_ptr<litehtml::document>& doc) : litehtml::html_tag(doc)
 {
-
 }
 
 litehtml::el_title::~el_title()
 {
-
 }
 
 void litehtml::el_title::parse_attributes()

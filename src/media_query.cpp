@@ -2,18 +2,17 @@
 #include "media_query.h"
 #include "document.h"
 
-
 litehtml::media_query::media_query()
 {
-	m_media_type	= media_type_all;
-	m_not			= false;
+	m_media_type = media_type_all;
+	m_not = false;
 }
 
-litehtml::media_query::media_query( const media_query& val )
+litehtml::media_query::media_query(const media_query& val)
 {
-	m_not			= val.m_not;
-	m_expressions	= val.m_expressions;
-	m_media_type	= val.m_media_type;
+	m_not = val.m_not;
+	m_expressions = val.m_expressions;
+	m_media_type = val.m_media_type;
 }
 
 litehtml::media_query::ptr litehtml::media_query::create_from_string(const tstring& str, const std::shared_ptr<document>& doc)
@@ -22,41 +21,44 @@ litehtml::media_query::ptr litehtml::media_query::create_from_string(const tstri
 	split_string(str, tokens, _t(" \t\r\n"), _t(""), _t("("));
 
 	media_query::ptr query = std::make_shared<media_query>();
-	for(string_vector::iterator tok = tokens.begin(); tok != tokens.end(); tok++)
+	for (string_vector::iterator tok = tokens.begin(); tok != tokens.end(); tok++)
 	{
-		if((*tok) == _t("not"))
+		if ((*tok) == _t("not"))
 		{
 			query->m_not = true;
-		} else if(tok->at(0) == _t('('))
+		}
+		else if (tok->at(0) == _t('('))
 		{
 			tok->erase(0, 1);
-			if(tok->at(tok->length() - 1) == _t(')'))
+			if (tok->at(tok->length() - 1) == _t(')'))
 			{
 				tok->erase(tok->length() - 1, 1);
 			}
 			media_query_expression expr;
 			string_vector expr_tokens;
 			split_string((*tok), expr_tokens, _t(":"));
-			if(!expr_tokens.empty())
+			if (!expr_tokens.empty())
 			{
 				trim(expr_tokens[0]);
-				expr.feature = (media_feature) value_index(expr_tokens[0], media_feature_strings, media_feature_none);
-				if(expr.feature != media_feature_none)
+				expr.feature = (media_feature)value_index(expr_tokens[0], media_feature_strings, media_feature_none);
+				if (expr.feature != media_feature_none)
 				{
-					if(expr_tokens.size() == 1)
+					if (expr_tokens.size() == 1)
 					{
 						expr.check_as_bool = true;
-					} else
+					}
+					else
 					{
 						trim(expr_tokens[1]);
 						expr.check_as_bool = false;
-						if(expr.feature == media_feature_orientation)
+						if (expr.feature == media_feature_orientation)
 						{
 							expr.val = value_index(expr_tokens[1], media_orientation_strings, media_orientation_landscape);
-						} else
+						}
+						else
 						{
 							tstring::size_type slash_pos = expr_tokens[1].find(_t('/'));
-							if( slash_pos != tstring::npos )
+							if (slash_pos != tstring::npos)
 							{
 								tstring val1 = expr_tokens[1].substr(0, slash_pos);
 								tstring val2 = expr_tokens[1].substr(slash_pos + 1);
@@ -64,23 +66,26 @@ litehtml::media_query::ptr litehtml::media_query::create_from_string(const tstri
 								trim(val2);
 								expr.val = t_atoi(val1.c_str());
 								expr.val2 = t_atoi(val2.c_str());
-							} else
+							}
+							else
 							{
 								css_length length;
 								length.fromString(expr_tokens[1]);
-								if(length.units() == css_units_dpcm)
+								if (length.units() == css_units_dpcm)
 								{
-									expr.val = (int) (length.val() * 2.54);
-								} else if(length.units() == css_units_dpi)
+									expr.val = (int)(length.val() * 2.54);
+								}
+								else if (length.units() == css_units_dpi)
 								{
-									expr.val = (int) (length.val() * 2.54);
-								} else
+									expr.val = (int)(length.val() * 2.54);
+								}
+								else
 								{
-									if(doc)
+									if (doc)
 									{
 										doc->cvt_units(length, doc->container()->get_default_font_size());
 									}
-									expr.val = (int) length.val();
+									expr.val = (int)length.val();
 								}
 							}
 						}
@@ -88,29 +93,30 @@ litehtml::media_query::ptr litehtml::media_query::create_from_string(const tstri
 					query->m_expressions.push_back(expr);
 				}
 			}
-		} else
+		}
+		else
 		{
-			query->m_media_type = (media_type) value_index((*tok), media_type_strings, media_type_all);
+			query->m_media_type = (media_type)value_index((*tok), media_type_strings, media_type_all);
 		}
 	}
 	return query;
 }
 
-bool litehtml::media_query::check( const media_features& features ) const
+bool litehtml::media_query::check(const media_features& features) const
 {
 	bool res = false;
-	if(m_media_type == media_type_all || m_media_type == features.type)
+	if (m_media_type == media_type_all || m_media_type == features.type)
 	{
 		res = true;
-		for(media_query_expression::vector::const_iterator expr = m_expressions.begin(); expr != m_expressions.end() && res; expr++)
+		for (media_query_expression::vector::const_iterator expr = m_expressions.begin(); expr != m_expressions.end() && res; expr++)
 		{
-			if(!expr->check(features))
+			if (!expr->check(features))
 			{
 				res = false;
 			}
 		}
 	}
-	if(m_not)
+	if (m_not)
 	{
 		res = !res;
 	}
@@ -125,29 +131,29 @@ litehtml::media_query_list::ptr litehtml::media_query_list::create_from_string(c
 	split_string(str, tokens, _t(","));
 
 	media_query_list::ptr list = std::make_shared<media_query_list>();
-	for(string_vector::iterator tok = tokens.begin(); tok != tokens.end(); tok++)
+	for (string_vector::iterator tok = tokens.begin(); tok != tokens.end(); tok++)
 	{
 		trim(*tok);
 		lcase(*tok);
 		litehtml::media_query::ptr query = media_query::create_from_string(*tok, doc);
-		if(query)
+		if (query)
 		{
 			list->m_queries.push_back(query);
 		}
 	}
-	if(list->m_queries.empty())
+	if (list->m_queries.empty())
 	{
 		list = 0;
 	}
 	return list;
 }
 
-bool litehtml::media_query_list::apply_media_features( const media_features& features )
+bool litehtml::media_query_list::apply_media_features(const media_features& features)
 {
 	bool apply = false;
-	for(media_query::vector::iterator iter = m_queries.begin(); iter != m_queries.end() && !apply; iter++)
+	for (media_query::vector::iterator iter = m_queries.begin(); iter != m_queries.end() && !apply; iter++)
 	{
-		if((*iter)->check(features))
+		if ((*iter)->check(features))
 		{
 			apply = true;
 		}
@@ -158,181 +164,188 @@ bool litehtml::media_query_list::apply_media_features( const media_features& fea
 	return ret;
 }
 
-bool litehtml::media_query_expression::check( const media_features& features ) const
+bool litehtml::media_query_expression::check(const media_features& features) const
 {
-	switch(feature)
+	switch (feature)
 	{
 	case media_feature_width:
-		if(check_as_bool)
+		if (check_as_bool)
 		{
 			return (features.width != 0);
-		} else if(features.width == val)
+		}
+		else if (features.width == val)
 		{
 			return true;
 		}
 		break;
 	case media_feature_min_width:
-		if(features.width >= val)
+		if (features.width >= val)
 		{
 			return true;
 		}
 		break;
 	case media_feature_max_width:
-		if(features.width <= val)
+		if (features.width <= val)
 		{
 			return true;
 		}
 		break;
 	case media_feature_height:
-		if(check_as_bool)
+		if (check_as_bool)
 		{
 			return (features.height != 0);
-		} else if(features.height == val)
+		}
+		else if (features.height == val)
 		{
 			return true;
 		}
 		break;
 	case media_feature_min_height:
-		if(features.height >= val)
+		if (features.height >= val)
 		{
 			return true;
 		}
 		break;
 	case media_feature_max_height:
-		if(features.height <= val)
+		if (features.height <= val)
 		{
 			return true;
 		}
 		break;
 	case media_feature_depth:
-		if(check_as_bool)
+		if (check_as_bool)
 		{
 			return (features.depth != 0);
-		} else if(features.depth == val)
+		}
+		else if (features.depth == val)
 		{
 			return true;
 		}
 		break;
 	case media_feature_min_depth:
-		if(features.depth >= val)
+		if (features.depth >= val)
 		{
 			return true;
 		}
 		break;
 	case media_feature_max_depth:
-		if(features.depth <= val)
+		if (features.depth <= val)
 		{
 			return true;
 		}
 		break;
 
 	case media_feature_device_width:
-		if(check_as_bool)
+		if (check_as_bool)
 		{
 			return (features.device_width != 0);
-		} else if(features.device_width == val)
+		}
+		else if (features.device_width == val)
 		{
 			return true;
 		}
 		break;
 	case media_feature_min_device_width:
-		if(features.device_width >= val)
+		if (features.device_width >= val)
 		{
 			return true;
 		}
 		break;
 	case media_feature_max_device_width:
-		if(features.device_width <= val)
+		if (features.device_width <= val)
 		{
 			return true;
 		}
 		break;
 	case media_feature_device_height:
-		if(check_as_bool)
+		if (check_as_bool)
 		{
 			return (features.device_height != 0);
-		} else if(features.device_height == val)
+		}
+		else if (features.device_height == val)
 		{
 			return true;
 		}
 		break;
 	case media_feature_min_device_height:
-		if(features.device_height >= val)
+		if (features.device_height >= val)
 		{
 			return true;
 		}
 		break;
 	case media_feature_max_device_height:
-		if(features.device_height <= val)
+		if (features.device_height <= val)
 		{
 			return true;
 		}
 		break;
 	case media_feature_device_depth:
-		if(check_as_bool)
+		if (check_as_bool)
 		{
 			return (features.device_depth != 0);
-		} else if(features.device_depth == val)
+		}
+		else if (features.device_depth == val)
 		{
 			return true;
 		}
 		break;
 	case media_feature_min_device_depth:
-		if(features.device_depth >= val)
+		if (features.device_depth >= val)
 		{
 			return true;
 		}
 		break;
 	case media_feature_max_device_depth:
-		if(features.device_depth <= val)
+		if (features.device_depth <= val)
 		{
 			return true;
 		}
 		break;
 
 	case media_feature_orientation:
-		if(features.height >= features.width)
+		if (features.height >= features.width)
 		{
-			if(val == media_orientation_portrait)
+			if (val == media_orientation_portrait)
 			{
 				return true;
 			}
-		} else
+		}
+		else
 		{
-			if(val == media_orientation_landscape)
+			if (val == media_orientation_landscape)
 			{
 				return true;
 			}
 		}
 		break;
 	case media_feature_aspect_ratio:
-		if(features.height && val2)
+		if (features.height && val2)
 		{
-			int ratio_this = round_d( (double) val / (double) val2 * 100 );
-			int ratio_feat = round_d( (double) features.width / (double) features.height * 100.0 );
-			if(ratio_this == ratio_feat)
+			int ratio_this = round_d((double)val / (double)val2 * 100);
+			int ratio_feat = round_d((double)features.width / (double)features.height * 100.0);
+			if (ratio_this == ratio_feat)
 			{
 				return true;
 			}
 		}
 		break;
 	case media_feature_min_aspect_ratio:
-		if(features.height && val2)
+		if (features.height && val2)
 		{
-			int ratio_this = round_d( (double) val / (double) val2 * 100 );
-			int ratio_feat = round_d( (double) features.width / (double) features.height * 100.0 );
-			if(ratio_feat >= ratio_this)
+			int ratio_this = round_d((double)val / (double)val2 * 100);
+			int ratio_feat = round_d((double)features.width / (double)features.height * 100.0);
+			if (ratio_feat >= ratio_this)
 			{
 				return true;
 			}
 		}
 		break;
 	case media_feature_max_aspect_ratio:
-		if(features.height && val2)
+		if (features.height && val2)
 		{
-			int ratio_this = round_d( (double) val / (double) val2 * 100 );
-			int ratio_feat = round_d( (double) features.width / (double) features.height * 100.0 );
-			if(ratio_feat <= ratio_this)
+			int ratio_this = round_d((double)val / (double)val2 * 100);
+			int ratio_feat = round_d((double)features.width / (double)features.height * 100.0);
+			if (ratio_feat <= ratio_this)
 			{
 				return true;
 			}
@@ -340,33 +353,33 @@ bool litehtml::media_query_expression::check( const media_features& features ) c
 		break;
 
 	case media_feature_device_aspect_ratio:
-		if(features.device_height && val2)
+		if (features.device_height && val2)
 		{
-			int ratio_this = round_d( (double) val / (double) val2 * 100 );
-			int ratio_feat = round_d( (double) features.device_width / (double) features.device_height * 100.0 );
-			if(ratio_feat == ratio_this)
+			int ratio_this = round_d((double)val / (double)val2 * 100);
+			int ratio_feat = round_d((double)features.device_width / (double)features.device_height * 100.0);
+			if (ratio_feat == ratio_this)
 			{
 				return true;
 			}
 		}
 		break;
 	case media_feature_min_device_aspect_ratio:
-		if(features.device_height && val2)
+		if (features.device_height && val2)
 		{
-			int ratio_this = round_d( (double) val / (double) val2 * 100 );
-			int ratio_feat = round_d( (double) features.device_width / (double) features.device_height * 100.0 );
-			if(ratio_feat >= ratio_this)
+			int ratio_this = round_d((double)val / (double)val2 * 100);
+			int ratio_feat = round_d((double)features.device_width / (double)features.device_height * 100.0);
+			if (ratio_feat >= ratio_this)
 			{
 				return true;
 			}
 		}
 		break;
 	case media_feature_max_device_aspect_ratio:
-		if(features.device_height && val2)
+		if (features.device_height && val2)
 		{
-			int ratio_this = round_d( (double) val / (double) val2 * 100 );
-			int ratio_feat = round_d( (double) features.device_width / (double) features.device_height * 100.0 );
-			if(ratio_feat <= ratio_this)
+			int ratio_this = round_d((double)val / (double)val2 * 100);
+			int ratio_feat = round_d((double)features.device_width / (double)features.device_height * 100.0);
+			if (ratio_feat <= ratio_this)
 			{
 				return true;
 			}
@@ -374,85 +387,88 @@ bool litehtml::media_query_expression::check( const media_features& features ) c
 		break;
 
 	case media_feature_color:
-		if(check_as_bool)
+		if (check_as_bool)
 		{
 			return (features.color != 0);
-		} else if(features.color == val)
+		}
+		else if (features.color == val)
 		{
 			return true;
 		}
 		break;
 	case media_feature_min_color:
-		if(features.color >= val)
+		if (features.color >= val)
 		{
 			return true;
 		}
 		break;
 	case media_feature_max_color:
-		if(features.color <= val)
+		if (features.color <= val)
 		{
 			return true;
 		}
 		break;
 
 	case media_feature_color_index:
-		if(check_as_bool)
+		if (check_as_bool)
 		{
 			return (features.color_index != 0);
-		} else if(features.color_index == val)
+		}
+		else if (features.color_index == val)
 		{
 			return true;
 		}
 		break;
 	case media_feature_min_color_index:
-		if(features.color_index >= val)
+		if (features.color_index >= val)
 		{
 			return true;
 		}
 		break;
 	case media_feature_max_color_index:
-		if(features.color_index <= val)
+		if (features.color_index <= val)
 		{
 			return true;
 		}
 		break;
 
 	case media_feature_monochrome:
-		if(check_as_bool)
+		if (check_as_bool)
 		{
 			return (features.monochrome != 0);
-		} else if(features.monochrome == val)
+		}
+		else if (features.monochrome == val)
 		{
 			return true;
 		}
 		break;
 	case media_feature_min_monochrome:
-		if(features.monochrome >= val)
+		if (features.monochrome >= val)
 		{
 			return true;
 		}
 		break;
 	case media_feature_max_monochrome:
-		if(features.monochrome <= val)
+		if (features.monochrome <= val)
 		{
 			return true;
 		}
 		break;
 
 	case media_feature_resolution:
-		if(features.resolution == val)
+		if (features.resolution == val)
 		{
 			return true;
 		}
 		break;
 	case media_feature_min_resolution:
-		if(features.resolution >= val)
+		if (features.resolution >= val)
 		{
 			return true;
 		}
 		break;
 	case media_feature_max_resolution:
-		if(features.resolution <= val)
+		if (features.resolution <= val)
 		{
 			return true;
 		}

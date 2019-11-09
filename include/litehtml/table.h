@@ -18,25 +18,25 @@ namespace litehtml
 
 		table_row()
 		{
-			min_height		= 0;
-			top				= 0;
-			bottom			= 0;
-			border_bottom	= 0;
-			border_top		= 0;
-			height			= 0;
-			el_row			= nullptr;
+			min_height = 0;
+			top = 0;
+			bottom = 0;
+			border_bottom = 0;
+			border_top = 0;
+			height = 0;
+			el_row = nullptr;
 			css_height.predef(0);
 		}
 
 		table_row(int h, element::ptr& row)
 		{
-			min_height		= 0;
-			height			= h;
-			el_row			= row;
-			border_bottom	= 0;
-			border_top		= 0;
-			top				= 0;
-			bottom			= 0;
+			min_height = 0;
+			height = h;
+			el_row = row;
+			border_bottom = 0;
+			border_top = 0;
+			top = 0;
+			bottom = 0;
 			if (row)
 			{
 				css_height = row->get_css_height();
@@ -71,7 +71,7 @@ namespace litehtml
 	struct table_column
 	{
 		typedef std::vector<table_column>	vector;
-		
+
 		int			min_width;
 		int			max_width;
 		int			width;
@@ -83,38 +83,38 @@ namespace litehtml
 
 		table_column()
 		{
-			left			= 0;
-			right			= 0;
-			border_left		= 0;
-			border_right	= 0;
-			min_width		= 0;
-			max_width		= 0;
-			width			= 0;
+			left = 0;
+			right = 0;
+			border_left = 0;
+			border_right = 0;
+			min_width = 0;
+			max_width = 0;
+			width = 0;
 			css_width.predef(0);
 		}
 
 		table_column(int min_w, int max_w)
 		{
-			left			= 0;
-			right			= 0;
-			border_left		= 0;
-			border_right	= 0;
-			max_width		= max_w;
-			min_width		= min_w;
-			width			= 0;
+			left = 0;
+			right = 0;
+			border_left = 0;
+			border_right = 0;
+			max_width = max_w;
+			min_width = min_w;
+			width = 0;
 			css_width.predef(0);
 		}
 
 		table_column(const table_column& val)
 		{
-			left			= val.left;
-			right			= val.right;
-			border_left		= val.border_left;
-			border_right	= val.border_right;
-			max_width		= val.max_width;
-			min_width		= val.min_width;
-			width			= val.width;
-			css_width		= val.css_width;
+			left = val.left;
+			right = val.right;
+			border_left = val.border_left;
+			border_right = val.border_right;
+			max_width = val.max_width;
+			min_width = val.min_width;
+			width = val.width;
+			css_width = val.css_width;
 		}
 	};
 
@@ -157,29 +157,29 @@ namespace litehtml
 
 		table_cell()
 		{
-			min_width		= 0;
-			min_height		= 0;
-			max_width		= 0;
-			max_height		= 0;
-			width			= 0;
-			height			= 0;
-			colspan			= 1;
-			rowspan			= 1;
-			el				= nullptr;
+			min_width = 0;
+			min_height = 0;
+			max_width = 0;
+			max_height = 0;
+			width = 0;
+			height = 0;
+			colspan = 1;
+			rowspan = 1;
+			el = nullptr;
 		}
 
 		table_cell(const table_cell& val)
 		{
-			el				= val.el;
-			colspan			= val.colspan;
-			rowspan			= val.rowspan;
-			width			= val.width;
-			height			= val.height;
-			min_width		= val.min_width;
-			min_height		= val.min_height;
-			max_width		= val.max_width;
-			max_height		= val.max_height;
-			borders			= val.borders;
+			el = val.el;
+			colspan = val.colspan;
+			rowspan = val.rowspan;
+			width = val.width;
+			height = val.height;
+			min_width = val.min_width;
+			min_height = val.min_height;
+			max_width = val.max_width;
+			max_height = val.max_height;
+			borders = val.borders;
 		}
 
 		table_cell(const table_cell&& val)
@@ -211,8 +211,8 @@ namespace litehtml
 
 		table_grid()
 		{
-			m_rows_count	= 0;
-			m_cols_count	= 0;
+			m_rows_count = 0;
+			m_cols_count = 0;
 		}
 
 		void			clear();
@@ -221,11 +221,11 @@ namespace litehtml
 		bool			is_rowspanned(int r, int c);
 		void			finish();
 		table_cell*		cell(int t_col, int t_row);
-		table_column&	column(int c)	{ return m_columns[c];	}
-		table_row&		row(int r)		{ return m_rows[r];		}
+		table_column&	column(int c) { return m_columns[c]; }
+		table_row&		row(int r) { return m_rows[r]; }
 
-		int				rows_count()	{ return m_rows_count;	}
-		int				cols_count()	{ return m_cols_count;	}
+		int				rows_count() { return m_rows_count; }
+		int				cols_count() { return m_cols_count; }
 
 		void			distribute_max_width(int width, int start, int end);
 		void			distribute_min_width(int width, int start, int end);

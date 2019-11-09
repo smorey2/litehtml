@@ -62,8 +62,8 @@ namespace litehtml
 		int						m_line_height;
 		bool					m_lh_predefined;
 		string_vector			m_pseudo_classes;
-		used_selector::vector	m_used_styles;		
-		
+		used_selector::vector	m_used_styles;
+
 		uint_ptr				m_font;
 		int						m_font_size;
 		font_metrics			m_font_metrics;
@@ -236,9 +236,9 @@ namespace litehtml
 		int							render_table(int x, int y, int z, int max_width, bool second_pass = false);
 		int							fix_line_width(int max_width, element_float flt);
 		void						parse_background();
-		void						init_background_paint( position pos, background_paint &bg_paint, const background* bg );
-		void						draw_list_marker( uint_ptr hdc, const position &pos );
-		void						parse_nth_child_params( tstring param, int &num, int &off );
+		void						init_background_paint(position pos, background_paint &bg_paint, const background* bg);
+		void						draw_list_marker(uint_ptr hdc, const position &pos);
+		void						parse_nth_child_params(tstring param, int &num, int &off);
 		void						remove_before_after();
 		litehtml::element::ptr		get_element_before();
 		litehtml::element::ptr		get_element_after();

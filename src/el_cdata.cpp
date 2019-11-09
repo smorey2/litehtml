@@ -8,17 +8,16 @@ litehtml::el_cdata::el_cdata(const std::shared_ptr<litehtml::document>& doc) : l
 
 litehtml::el_cdata::~el_cdata()
 {
-
 }
 
-void litehtml::el_cdata::get_text( tstring& text )
+void litehtml::el_cdata::get_text(tstring& text)
 {
 	text += m_text;
 }
 
-void litehtml::el_cdata::set_data( const tchar_t* data )
+void litehtml::el_cdata::set_data(const tchar_t* data)
 {
-	if(data)
+	if (data)
 	{
 		m_text += data;
 	}

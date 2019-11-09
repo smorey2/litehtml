@@ -16,10 +16,10 @@ namespace litehtml
 	typedef std::vector<int>										int_vector;
 	typedef std::vector<litehtml::tstring>							string_vector;
 
-	const unsigned int font_decoration_none			= 0x00;
-	const unsigned int font_decoration_underline	= 0x01;
-	const unsigned int font_decoration_linethrough	= 0x02;
-	const unsigned int font_decoration_overline		= 0x04;
+	const unsigned int font_decoration_none = 0x00;
+	const unsigned int font_decoration_underline = 0x01;
+	const unsigned int font_decoration_linethrough = 0x02;
+	const unsigned int font_decoration_overline = 0x04;
 
 	typedef unsigned char	byte;
 	typedef unsigned int	ucode_t;
@@ -38,9 +38,9 @@ namespace litehtml
 			left = right = top = bottom = front = back = 0;
 		}
 
-		int width()		const	{ return left + right; } 
-		int height()	const	{ return top + bottom; } 
-		int depth()		const	{ return front + back; } 
+		int width()		const { return left + right; }
+		int height()	const { return top + bottom; }
+		int depth()		const { return front + back; }
 	};
 
 	struct size
@@ -55,7 +55,7 @@ namespace litehtml
 		}
 	};
 
-	struct position
+	struct position : Rect
 	{
 		typedef std::vector<position>	vector;
 
@@ -71,40 +71,50 @@ namespace litehtml
 			x = y = z = width = height = depth = 0;
 		}
 
-		position(int x, int y, int z, int width, int height, int depth)
+		position(int x, int y, int width, int height)
 		{
-			this->x			= x;
-			this->y			= y;
-			this->z			= z;
-			this->width		= width;
-			this->height	= height;
-			this->depth		= depth;
+			this->x = x;
+			this->y = y;
+			this->z = 0;
+			this->width = width;
+			this->height = height;
+			this->depth = 0;
 		}
 
-		int right()		const		{ return x + width;		}
-		int bottom()	const		{ return y + height;	}
-		int left()		const		{ return x;				}
-		int top()		const		{ return y;				}
-		int front()		const		{ return z;				}
-		int back()		const		{ return z + depth;		}
+		position(int x, int y, int z, int width, int height, int depth)
+		{
+			this->x = x;
+			this->y = y;
+			this->z = z;
+			this->width = width;
+			this->height = height;
+			this->depth = depth;
+		}
+
+		int right()		const { return x + width; }
+		int bottom()	const { return y + height; }
+		int left()		const { return x; }
+		int top()		const { return y; }
+		int front()		const { return z; }
+		int back()		const { return z + depth; }
 
 		void operator+=(const margins& mg)
 		{
-			x		-= mg.left;
-			y		-= mg.top;
-			z		-= mg.front;
-			width	+= mg.left + mg.right;
-			height	+= mg.top + mg.bottom;
-			depth	+= mg.front + mg.back;
+			x -= mg.left;
+			y -= mg.top;
+			z -= mg.front;
+			width += mg.left + mg.right;
+			height += mg.top + mg.bottom;
+			depth += mg.front + mg.back;
 		}
 		void operator-=(const margins& mg)
 		{
-			x		+= mg.left;
-			y		+= mg.top;
-			z		+= mg.front;
-			width	-= mg.left + mg.right;
-			height	-= mg.top + mg.bottom;
-			depth	-= mg.front + mg.back;
+			x += mg.left;
+			y += mg.top;
+			z += mg.front;
+			width -= mg.left + mg.right;
+			height -= mg.top + mg.bottom;
+			depth -= mg.front + mg.back;
 		}
 
 		void clear()
@@ -114,9 +124,9 @@ namespace litehtml
 
 		void operator=(const size& sz)
 		{
-			width	= sz.width;
-			height	= sz.height;
-			depth	= sz.depth;
+			width = sz.width;
+			height = sz.height;
+			depth = sz.depth;
 		}
 
 		void move_to(int x, int y, int z)
@@ -128,27 +138,27 @@ namespace litehtml
 
 		bool does_intersect(const position* val) const
 		{
-			if(!val) return true;
+			if (!val) return true;
 
 			return (
-				left()			<= val->right()		&& 
-				right()			>= val->left()		&& 
-				bottom()		>= val->top()		&& 
-				top()			>= val->bottom()	&& 
-				front()			>= val->back()		&& 
-				back()			<= val->front()		)
+				left() <= val->right() &&
+				right() >= val->left() &&
+				bottom() >= val->top() &&
+				top() <= val->bottom() &&
+				front() >= val->back() &&
+				back() <= val->front())
 				|| (
-				val->left()		<= right()			&& 
-				val->right()	>= left()			&& 
-				val->bottom()	>= top()			&& 
-				val->top()		>= bottom()			&& 
-				val->front()	>= back()			&& 
-				val->back()		<= front()			);
+					val->left() <= right() &&
+					val->right() >= left() &&
+					val->bottom() >= top() &&
+					val->top() <= bottom() &&
+					val->front() >= back() &&
+					val->back() <= front());
 		}
 
 		bool empty() const
 		{
-			if(!width && !height && !depth)
+			if (!width && !height && !depth)
 			{
 				return true;
 			}
@@ -157,10 +167,10 @@ namespace litehtml
 
 		bool is_point_inside(int x, int y, int z) const
 		{
-			if(
+			if (
 				x >= left() && x <= right() &&
 				y >= top() && y <= bottom() &&
-				z >= front() && z <= back() )
+				z >= front() && z <= back())
 			{
 				return true;
 			}
@@ -178,13 +188,13 @@ namespace litehtml
 
 		font_metrics()
 		{
-			height			= 0;
-			ascent			= 0;
-			descent			= 0;
-			x_height		= 0;
-			draw_spaces		= true;
+			height = 0;
+			ascent = 0;
+			descent = 0;
+			x_height = 0;
+			draw_spaces = true;
 		}
-		int base_line()	{ return descent; }
+		int base_line() { return descent; }
 	};
 
 	struct font_item
@@ -538,7 +548,6 @@ namespace litehtml
 		content_property_no_close_quote,
 	};
 
-
 	struct floated_box
 	{
 		typedef std::vector<floated_box>	vector;
@@ -589,31 +598,31 @@ namespace litehtml
 
 		int_int_cache()
 		{
-			hash		= 0;
-			val			= 0;
-			is_valid	= false;
-			is_default	= false;
+			hash = 0;
+			val = 0;
+			is_valid = false;
+			is_default = false;
 		}
 		void invalidate()
 		{
-			is_valid	= false;
-			is_default	= false;
+			is_valid = false;
+			is_default = false;
 		}
 		void set_value(int vHash, int vVal)
 		{
-			hash		= vHash;
-			val			= vVal;
-			is_valid	= true;
+			hash = vHash;
+			val = vVal;
+			is_valid = true;
 		}
 	};
 
 	enum select_result
 	{
-		select_no_match				= 0x00,
-		select_match				= 0x01,
-		select_match_pseudo_class	= 0x02,
-		select_match_with_before	= 0x10,
-		select_match_with_after		= 0x20,
+		select_no_match = 0x00,
+		select_match = 0x01,
+		select_match_pseudo_class = 0x02,
+		select_match_with_before = 0x10,
+		select_match_with_after = 0x20,
 	};
 
 	template<class T>
@@ -624,13 +633,13 @@ namespace litehtml
 	public:
 		def_value(T def_val)
 		{
-			m_is_default	= true;
-			m_val			= def_val;
+			m_is_default = true;
+			m_val = def_val;
 		}
 		void reset(T def_val)
 		{
-			m_is_default	= true;
-			m_val			= def_val;
+			m_is_default = true;
+			m_val = def_val;
 		}
 		bool is_default()
 		{
@@ -638,8 +647,8 @@ namespace litehtml
 		}
 		T operator=(T new_val)
 		{
-			m_val			= new_val;
-			m_is_default	= false;
+			m_val = new_val;
+			m_is_default = false;
 			return m_val;
 		}
 		operator T()

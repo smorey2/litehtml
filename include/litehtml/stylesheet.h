@@ -16,7 +16,7 @@ namespace litehtml
 		{
 
 		}
-		
+
 		~css()
 		{
 
@@ -43,9 +43,9 @@ namespace litehtml
 
 	};
 
-	inline void litehtml::css::add_selector( css_selector::ptr selector )
+	inline void litehtml::css::add_selector(css_selector::ptr selector)
 	{
-		selector->m_order = (int) m_selectors.size();
+		selector->m_order = (int)m_selectors.size();
 		m_selectors.push_back(selector);
 	}
 

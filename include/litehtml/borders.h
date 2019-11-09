@@ -19,16 +19,16 @@ namespace litehtml
 
 		css_border(const css_border& val)
 		{
-			width	= val.width;
-			style	= val.style;
-			color	= val.color;
+			width = val.width;
+			style = val.style;
+			color = val.color;
 		}
 
 		css_border& operator=(const css_border& val)
 		{
-			width	= val.width;
-			style	= val.style;
-			color	= val.color;
+			width = val.width;
+			style = val.style;
+			color = val.color;
 			return *this;
 		}
 	};
@@ -51,7 +51,7 @@ namespace litehtml
 		}
 		border(const css_border& val)
 		{
-			width = (int) val.width.val();
+			width = (int)val.width.val();
 			style = val.style;
 			color = val.color;
 		}
@@ -64,7 +64,7 @@ namespace litehtml
 		}
 		border& operator=(const css_border& val)
 		{
-			width = (int) val.width.val();
+			width = (int)val.width.val();
 			style = val.style;
 			color = val.color;
 			return *this;
@@ -209,34 +209,34 @@ namespace litehtml
 
 		css_border_radius(const css_border_radius& val)
 		{
-			top_left_x		= val.top_left_x;
-			top_left_y		= val.top_left_y;
-			top_left_z		= val.top_left_z;
-			top_right_x		= val.top_right_x;
-			top_right_y		= val.top_right_y;
-			top_right_z		= val.top_right_z;
-			bottom_left_x	= val.bottom_left_x;
-			bottom_left_y	= val.bottom_left_y;
-			bottom_left_z	= val.bottom_left_z;
-			bottom_right_x	= val.bottom_right_x;
-			bottom_right_y	= val.bottom_right_y;
-			bottom_right_z	= val.bottom_right_z;
+			top_left_x = val.top_left_x;
+			top_left_y = val.top_left_y;
+			top_left_z = val.top_left_z;
+			top_right_x = val.top_right_x;
+			top_right_y = val.top_right_y;
+			top_right_z = val.top_right_z;
+			bottom_left_x = val.bottom_left_x;
+			bottom_left_y = val.bottom_left_y;
+			bottom_left_z = val.bottom_left_z;
+			bottom_right_x = val.bottom_right_x;
+			bottom_right_y = val.bottom_right_y;
+			bottom_right_z = val.bottom_right_z;
 		}
 
 		css_border_radius& operator=(const css_border_radius& val)
 		{
-			top_left_x		= val.top_left_x;
-			top_left_y		= val.top_left_y;
-			top_left_z		= val.top_left_z;
-			top_right_x		= val.top_right_x;
-			top_right_y		= val.top_right_y;
-			top_right_z		= val.top_right_z;
-			bottom_left_x	= val.bottom_left_x;
-			bottom_left_y	= val.bottom_left_y;
-			bottom_left_z	= val.bottom_left_z;
-			bottom_right_x	= val.bottom_right_x;
-			bottom_right_y	= val.bottom_right_y;
-			bottom_right_z	= val.bottom_right_z;
+			top_left_x = val.top_left_x;
+			top_left_y = val.top_left_y;
+			top_left_z = val.top_left_z;
+			top_right_x = val.top_right_x;
+			top_right_y = val.top_right_y;
+			top_right_z = val.top_right_z;
+			bottom_left_x = val.bottom_left_x;
+			bottom_left_y = val.bottom_left_y;
+			bottom_left_z = val.bottom_left_z;
+			bottom_right_x = val.bottom_right_x;
+			bottom_right_y = val.bottom_right_y;
+			bottom_right_z = val.bottom_right_z;
 			return *this;
 		}
 		border_radiuses calc_percents(int width, int height, int depth)
@@ -275,24 +275,24 @@ namespace litehtml
 
 		css_borders(const css_borders& val)
 		{
-			left	= val.left;
-			right	= val.right;
-			top		= val.top;
-			bottom	= val.bottom;
-			front	= val.front;
-			back	= val.back;
-			radius	= val.radius;
+			left = val.left;
+			right = val.right;
+			top = val.top;
+			bottom = val.bottom;
+			front = val.front;
+			back = val.back;
+			radius = val.radius;
 		}
 
 		css_borders& operator=(const css_borders& val)
 		{
-			left	= val.left;
-			right	= val.right;
-			top		= val.top;
-			bottom	= val.bottom;
-			front	= val.front;
-			back	= val.back;
-			radius	= val.radius;
+			left = val.left;
+			right = val.right;
+			top = val.top;
+			bottom = val.bottom;
+			front = val.front;
+			back = val.back;
+			radius = val.radius;
 			return *this;
 		}
 	};

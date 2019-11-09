@@ -1,10 +1,9 @@
 #include "html.h"
 #include "utf8_strings.h"
 
-
 litehtml::utf8_to_wchar::utf8_to_wchar(const char* val)
 {
-	m_utf8 = (const byte*) val;
+	m_utf8 = (const byte*)val;
 	while (true)
 	{
 		ucode_t wch = get_char();

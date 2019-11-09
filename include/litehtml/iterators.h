@@ -44,11 +44,11 @@ namespace litehtml
 	public:
 
 		elements_iterator(const element::ptr& el, iterator_selector* go_inside, iterator_selector* select)
-		{ 
-			m_el			= el;
-			m_idx			= -1; 
-			m_go_inside		= go_inside;
-			m_select		= select;
+		{
+			m_el = el;
+			m_idx = -1;
+			m_go_inside = go_inside;
+			m_select = select;
 		}
 
 		~elements_iterator()
@@ -57,7 +57,7 @@ namespace litehtml
 		}
 
 		element::ptr next(bool ret_parent = true);
-	
+
 	private:
 		void next_idx();
 	};

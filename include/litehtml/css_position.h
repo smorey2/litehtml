@@ -16,27 +16,26 @@ namespace litehtml
 
 		css_position()
 		{
-
 		}
 
 		css_position(const css_position& val)
 		{
-			x		= val.x;
-			y		= val.y;
-			z		= val.z;
-			width	= val.width;
-			height	= val.height;
-			depth	= val.depth;
+			x = val.x;
+			y = val.y;
+			z = val.z;
+			width = val.width;
+			height = val.height;
+			depth = val.depth;
 		}
 
 		css_position& operator=(const css_position& val)
 		{
-			x		= val.x;
-			y		= val.y;
-			z		= val.z;
-			width	= val.width;
-			height	= val.height;
-			depth	= val.depth;
+			x = val.x;
+			y = val.y;
+			z = val.z;
+			width = val.width;
+			height = val.height;
+			depth = val.depth;
 			return *this;
 		}
 	};

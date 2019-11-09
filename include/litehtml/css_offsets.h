@@ -16,27 +16,26 @@ namespace litehtml
 
 		css_offsets()
 		{
-
 		}
 
 		css_offsets(const css_offsets& val)
 		{
-			left	= val.left;
-			top		= val.top;
-			right	= val.right;
-			bottom	= val.bottom;
-			front	= val.front;
-			back	= val.back;
+			left = val.left;
+			top = val.top;
+			right = val.right;
+			bottom = val.bottom;
+			front = val.front;
+			back = val.back;
 		}
 
 		css_offsets& operator=(const css_offsets& val)
 		{
-			left	= val.left;
-			top		= val.top;
-			right	= val.right;
-			bottom	= val.bottom;
-			front	= val.front;
-			back	= val.back;
+			left = val.left;
+			top = val.top;
+			right = val.right;
+			bottom = val.bottom;
+			front = val.front;
+			back = val.back;
 			return *this;
 		}
 	};

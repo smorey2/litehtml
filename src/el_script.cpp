@@ -2,15 +2,12 @@
 #include "el_script.h"
 #include "document.h"
 
-
 litehtml::el_script::el_script(const std::shared_ptr<litehtml::document>& doc) : litehtml::element(doc)
 {
-
 }
 
 litehtml::el_script::~el_script()
 {
-
 }
 
 void litehtml::el_script::parse_attributes()

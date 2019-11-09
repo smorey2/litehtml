@@ -29,7 +29,7 @@ struct text_chunk
 
 	~text_chunk()
 	{
-		if(text)
+		if (text)
 		{
 			delete text;
 		}
@@ -98,8 +98,8 @@ inline void cairo_font::unlock()
 
 inline int cairo_font::round_d(double val)
 {
-	int int_val = (int) val;
-	if(val - int_val >= 0.5)
+	int int_val = (int)val;
+	if (val - int_val >= 0.5)
 	{
 		int_val++;
 	}
@@ -107,8 +107,8 @@ inline int cairo_font::round_d(double val)
 }
 
 inline cairo_font_metrics& cairo_font::metrics()
-{ 
-	return m_metrics; 
+{
+	return m_metrics;
 }
 
 inline void cairo_font::load_metrics(cairo_t* cr)

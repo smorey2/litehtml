@@ -2,7 +2,7 @@
 #include "web_color.h"
 #include <string.h>
 
-litehtml::def_color litehtml::g_def_colors[] = 
+litehtml::def_color litehtml::g_def_colors[] =
 {
 	{_t("transparent"),_t("rgba(0, 0, 0, 0)")},
 	{_t("AliceBlue"),_t("#F0F8FF")},
@@ -156,49 +156,51 @@ litehtml::def_color litehtml::g_def_colors[] =
 
 litehtml::web_color litehtml::web_color::from_string(const tchar_t* str, litehtml::document_container* callback)
 {
-	if(!str || !str[0])
+	if (!str || !str[0])
 	{
 		return web_color(0, 0, 0);
 	}
-	if(str[0] == _t('#'))
+	if (str[0] == _t('#'))
 	{
-		tstring red		= _t("");
-		tstring green		= _t("");
-		tstring blue		= _t("");
-		if(t_strlen(str + 1) == 3)
+		tstring red = _t("");
+		tstring green = _t("");
+		tstring blue = _t("");
+		if (t_strlen(str + 1) == 3)
 		{
-			red		+= str[1];
-			red		+= str[1];
-			green	+= str[2];
-			green	+= str[2];
-			blue	+= str[3];
-			blue	+= str[3];
-		} else if(t_strlen(str + 1) == 6)
+			red += str[1];
+			red += str[1];
+			green += str[2];
+			green += str[2];
+			blue += str[3];
+			blue += str[3];
+		}
+		else if (t_strlen(str + 1) == 6)
 		{
-			red		+= str[1];
-			red		+= str[2];
-			green	+= str[3];
-			green	+= str[4];
-			blue	+= str[5];
-			blue	+= str[6];
+			red += str[1];
+			red += str[2];
+			green += str[3];
+			green += str[4];
+			blue += str[5];
+			blue += str[6];
 		}
 		tchar_t* sss = 0;
 		web_color clr;
-		clr.red		= (byte) t_strtol(red.c_str(),	&sss, 16);
-		clr.green	= (byte) t_strtol(green.c_str(),	&sss, 16);
-		clr.blue	= (byte) t_strtol(blue.c_str(),	&sss, 16);
+		clr.red = (byte)t_strtol(red.c_str(), &sss, 16);
+		clr.green = (byte)t_strtol(green.c_str(), &sss, 16);
+		clr.blue = (byte)t_strtol(blue.c_str(), &sss, 16);
 		return clr;
-	} else if(!t_strncmp(str, _t("rgb"), 3))
+	}
+	else if (!t_strncmp(str, _t("rgb"), 3))
 	{
 		tstring s = str;
 
 		tstring::size_type pos = s.find_first_of(_t("("));
-		if(pos != tstring::npos)
+		if (pos != tstring::npos)
 		{
 			s.erase(s.begin(), s.begin() + pos + 1);
 		}
 		pos = s.find_last_of(_t(")"));
-		if(pos != tstring::npos)
+		if (pos != tstring::npos)
 		{
 			s.erase(s.begin() + pos, s.end());
 		}
@@ -208,16 +210,17 @@ litehtml::web_color litehtml::web_color::from_string(const tchar_t* str, litehtm
 
 		web_color clr;
 
-		if(tokens.size() >= 1)	clr.red		= (byte) t_atoi(tokens[0].c_str());
-		if(tokens.size() >= 2)	clr.green	= (byte) t_atoi(tokens[1].c_str());
-		if(tokens.size() >= 3)	clr.blue	= (byte) t_atoi(tokens[2].c_str());
-		if(tokens.size() >= 4)	clr.alpha	= (byte) (t_strtod(tokens[3].c_str(), 0) * 255.0);
+		if (tokens.size() >= 1)	clr.red = (byte)t_atoi(tokens[0].c_str());
+		if (tokens.size() >= 2)	clr.green = (byte)t_atoi(tokens[1].c_str());
+		if (tokens.size() >= 3)	clr.blue = (byte)t_atoi(tokens[2].c_str());
+		if (tokens.size() >= 4)	clr.alpha = (byte)(t_strtod(tokens[3].c_str(), 0) * 255.0);
 
 		return clr;
-	} else
+	}
+	else
 	{
 		tstring rgb = resolve_name(str, callback);
-		if(!rgb.empty())
+		if (!rgb.empty())
 		{
 			return from_string(rgb.c_str(), callback);
 		}
@@ -227,28 +230,28 @@ litehtml::web_color litehtml::web_color::from_string(const tchar_t* str, litehtm
 
 litehtml::tstring litehtml::web_color::resolve_name(const tchar_t* name, litehtml::document_container* callback)
 {
-	for(int i=0; g_def_colors[i].name; i++)
+	for (int i = 0; g_def_colors[i].name; i++)
 	{
-		if(!t_strcasecmp(name, g_def_colors[i].name))
+		if (!t_strcasecmp(name, g_def_colors[i].name))
 		{
-            return std::move(litehtml::tstring(g_def_colors[i].rgb));
+			return std::move(litehtml::tstring(g_def_colors[i].rgb));
 		}
 	}
-    if (callback)
-    {
-        litehtml::tstring clr = callback->resolve_color(name);
-        return std::move(clr);
-    }
-    return std::move(litehtml::tstring());
+	if (callback)
+	{
+		litehtml::tstring clr = callback->resolve_color(name);
+		return std::move(clr);
+	}
+	return std::move(litehtml::tstring());
 }
 
 bool litehtml::web_color::is_color(const tchar_t* str)
 {
-	if(!t_strncasecmp(str, _t("rgb"), 3) || str[0] == _t('#'))
+	if (!t_strncasecmp(str, _t("rgb"), 3) || str[0] == _t('#'))
 	{
 		return true;
 	}
-    if (!t_isdigit(str[0]) && str[0] != _t('.'))
+	if (!t_isdigit(str[0]) && str[0] != _t('.'))
 	{
 		return true;
 	}
