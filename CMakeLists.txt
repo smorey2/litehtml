@@ -7,6 +7,8 @@ enable_testing()
 add_subdirectory(src/gumbo)
 
 set(SOURCE_LITEHTML
+    src/api.cpp
+    src/api_node.cpp
     src/background.cpp
     src/box.cpp
     src/context.cpp
@@ -47,6 +49,8 @@ set(SOURCE_LITEHTML
 
 set(HEADER_LITEHTML
     include/litehtml.h
+    include/litehtml/api.h
+    include/litehtml/api_node.h
     include/litehtml/attributes.h
     include/litehtml/background.h
     include/litehtml/borders.h
@@ -83,6 +87,7 @@ set(HEADER_LITEHTML
     include/litehtml/html_tag.h
     include/litehtml/iterators.h
     include/litehtml/media_query.h
+    include/litehtml/node.h
     include/litehtml/os_types.h
     include/litehtml/style.h
     include/litehtml/stylesheet.h
@@ -94,12 +99,29 @@ set(HEADER_LITEHTML
 
 set(TEST_LITEHTML
     containers/test/container_test.cpp
+    test/api_ConsoleTest.cpp
+    test/api_DocumentFragmentTest.cpp
+    test/api_DocumentImplementationTest.cpp
+    test/api_DocumentTest.cpp
+    test/api_DocumentTypeTest.cpp
+    test/api_ElementTest.cpp
+    test/api_GeolocationTest.cpp
+    test/api_HistoryTest.cpp
+    test/api_HTMLCollectionTest.cpp
+    test/api_LocationTest.cpp
+    test/api_MediaQueryTest.cpp
+    test/api_NavigationTest.cpp
+    test/api_RectTest.cpp
+    test/api_ScreenTest.cpp
+    test/api_StorageTest.cpp
+    test/api_StyleTest.cpp
+    test/api_WindowTest.cpp
     test/contextTest.cpp
     test/cssTest.cpp
     test/documentTest.cpp
-    test/layoutGlobalTest.cpp
-    test/mediaQueryTest.cpp
-    test/webColorTest.cpp
+    test/media_queryTest.cpp
+    test/nodeTest.cpp
+    test/web_colorTest.cpp
     test/program.cpp
 )
 
@@ -164,7 +186,25 @@ if (BUILD_TESTING)
     add_test(NAME contextTest COMMAND ${TEST_NAME} 1)
     add_test(NAME cssTest COMMAND ${TEST_NAME} 2)
     add_test(NAME documentTest COMMAND ${TEST_NAME} 3)
-    add_test(NAME layoutGlobalTest COMMAND ${TEST_NAME} 4)
-    add_test(NAME mediaQueryTest COMMAND ${TEST_NAME} 5)
-    add_test(NAME webColorTest COMMAND ${TEST_NAME} 6)
+    add_test(NAME media_queryTest COMMAND ${TEST_NAME} 4)
+    add_test(NAME web_colorTest COMMAND ${TEST_NAME} 5)
+    add_test(NAME nodeTest COMMAND ${TEST_NAME} 6)
+    # tests api
+    add_test(NAME api_ConsoleTest COMMAND ${TEST_NAME} 11)
+    add_test(NAME api_DocumentFragmentTest COMMAND ${TEST_NAME} 12)
+    add_test(NAME api_DocumentImplementationTest COMMAND ${TEST_NAME} 13)
+    add_test(NAME api_DocumentTest COMMAND ${TEST_NAME} 14)
+    add_test(NAME api_DocumentTypeTest COMMAND ${TEST_NAME} 15)
+    add_test(NAME api_ElementTest COMMAND ${TEST_NAME} 16)
+    add_test(NAME api_GeolocationTest COMMAND ${TEST_NAME} 17)
+    add_test(NAME api_HistoryTest COMMAND ${TEST_NAME} 18)
+    add_test(NAME api_HTMLCollectionTest COMMAND ${TEST_NAME} 19)
+    add_test(NAME api_LocationTest COMMAND ${TEST_NAME} 20)
+    add_test(NAME api_MediaQueryTest COMMAND ${TEST_NAME} 21)
+    add_test(NAME api_NavigationTest COMMAND ${TEST_NAME} 22)
+    add_test(NAME api_RectTest COMMAND ${TEST_NAME} 23)
+    add_test(NAME api_ScreenTest COMMAND ${TEST_NAME} 24)
+    add_test(NAME api_StorageTest COMMAND ${TEST_NAME} 25)
+    add_test(NAME api_StyleTest COMMAND ${TEST_NAME} 26)
+    add_test(NAME api_WindowTest COMMAND ${TEST_NAME} 27)
 endif()

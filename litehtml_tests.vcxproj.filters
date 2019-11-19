@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="containers\test\container_test.cpp" />
+    <ClCompile Include="test\contextTest.cpp" />
+    <ClCompile Include="test\cssTest.cpp" />
+    <ClCompile Include="test\documentTest.cpp" />
+    <ClCompile Include="test\program.cpp" />
+    <ClCompile Include="test\media_queryTest.cpp" />
+    <ClCompile Include="test\api_ConsoleTest.cpp" />
+    <ClCompile Include="test\api_DocumentFragmentTest.cpp" />
+    <ClCompile Include="test\api_DocumentImplementationTest.cpp" />
+    <ClCompile Include="test\api_DocumentTest.cpp" />
+    <ClCompile Include="test\api_DocumentTypeTest.cpp" />
+    <ClCompile Include="test\api_ElementTest.cpp" />
+    <ClCompile Include="test\api_GeolocationTest.cpp" />
+    <ClCompile Include="test\api_HistoryTest.cpp" />
+    <ClCompile Include="test\api_HTMLCollectionTest.cpp" />
+    <ClCompile Include="test\api_LocationTest.cpp" />
+    <ClCompile Include="test\api_MediaQueryTest.cpp" />
+    <ClCompile Include="test\api_NavigationTest.cpp" />
+    <ClCompile Include="test\api_RectTest.cpp" />
+    <ClCompile Include="test\api_ScreenTest.cpp" />
+    <ClCompile Include="test\api_StorageTest.cpp" />
+    <ClCompile Include="test\api_StyleTest.cpp" />
+    <ClCompile Include="test\api_WindowTest.cpp" />
+    <ClCompile Include="test\web_colorTest.cpp" />
+    <ClCompile Include="test\nodeTest.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\master.css.inc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{2EDE71E8-75F9-3550-8099-D41EE16A7CC2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

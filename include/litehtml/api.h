@@ -2,7 +2,7 @@
 #define LH_API_H
 
 #include "events.h"
-#include "node.h"
+#include "api_node.h"
 
 namespace litehtml
 {
@@ -103,7 +103,7 @@ namespace litehtml
 		/// </summary>
 		/// <param name="expression">The expression.</param>
 		/// <param name="message">The message.</param>
-		void assert(void* expression, void* message);
+		void Assert(void* expression, void* message);
 
 		/// <summary>
 		/// Clears the console

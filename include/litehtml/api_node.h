@@ -1,14 +1,14 @@
-#ifndef LH_NODE_H
-#define LH_NODE_H
+#ifndef LH_API_NODE_H
+#define LH_API_NODE_H
 
 #include <string>
 
 namespace litehtml
 {
 	/// <summary>
-	/// node
+	/// Node
 	/// </summary>
-	class node
+	class Node
 	{
 	};
 
@@ -34,4 +34,4 @@ namespace litehtml
 	};
 }
 
-#endif  // LH_NODE_H
+#endif  // LH_API_NODE_H

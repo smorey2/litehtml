@@ -12,6 +12,7 @@ cmake-build-*/
 [Dd]ebugPublic/
 [Rr]elease/
 x64/
+Win32/
 build/
 bld/
 [Bb]in/

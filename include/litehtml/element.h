@@ -9,7 +9,7 @@ namespace litehtml
 {
 	class box;
 
-	class element : public std::enable_shared_from_this<element>
+	class element : public std::enable_shared_from_this<element>, public Element
 	{
 		friend class block_box;
 		friend class line_box;
@@ -57,7 +57,7 @@ namespace litehtml
 		int							content_margins_back()		const;
 		int							content_margins_width()		const;
 		int							content_margins_height()	const;
-		int							content_margins_depth()	const;
+		int							content_margins_depth()		const;
 
 		int							margin_top()				const;
 		int							margin_bottom()				const;
