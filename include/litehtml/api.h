@@ -51,47 +51,6 @@ namespace litehtml
 	};
 
 	/// <summary>
-	/// Attr
-	/// https://www.w3schools.com/jsref/dom_obj_attributes.asp
-	/// </summary>
-	class Attr
-	{
-	public:
-		/// <summary>
-		/// Returns true if the attribute is of type Id, otherwise it returns false
-		/// </summary>
-		/// <value>
-		///   <c>true</c> if this instance is identifier; otherwise, <c>false</c>.
-		/// </value>
-		bool isId();
-
-		/// <summary>
-		/// Returns the name of an attribute
-		/// </summary>
-		/// <value>
-		/// The name.
-		/// </value>
-		wchar_t* name();
-
-		/// <summary>
-		/// Sets or returns the value of the attribute
-		/// </summary>
-		/// <value>
-		/// The value.
-		/// </value>
-		wchar_t* value();
-		void value(wchar_t* value);
-
-		/// <summary>
-		/// Returns true if the attribute has been specified, otherwise it returns false
-		/// </summary>
-		/// <value>
-		///   <c>true</c> if specified; otherwise, <c>false</c>.
-		/// </value>
-		bool specified();
-	};
-
-	/// <summary>
 	/// Console
 	/// https://www.w3schools.com/jsref/obj_console.asp
 	/// </summary>
@@ -410,21 +369,21 @@ namespace litehtml
 		/// </summary>
 		/// <param name="classname">The classname.</param>
 		/// <returns></returns>
-		NodeList* getElementsByClassName(wchar_t* classname);
+		NodeList getElementsByClassName(wchar_t* classname);
 
 		/// <summary>
 		/// Returns a NodeList containing all elements with a specified name
 		/// </summary>
 		/// <param name="name">The name.</param>
 		/// <returns></returns>
-		NodeList* getElementsByName(wchar_t* name);
+		NodeList getElementsByName(wchar_t* name);
 
 		/// <summary>
 		/// Returns a NodeList containing all elements with the specified tag name
 		/// </summary>
 		/// <param name="tagname">The tagname.</param>
 		/// <returns></returns>
-		NodeList* getElementsByTagName(wchar_t* tagname);
+		NodeList getElementsByTagName(wchar_t* tagname);
 
 		/// <summary>
 		/// Returns a Boolean value indicating whether the document has focus
@@ -514,7 +473,7 @@ namespace litehtml
 		/// </summary>
 		/// <param name="selectors">The selectors.</param>
 		/// <returns></returns>
-		NodeList* querySelectorAll(wchar_t* selectors);
+		NodeList querySelectorAll(wchar_t* selectors);
 
 		/// <summary>
 		/// Returns the (loading) status of the document
@@ -620,20 +579,20 @@ namespace litehtml
 		/// <param name="useCapture">if set to <c>true</c> [use capture].</param>
 		void addEventListener(wchar_t* event, wchar_t* function, bool useCapture = false);
 
-		/// <summary>
-		/// Adds a new child node, to an element, as the last child node
-		/// </summary>
-		/// <param name="node">The node.</param>
-		/// <returns></returns>
-		Node* appendChild(Node* node);
+		///// <summary>
+		///// Adds a new child node, to an element, as the last child node
+		///// </summary>
+		///// <param name="node">The node.</param>
+		///// <returns></returns>
+		//Node* appendChild(Node* node);
 
-		/// <summary>
-		/// Returns a NamedNodeMap of an element's attributes
-		/// </summary>
-		/// <value>
-		/// The attributes.
-		/// </value>
-		NamedNodeMap* attributes();
+		///// <summary>
+		///// Returns a NamedNodeMap of an element's attributes
+		///// </summary>
+		///// <value>
+		///// The attributes.
+		///// </value>
+		//NamedNodeMap<Attrib*>* attributes();
 
 		/// <summary>
 		/// Removes focus from an element
@@ -648,10 +607,10 @@ namespace litehtml
 		/// </value>
 		int childElementCount();
 
-		/// <summary>
-		/// Returns a collection of an element's child nodes (including text and comment nodes)
-		/// </summary>
-		NodeList* childNodes();
+		///// <summary>
+		///// Returns a collection of an element's child nodes (including text and comment nodes)
+		///// </summary>
+		//NodeList childNodes();
 
 		/// <summary>
 		/// Returns a collection of an element's child element (excluding text and comment nodes)
@@ -712,19 +671,19 @@ namespace litehtml
 		/// </value>
 		int clientWidth();
 
-		/// <summary>
-		/// Clones an element
-		/// </summary>
-		/// <param name="deep">if set to <c>true</c> [deep].</param>
-		/// <returns></returns>
-		Node* cloneNode(bool deep = false);
+		///// <summary>
+		///// Clones an element
+		///// </summary>
+		///// <param name="deep">if set to <c>true</c> [deep].</param>
+		///// <returns></returns>
+		//Node* cloneNode(bool deep = false);
 
-		/// <summary>
-		/// Compares the document position of two elements
-		/// </summary>
-		/// <param name="node">The node.</param>
-		/// <returns></returns>
-		int compareDocumentPosition(Node* node);
+		///// <summary>
+		///// Compares the document position of two elements
+		///// </summary>
+		///// <param name="node">The node.</param>
+		///// <returns></returns>
+		//int compareDocumentPosition(Node* node);
 
 		/// <summary>
 		/// Returns true if a node is a descendant of a node, otherwise false
@@ -758,13 +717,13 @@ namespace litehtml
 		/// </summary>
 		void exitFullscreen();
 
-		/// <summary>
-		/// Returns the first child node of an element
-		/// </summary>
-		/// <value>
-		/// The first child.
-		/// </value>
-		Node* firstChild();
+		///// <summary>
+		///// Returns the first child node of an element
+		///// </summary>
+		///// <value>
+		///// The first child.
+		///// </value>
+		//Node* firstChild();
 
 		/// <summary>
 		/// Returns the first child element of an element
@@ -804,39 +763,39 @@ namespace litehtml
 		/// </summary>
 		/// <param name="classname">The classname.</param>
 		/// <returns></returns>
-		NodeList* getElementsByClassName(wchar_t* classname);
+		NodeList getElementsByClassName(wchar_t* classname);
 
 		/// <summary>
 		/// Returns a collection of all child elements with the specified tag name
 		/// </summary>
 		/// <param name="tagname">The tagname.</param>
 		/// <returns></returns>
-		NodeList* getElementsByTagName(wchar_t* tagname);
+		NodeList getElementsByTagName(wchar_t* tagname);
 
-		/// <summary>
-		/// Returns true if an element has the specified attribute, otherwise false
-		/// </summary>
-		/// <param name="attributename">The attributename.</param>
-		/// <returns>
-		///   <c>true</c> if the specified attributename has attribute; otherwise, <c>false</c>.
-		/// </returns>
-		bool hasAttribute(wchar_t* attributename);
+		///// <summary>
+		///// Returns true if an element has the specified attribute, otherwise false
+		///// </summary>
+		///// <param name="attributename">The attributename.</param>
+		///// <returns>
+		/////   <c>true</c> if the specified attributename has attribute; otherwise, <c>false</c>.
+		///// </returns>
+		//bool hasAttribute(wchar_t* attributename);
 
-		/// <summary>
-		/// Returns true if an element has any attributes, otherwise false
-		/// </summary>
-		/// <returns>
-		///   <c>true</c> if this instance has attributes; otherwise, <c>false</c>.
-		/// </returns>
-		bool hasAttributes();
+		///// <summary>
+		///// Returns true if an element has any attributes, otherwise false
+		///// </summary>
+		///// <returns>
+		/////   <c>true</c> if this instance has attributes; otherwise, <c>false</c>.
+		///// </returns>
+		//bool hasAttributes();
 
-		/// <summary>
-		/// Returns true if an element has any child nodes, otherwise false
-		/// </summary>
-		/// <returns>
-		///   <c>true</c> if [has child nodes]; otherwise, <c>false</c>.
-		/// </returns>
-		bool hasChildNodes();
+		///// <summary>
+		///// Returns true if an element has any child nodes, otherwise false
+		///// </summary>
+		///// <returns>
+		/////   <c>true</c> if [has child nodes]; otherwise, <c>false</c>.
+		///// </returns>
+		//bool hasChildNodes();
 
 		/// <summary>
 		/// Sets or returns the value of the id attribute of an element
@@ -901,32 +860,32 @@ namespace litehtml
 		/// </value>
 		bool isContentEditable();
 
-		/// <summary>
-		/// Returns true if a specified namespaceURI is the default, otherwise false
-		/// </summary>
-		/// <param name="namespaceURI">The namespace URI.</param>
-		/// <returns>
-		///   <c>true</c> if [is default namespace] [the specified namespace URI]; otherwise, <c>false</c>.
-		/// </returns>
-		bool isDefaultNamespace(wchar_t* namespaceURI);
+		///// <summary>
+		///// Returns true if a specified namespaceURI is the default, otherwise false
+		///// </summary>
+		///// <param name="namespaceURI">The namespace URI.</param>
+		///// <returns>
+		/////   <c>true</c> if [is default namespace] [the specified namespace URI]; otherwise, <c>false</c>.
+		///// </returns>
+		//bool isDefaultNamespace(wchar_t* namespaceURI);
 
-		/// <summary>
-		/// Checks if two elements are equal
-		/// </summary>
-		/// <param name="node">The node.</param>
-		/// <returns>
-		///   <c>true</c> if [is equal node] [the specified node]; otherwise, <c>false</c>.
-		/// </returns>
-		bool isEqualNode(Node* node);
+		///// <summary>
+		///// Checks if two elements are equal
+		///// </summary>
+		///// <param name="node">The node.</param>
+		///// <returns>
+		/////   <c>true</c> if [is equal node] [the specified node]; otherwise, <c>false</c>.
+		///// </returns>
+		//bool isEqualNode(Node* node);
 
-		/// <summary>
-		/// Checks if two elements are the same node
-		/// </summary>
-		/// <param name="node">The node.</param>
-		/// <returns>
-		///   <c>true</c> if [is same node] [the specified node]; otherwise, <c>false</c>.
-		/// </returns>
-		bool isSameNode(Node* node);
+		///// <summary>
+		///// Checks if two elements are the same node
+		///// </summary>
+		///// <param name="node">The node.</param>
+		///// <returns>
+		/////   <c>true</c> if [is same node] [the specified node]; otherwise, <c>false</c>.
+		///// </returns>
+		//bool isSameNode(Node* node);
 
 		/// <summary>
 		/// Sets or returns the value of the lang attribute of an element
@@ -937,13 +896,13 @@ namespace litehtml
 		wchar_t* lang();
 		void lang(wchar_t* value);
 
-		/// <summary>
-		/// Returns the last child node of an element
-		/// </summary>
-		/// <value>
-		/// The last child.
-		/// </value>
-		Node* lastChild();
+		///// <summary>
+		///// Returns the last child node of an element
+		///// </summary>
+		///// <value>
+		///// The last child.
+		///// </value>
+		//Node* lastChild();
 
 		/// <summary>
 		/// Returns the last child element of an element
@@ -961,13 +920,13 @@ namespace litehtml
 		/// </value>
 		wchar_t* namespaceURI();
 
-		/// <summary>
-		/// Returns the next node at the same node tree level
-		/// </summary>
-		/// <value>
-		/// The next sibling.
-		/// </value>
-		Node* nextSibling();
+		///// <summary>
+		///// Returns the next node at the same node tree level
+		///// </summary>
+		///// <value>
+		///// The next sibling.
+		///// </value>
+		//Node* nextSibling();
 
 		/// <summary>
 		/// Returns the next element at the same node tree level
@@ -977,35 +936,35 @@ namespace litehtml
 		/// </value>
 		Node* nextElementSibling();
 
-		/// <summary>
-		/// Returns the name of a node
-		/// </summary>
-		/// <value>
-		/// The name of the node.
-		/// </value>
-		wchar_t* nodeName();
+		///// <summary>
+		///// Returns the name of a node
+		///// </summary>
+		///// <value>
+		///// The name of the node.
+		///// </value>
+		//wchar_t* nodeName();
 
-		/// <summary>
-		/// Returns the node type of a node
-		/// </summary>
-		/// <value>
-		/// The type of the node.
-		/// </value>
-		int nodeType();
+		///// <summary>
+		///// Returns the node type of a node
+		///// </summary>
+		///// <value>
+		///// The type of the node.
+		///// </value>
+		//int nodeType();
 
-		/// <summary>
-		/// Sets or returns the value of a node
-		/// </summary>
-		/// <value>
-		/// The node value.
-		/// </value>
-		wchar_t* nodeValue();
-		void nodeValue(wchar_t* value);
+		///// <summary>
+		///// Sets or returns the value of a node
+		///// </summary>
+		///// <value>
+		///// The node value.
+		///// </value>
+		//wchar_t* nodeValue();
+		//void nodeValue(wchar_t* value);
 
-		/// <summary>
-		/// Joins adjacent text nodes and removes empty text nodes in an element
-		/// </summary>
-		void normalize();
+		///// <summary>
+		///// Joins adjacent text nodes and removes empty text nodes in an element
+		///// </summary>
+		//void normalize();
 
 		/// <summary>
 		/// Returns the height of an element, including padding, border and scrollbar
@@ -1047,21 +1006,21 @@ namespace litehtml
 		/// </value>
 		int offsetTop();
 
-		/// <summary>
-		/// Returns the root element (document object) for an element
-		/// </summary>
-		/// <value>
-		/// The owner document.
-		/// </value>
-		Document* ownerDocument();
+		///// <summary>
+		///// Returns the root element (document object) for an element
+		///// </summary>
+		///// <value>
+		///// The owner document.
+		///// </value>
+		//Document* ownerDocument();
 
-		/// <summary>
-		/// Returns the parent node of an element
-		/// </summary>
-		/// <value>
-		/// The parent node.
-		/// </value>
-		Node* parentNode();
+		///// <summary>
+		///// Returns the parent node of an element
+		///// </summary>
+		///// <value>
+		///// The parent node.
+		///// </value>
+		//Node* parentNode();
 
 		/// <summary>
 		/// Returns the parent element node of an element
@@ -1071,13 +1030,13 @@ namespace litehtml
 		/// </value>
 		Element* parentElement();
 
-		/// <summary>
-		/// Returns the previous node at the same node tree level
-		/// </summary>
-		/// <value>
-		/// The previous sibling.
-		/// </value>
-		Node* previousSibling();
+		///// <summary>
+		///// Returns the previous node at the same node tree level
+		///// </summary>
+		///// <value>
+		///// The previous sibling.
+		///// </value>
+		//Node* previousSibling();
 
 		/// <summary>
 		/// Returns the previous element at the same node tree level
@@ -1099,7 +1058,7 @@ namespace litehtml
 		/// </summary>
 		/// <param name="selectors">The selectors.</param>
 		/// <returns></returns>
-		NodeList* querySelectorAll(wchar_t* selectors);
+		NodeList querySelectorAll(wchar_t* selectors);
 
 		/// <summary>
 		/// Removes a specified attribute from an element
@@ -1114,12 +1073,12 @@ namespace litehtml
 		/// <returns></returns>
 		Attr* removeAttributeNode(Attr* attributenode);
 
-		/// <summary>
-		/// Removes a child node from an element
-		/// </summary>
-		/// <param name="node">The node.</param>
-		/// <returns></returns>
-		Node* removeChild(Node* node);
+		///// <summary>
+		///// Removes a child node from an element
+		///// </summary>
+		///// <param name="node">The node.</param>
+		///// <returns></returns>
+		//Node* removeChild(Node* node);
 
 		/// <summary>
 		/// Removes an event handler that has been attached with the addEventListener() method
@@ -1129,13 +1088,13 @@ namespace litehtml
 		/// <param name="useCapture">if set to <c>true</c> [use capture].</param>
 		void removeEventListener(wchar_t* event, wchar_t* function, bool useCapture = false);
 
-		/// <summary>
-		/// Replaces a child node in an element
-		/// </summary>
-		/// <param name="newnode">The newnode.</param>
-		/// <param name="oldnode">The oldnode.</param>
-		/// <returns></returns>
-		Node* replaceChild(Node* newnode, Node* oldnode);
+		///// <summary>
+		///// Replaces a child node in an element
+		///// </summary>
+		///// <param name="newnode">The newnode.</param>
+		///// <param name="oldnode">The oldnode.</param>
+		///// <returns></returns>
+		//Node* replaceChild(Node* newnode, Node* oldnode);
 
 		/// <summary>
 		/// Shows an element in fullscreen mode
@@ -1219,14 +1178,14 @@ namespace litehtml
 		/// </value>
 		wchar_t* tagName();
 
-		/// <summary>
-		/// Sets or returns the textual content of a node and its descendants
-		/// </summary>
-		/// <value>
-		/// The content of the text.
-		/// </value>
-		wchar_t* textContent();
-		void textContent(wchar_t* value);
+		///// <summary>
+		///// Sets or returns the textual content of a node and its descendants
+		///// </summary>
+		///// <value>
+		///// The content of the text.
+		///// </value>
+		//wchar_t* textContent();
+		//void textContent(wchar_t* value);
 
 		/// <summary>
 		/// Sets or returns the value of the title attribute of an element
