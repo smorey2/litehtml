@@ -22,7 +22,7 @@ namespace litehtml
 		/// </summary>
 		/// <param name="node">The node.</param>
 		/// <returns></returns>
-		Node* appendChild(Node* node);
+		Node& appendChild(Node& node);
 
 		/// <summary>
 		/// Returns a NamedNodeMap of an element's attributes
@@ -30,7 +30,7 @@ namespace litehtml
 		/// <value>
 		/// The attributes.
 		/// </value>
-		NamedNodeMap<Attr*>* attributes();
+		NamedNodeMap<Attr>& attributes();
 
 		/// <summary>
 		/// Returns the absolute base URI of a node
@@ -50,14 +50,14 @@ namespace litehtml
 		/// </summary>
 		/// <param name="deep">if set to <c>true</c> [deep].</param>
 		/// <returns></returns>
-		Node* cloneNode(bool deep = false);
+		Node& cloneNode(bool deep = false);
 
 		/// <summary>
 		/// Compares the document position of two elements
 		/// </summary>
 		/// <param name="node">The node.</param>
 		/// <returns></returns>
-		int compareDocumentPosition(Node node);
+		int compareDocumentPosition(Node& node);
 
 		/// <summary>
 		/// Returns the first child node of an element
@@ -65,7 +65,7 @@ namespace litehtml
 		/// <value>
 		/// The first child.
 		/// </value>
-		Node* firstChild();
+		Node& firstChild();
 
 		///// <summary>
 		///// Returns a DOM object which implements the specialized APIs of the specified feature and version
@@ -123,7 +123,7 @@ namespace litehtml
 		/// <returns>
 		///   <c>true</c> if [is equal node] [the specified node]; otherwise, <c>false</c>.
 		/// </returns>
-		bool isEqualNode(Node* node);
+		bool isEqualNode(Node& node);
 
 		/// <summary>
 		/// Checks if two elements are the same node
@@ -132,7 +132,7 @@ namespace litehtml
 		/// <returns>
 		///   <c>true</c> if [is same node] [the specified node]; otherwise, <c>false</c>.
 		/// </returns>
-		bool isSameNode(Node* node);
+		bool isSameNode(Node& node);
 
 		/// <summary>
 		/// Returns the last child node of an element
@@ -140,7 +140,7 @@ namespace litehtml
 		/// <value>
 		/// The last child.
 		/// </value>
-		Node* lastChild();
+		Node& lastChild();
 
 		/// <summary>
 		/// Returns the namespace URI associated with a given prefix
@@ -162,7 +162,7 @@ namespace litehtml
 		/// <value>
 		/// The next sibling.
 		/// </value>
-		Node* nextSibling();
+		Node& nextSibling();
 
 		/// <summary>
 		/// Returns the name of a node
@@ -200,7 +200,7 @@ namespace litehtml
 		/// <value>
 		/// The owner document.
 		/// </value>
-		Document* ownerDocument();
+		Document& ownerDocument();
 
 		/// <summary>
 		/// Returns the parent node of an element
@@ -208,7 +208,7 @@ namespace litehtml
 		/// <value>
 		/// The parent node.
 		/// </value>
-		Node* parentNode();
+		Node& parentNode();
 
 		/// <summary>
 		/// Sets or returns the namespace prefix of a node
@@ -225,14 +225,14 @@ namespace litehtml
 		/// <value>
 		/// The previous sibling.
 		/// </value>
-		Node* previousSibling();
+		Node& previousSibling();
 
 		/// <summary>
 		/// Removes a child node from an element
 		/// </summary>
 		/// <param name="node">The node.</param>
 		/// <returns></returns>
-		Node* removeChild(Node* node);
+		Node& removeChild(Node& node);
 
 		/// <summary>
 		/// Replaces a child node in an element
@@ -240,7 +240,7 @@ namespace litehtml
 		/// <param name="newnode">The newnode.</param>
 		/// <param name="oldnode">The oldnode.</param>
 		/// <returns></returns>
-		Node* replaceChild(Node* newnode, Node* oldnode);
+		Node& replaceChild(Node& newnode, Node& oldnode);
 
 		/// <summary>
 		/// Sets the user data.
@@ -264,7 +264,7 @@ namespace litehtml
 	/// Attr
 	/// https://www.w3schools.com/jsref/dom_obj_attributes.asp
 	/// </summary>
-	class Attr
+	class Attr : public Node
 	{
 	public:
 		/// <summary>
@@ -301,7 +301,7 @@ namespace litehtml
 		std::vector<Node*> list;
 	public:
 		// Overloading [] operator to access elements in array style 
-		Node &operator[] (int index);
+		Node& operator[](int index);
 	};
 
 	/// <summary>
@@ -314,7 +314,7 @@ namespace litehtml
 		/// <summary>
 		/// Returns a specified attribute node from a NamedNodeMap
 		/// </summary>
-		TNode getNamedItem(wchar_t* nodename);
+		TNode& getNamedItem(wchar_t* nodename);
 
 		/// <summary>
 		/// Gets the <see cref="Node"/> with the specified index.
@@ -325,14 +325,14 @@ namespace litehtml
 		/// <param name="index">The index.</param>
 		/// <returns></returns>
 		// Overloading [] operator to access elements in array style 
-		TNode operator[] (int index);
+		TNode& operator[](int index);
 
 		/// <summary>
 		/// Returns the attribute node at a specified index in a NamedNodeMap
 		/// </summary>
 		/// <param name="index">The index.</param>
 		/// <returns></returns>
-		TNode item(int index);
+		TNode& item(int index);
 
 		/// <summary>
 		/// Returns the number of attribute nodes in a NamedNodeMap
@@ -348,7 +348,7 @@ namespace litehtml
 		/// <param name="nodename">The nodename.</param>
 		/// <returns></returns>
 		/// <exception cref="NotImplementedException"></exception>
-		TNode removeNamedItem(wchar_t* nodename);
+		TNode& removeNamedItem(wchar_t* nodename);
 
 		/// <summary>
 		/// Sets the specified attribute node (by name)
@@ -356,7 +356,7 @@ namespace litehtml
 		/// <param name="node">The node.</param>
 		/// <returns></returns>
 		/// <exception cref="NotImplementedException"></exception>
-		TNode setNamedItem(TNode node);
+		TNode& setNamedItem(TNode& node);
 	};
 
 	/// <summary>

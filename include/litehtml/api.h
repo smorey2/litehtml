@@ -155,7 +155,7 @@ namespace litehtml
 		/// <value>
 		/// The active element.
 		/// </value>
-		Element* activeElement();
+		Element& activeElement();
 
 		/// <summary>
 		/// Attaches an event handler to the document
@@ -170,7 +170,7 @@ namespace litehtml
 		/// </summary>
 		/// <param name="node">The node.</param>
 		/// <returns></returns>
-		Node* adoptNode(Node* node);
+		Node& adoptNode(Node& node);
 
 		/// <summary>
 		/// Returns a collection of all <a> elements in the document that have a name attribute
@@ -178,7 +178,7 @@ namespace litehtml
 		/// <value>
 		/// The anchors.
 		/// </value>
-		HTMLCollection* anchors();
+		HTMLCollection& anchors();
 
 		/// <summary>
 		/// Returns a collection of all <applet> elements in the document
@@ -186,7 +186,7 @@ namespace litehtml
 		/// <value>
 		/// The applets.
 		/// </value>
-		HTMLCollection* applets();
+		HTMLCollection& applets();
 
 		/// <summary>
 		/// Returns the absolute base URI of a document
@@ -202,8 +202,8 @@ namespace litehtml
 		/// <value>
 		/// The body.
 		/// </value>
-		Element* body();
-		void body(Element* value);
+		Element& body();
+		void body(Element& value);
 
 		/// <summary>
 		/// Closes the output stream previously opened with document.open()
@@ -232,41 +232,41 @@ namespace litehtml
 		/// </summary>
 		/// <param name="attributename">The attributename.</param>
 		/// <returns></returns>
-		Node* createAttribute(wchar_t* attributename);
+		Node& createAttribute(wchar_t* attributename);
 
 		/// <summary>
 		/// Creates a Comment node with the specified text
 		/// </summary>
 		/// <param name="text">The text.</param>
 		/// <returns></returns>
-		Node* createComment(wchar_t* text); //: IComment
+		Node& createComment(wchar_t* text); //: IComment
 
 		/// <summary>
 		/// Creates an empty DocumentFragment node
 		/// </summary>
 		/// <returns></returns>
-		DocumentFragment* createDocumentFragment();
+		DocumentFragment& createDocumentFragment();
 
 		/// <summary>
 		/// Creates an Element node
 		/// </summary>
 		/// <param name="nodename">The nodename.</param>
 		/// <returns></returns>
-		Element* createElement(wchar_t* nodename);
+		Element& createElement(wchar_t* nodename);
 
 		/// <summary>
 		/// Creates a new event
 		/// </summary>
 		/// <param name="type">The type.</param>
 		/// <returns></returns>
-		Event* createEvent(wchar_t* type);
+		Event& createEvent(wchar_t* type);
 
 		/// <summary>
 		/// Creates a Text node
 		/// </summary>
 		/// <param name="text">The text.</param>
 		/// <returns></returns>
-		Node* createTextNode(wchar_t* text); //: IText
+		Node& createTextNode(wchar_t* text); //: IText
 
 		/// <summary>
 		/// Returns the window object associated with a document, or nullptr if none is available.
@@ -274,7 +274,7 @@ namespace litehtml
 		/// <value>
 		/// The default view.
 		/// </value>
-		Window* defaultView();
+		Window& defaultView();
 
 		/// <summary>
 		/// Controls whether the entire document should be editable or not.
@@ -291,7 +291,7 @@ namespace litehtml
 		/// <value>
 		/// The doctype.
 		/// </value>
-		DocumentType* doctype();
+		DocumentType& doctype();
 
 		/// <summary>
 		/// Returns the Document Element of the document (the <html> element)
@@ -299,7 +299,7 @@ namespace litehtml
 		/// <value>
 		/// The document element.
 		/// </value>
-		Element* documentElement();
+		Element& documentElement();
 
 		/// <summary>
 		/// Sets or returns the location of the document
@@ -324,7 +324,7 @@ namespace litehtml
 		/// <value>
 		/// The embeds.
 		/// </value>
-		HTMLCollection* embeds();
+		HTMLCollection& embeds();
 
 		/// <summary>
 		/// Invokes the specified clipboard operation on the element currently having focus.
@@ -341,7 +341,7 @@ namespace litehtml
 		/// <value>
 		/// The forms.
 		/// </value>
-		HTMLCollection* forms();
+		HTMLCollection& forms();
 
 		/// <summary>
 		/// Returns the current element that is displayed in fullscreen mode
@@ -349,7 +349,7 @@ namespace litehtml
 		/// <value>
 		/// The fullscreen element.
 		/// </value>
-		Element* fullscreenElement();
+		Element& fullscreenElement();
 
 		/// <summary>
 		/// Returns a Boolean value indicating whether the document can be viewed in fullscreen mode
@@ -362,7 +362,7 @@ namespace litehtml
 		/// </summary>
 		/// <param name="elementID">The element identifier.</param>
 		/// <returns></returns>
-		Element* getElementById(wchar_t* elementID);
+		Element& getElementById(wchar_t* elementID);
 
 		/// <summary>
 		/// Returns a NodeList containing all elements with the specified class name
@@ -399,7 +399,7 @@ namespace litehtml
 		/// <value>
 		/// The head.
 		/// </value>
-		Element* head();
+		Element& head();
 
 		/// <summary>
 		///Returns a collection of all <img> elements in the document
@@ -407,7 +407,7 @@ namespace litehtml
 		/// <value>
 		/// The images.
 		/// </value>
-		HTMLCollection* images();
+		HTMLCollection& images();
 
 		/// <summary>
 		/// Returns the DOMImplementation object that handles this document
@@ -415,7 +415,7 @@ namespace litehtml
 		/// <value>
 		/// The implementation.
 		/// </value>
-		DocumentImplementation* implementation();
+		DocumentImplementation& implementation();
 
 		/// <summary>
 		/// Imports a node from another document
@@ -423,7 +423,7 @@ namespace litehtml
 		/// <param name="node">The node.</param>
 		/// <param name="deep">if set to <c>true</c> [deep].</param>
 		/// <returns></returns>
-		Node* importNode(Node* node, bool deep);
+		Node& importNode(Node& node, bool deep);
 
 		/// <summary>
 		/// Returns the encoding, character set, used for the document
@@ -447,7 +447,7 @@ namespace litehtml
 		/// <value>
 		/// The links.
 		/// </value>
-		HTMLCollection* links();
+		HTMLCollection& links();
 
 		/// <summary>
 		/// Removes empty Text nodes, and joins adjacent nodes
@@ -466,7 +466,7 @@ namespace litehtml
 		/// </summary>
 		/// <param name="selectors">The selectors.</param>
 		/// <returns></returns>
-		Element* querySelector(wchar_t* selectors);
+		Element& querySelector(wchar_t* selectors);
 
 		/// <summary>
 		/// Returns a static NodeList containing all elements that matches a specified CSS selector(s) in the document
@@ -506,7 +506,7 @@ namespace litehtml
 		/// <param name="namespaceURI">The namespace URI.</param>
 		/// <param name="nodename">The nodename.</param>
 		/// <returns></returns>
-		Node* renameNode(Node* node, wchar_t* namespaceURI, wchar_t* nodename);
+		Node& renameNode(Node& node, wchar_t* namespaceURI, wchar_t* nodename);
 
 		/// <summary>
 		/// Returns a collection of <script> elements in the document
@@ -514,7 +514,7 @@ namespace litehtml
 		/// <value>
 		/// The scripts.
 		/// </value>
-		HTMLCollection* scripts();
+		HTMLCollection& scripts();
 
 		/// <summary>
 		/// Sets or returns whether error-checking is enforced or not
@@ -559,7 +559,7 @@ namespace litehtml
 	/// Element
 	/// https://www.w3schools.com/jsref/dom_obj_all.asp
 	/// </summary>
-	class Element
+	class Element : public Node
 	{
 	public:
 		/// <summary>
@@ -584,7 +584,7 @@ namespace litehtml
 		///// </summary>
 		///// <param name="node">The node.</param>
 		///// <returns></returns>
-		//Node* appendChild(Node* node);
+		//Node& appendChild(Node& node);
 
 		///// <summary>
 		///// Returns a NamedNodeMap of an element's attributes
@@ -592,7 +592,7 @@ namespace litehtml
 		///// <value>
 		///// The attributes.
 		///// </value>
-		//NamedNodeMap<Attrib*>* attributes();
+		//NamedNodeMap<Attrib>& attributes();
 
 		/// <summary>
 		/// Removes focus from an element
@@ -615,7 +615,7 @@ namespace litehtml
 		/// <summary>
 		/// Returns a collection of an element's child element (excluding text and comment nodes)
 		/// </summary>
-		HTMLCollection* children();
+		HTMLCollection& children();
 
 		/// <summary>
 		/// Returns the class name(s) of an element
@@ -623,7 +623,7 @@ namespace litehtml
 		/// <value>
 		/// The class list.
 		/// </value>
-		DOMTokenList* classList();
+		DOMTokenList& classList();
 
 		/// <summary>
 		/// Sets or returns the value of the class attribute of an element
@@ -676,14 +676,14 @@ namespace litehtml
 		///// </summary>
 		///// <param name="deep">if set to <c>true</c> [deep].</param>
 		///// <returns></returns>
-		//Node* cloneNode(bool deep = false);
+		//Node& cloneNode(bool deep = false);
 
 		///// <summary>
 		///// Compares the document position of two elements
 		///// </summary>
 		///// <param name="node">The node.</param>
 		///// <returns></returns>
-		//int compareDocumentPosition(Node* node);
+		//int compareDocumentPosition(Node& node);
 
 		/// <summary>
 		/// Returns true if a node is a descendant of a node, otherwise false
@@ -692,7 +692,7 @@ namespace litehtml
 		/// <returns>
 		///   <c>true</c> if [contains] [the specified node]; otherwise, <c>false</c>.
 		/// </returns>
-		bool contains(Node* node);
+		bool contains(Node& node);
 
 		/// <summary>
 		/// Sets or returns whether the content of an element is editable or not
@@ -723,7 +723,7 @@ namespace litehtml
 		///// <value>
 		///// The first child.
 		///// </value>
-		//Node* firstChild();
+		//Node& firstChild();
 
 		/// <summary>
 		/// Returns the first child element of an element
@@ -731,7 +731,7 @@ namespace litehtml
 		/// <value>
 		/// The first element child.
 		/// </value>
-		Node* firstElementChild();
+		Node& firstElementChild();
 
 		/// <summary>
 		/// Gives focus to an element
@@ -750,13 +750,13 @@ namespace litehtml
 		/// </summary>
 		/// <param name="attributename">The attributename.</param>
 		/// <returns></returns>
-		Attr* getAttributeNode(wchar_t* attributename);
+		Attr& getAttributeNode(wchar_t* attributename);
 
 		/// <summary>
 		/// Returns the size of an element and its position relative to the viewport
 		/// </summary>
 		/// <returns></returns>
-		Rect* getBoundingClientRect();
+		Rect& getBoundingClientRect();
 
 		/// <summary>
 		/// Returns a collection of all child elements with the specified class name
@@ -876,7 +876,7 @@ namespace litehtml
 		///// <returns>
 		/////   <c>true</c> if [is equal node] [the specified node]; otherwise, <c>false</c>.
 		///// </returns>
-		//bool isEqualNode(Node* node);
+		//bool isEqualNode(Node& node);
 
 		///// <summary>
 		///// Checks if two elements are the same node
@@ -885,7 +885,7 @@ namespace litehtml
 		///// <returns>
 		/////   <c>true</c> if [is same node] [the specified node]; otherwise, <c>false</c>.
 		///// </returns>
-		//bool isSameNode(Node* node);
+		//bool isSameNode(Node& node);
 
 		/// <summary>
 		/// Sets or returns the value of the lang attribute of an element
@@ -902,7 +902,7 @@ namespace litehtml
 		///// <value>
 		///// The last child.
 		///// </value>
-		//Node* lastChild();
+		//Node& lastChild();
 
 		/// <summary>
 		/// Returns the last child element of an element
@@ -910,7 +910,7 @@ namespace litehtml
 		/// <value>
 		/// The last element child.
 		/// </value>
-		Node* lastElementChild();
+		Node& lastElementChild();
 
 		/// <summary>
 		/// Returns the namespace URI of an element
@@ -926,7 +926,7 @@ namespace litehtml
 		///// <value>
 		///// The next sibling.
 		///// </value>
-		//Node* nextSibling();
+		//Node& nextSibling();
 
 		/// <summary>
 		/// Returns the next element at the same node tree level
@@ -934,7 +934,7 @@ namespace litehtml
 		/// <value>
 		/// The next element sibling.
 		/// </value>
-		Node* nextElementSibling();
+		Node& nextElementSibling();
 
 		///// <summary>
 		///// Returns the name of a node
@@ -996,7 +996,7 @@ namespace litehtml
 		/// <value>
 		/// The offset parent.
 		/// </value>
-		Node* offsetParent();
+		Node& offsetParent();
 
 		/// <summary>
 		/// Returns the vertical offset position of an element
@@ -1012,7 +1012,7 @@ namespace litehtml
 		///// <value>
 		///// The owner document.
 		///// </value>
-		//Document* ownerDocument();
+		//Document& ownerDocument();
 
 		///// <summary>
 		///// Returns the parent node of an element
@@ -1020,7 +1020,7 @@ namespace litehtml
 		///// <value>
 		///// The parent node.
 		///// </value>
-		//Node* parentNode();
+		//Node& parentNode();
 
 		/// <summary>
 		/// Returns the parent element node of an element
@@ -1028,7 +1028,7 @@ namespace litehtml
 		/// <value>
 		/// The parent element.
 		/// </value>
-		Element* parentElement();
+		Element& parentElement();
 
 		///// <summary>
 		///// Returns the previous node at the same node tree level
@@ -1036,7 +1036,7 @@ namespace litehtml
 		///// <value>
 		///// The previous sibling.
 		///// </value>
-		//Node* previousSibling();
+		//Node& previousSibling();
 
 		/// <summary>
 		/// Returns the previous element at the same node tree level
@@ -1044,14 +1044,14 @@ namespace litehtml
 		/// <value>
 		/// The previous element sibling.
 		/// </value>
-		Node* previousElementSibling();
+		Node& previousElementSibling();
 
 		/// <summary>
 		/// Returns the first child element that matches a specified CSS selector(s) of an element
 		/// </summary>
 		/// <param name="selectors">The selectors.</param>
 		/// <returns></returns>
-		Element* querySelector(wchar_t* selectors);
+		Element& querySelector(wchar_t* selectors);
 
 		/// <summary>
 		/// Returns all child elements that matches a specified CSS selector(s) of an element
@@ -1071,14 +1071,14 @@ namespace litehtml
 		/// </summary>
 		/// <param name="attributenode">The attributenode.</param>
 		/// <returns></returns>
-		Attr* removeAttributeNode(Attr* attributenode);
+		Attr& removeAttributeNode(Attr& attributenode);
 
 		///// <summary>
 		///// Removes a child node from an element
 		///// </summary>
 		///// <param name="node">The node.</param>
 		///// <returns></returns>
-		//Node* removeChild(Node* node);
+		//Node& removeChild(Node& node);
 
 		/// <summary>
 		/// Removes an event handler that has been attached with the addEventListener() method
@@ -1094,7 +1094,7 @@ namespace litehtml
 		///// <param name="newnode">The newnode.</param>
 		///// <param name="oldnode">The oldnode.</param>
 		///// <returns></returns>
-		//Node* replaceChild(Node* newnode, Node* oldnode);
+		//Node& replaceChild(Node& newnode, Node& oldnode);
 
 		/// <summary>
 		/// Shows an element in fullscreen mode
@@ -1151,7 +1151,7 @@ namespace litehtml
 		/// </summary>
 		/// <param name="attributenode">The attributenode.</param>
 		/// <returns></returns>
-		Attr* setAttributeNode(Attr* attributenode);
+		Attr& setAttributeNode(Attr& attributenode);
 
 		/// <summary>
 		/// Sets or returns the value of the style attribute of an element
@@ -1159,7 +1159,7 @@ namespace litehtml
 		/// <value>
 		/// The style.
 		/// </value>
-		Style* style();
+		Style& style();
 
 		/// <summary>
 		/// Sets or returns the value of the tabindex attribute of an element
@@ -1307,21 +1307,21 @@ namespace litehtml
 		/// </value>
 		/// <param name="index">The index.</param>
 		/// <returns></returns>
-		Element* this_(int index);
+		Element& operator[](int index);
 
 		/// <summary>
 		/// Returns the element at the specified index in an HTMLCollection
 		/// </summary>
 		/// <param name="index">The index.</param>
 		/// <returns></returns>
-		Element* item(int index);
+		Element& item(int index);
 
 		/// <summary>
 		/// Returns the element with the specified ID, or name, in an HTMLCollection
 		/// </summary>
 		/// <param name="name">The name.</param>
 		/// <returns></returns>
-		Element* namedItem(wchar_t* name);
+		Element& namedItem(wchar_t* name);
 	};
 
 	/// <summary>
@@ -1513,7 +1513,7 @@ namespace litehtml
 		/// <value>
 		/// The geolocation.
 		/// </value>
-		Geolocation* geolocation();
+		Geolocation& geolocation();
 
 		/// <summary>
 		/// Returns the language of the browser
@@ -3310,7 +3310,7 @@ namespace litehtml
 		/// <value>
 		/// The console.
 		/// </value>
-		Console* console();
+		Console& console();
 
 		/// <summary>
 		/// Sets or returns the default text in the statusbar of a window
@@ -3327,7 +3327,7 @@ namespace litehtml
 		/// <value>
 		/// The document.
 		/// </value>
-		Document* document();
+		Document& document();
 
 		/// <summary>
 		/// Returns the <iframe> element in which the current window is inserted
@@ -3335,7 +3335,7 @@ namespace litehtml
 		/// <value>
 		/// The frame element.
 		/// </value>
-		Element* frameElement();
+		Element& frameElement();
 
 		/// <summary>
 		/// Returns all <iframe> elements in the current window
@@ -3343,7 +3343,7 @@ namespace litehtml
 		/// <value>
 		/// The frames.
 		/// </value>
-		std::vector<Element*> frames();
+		std::vector<Element&> frames();
 
 		/// <summary>
 		/// Returns the History object for the window (See History object)
@@ -3351,7 +3351,7 @@ namespace litehtml
 		/// <value>
 		/// The history.
 		/// </value>
-		History* history();
+		History& history();
 
 		/// <summary>
 		/// Returns the height of the window's content area (viewport) including scrollbars
@@ -3383,7 +3383,7 @@ namespace litehtml
 		/// <value>
 		/// The local storage.
 		/// </value>
-		Storage* localStorage();
+		Storage& localStorage();
 
 		/// <summary>
 		/// Returns the Location object for the window (See Location object)
@@ -3391,7 +3391,7 @@ namespace litehtml
 		/// <value>
 		/// The location.
 		/// </value>
-		Location* location();
+		Location& location();
 
 		/// <summary>
 		/// Sets or returns the name of a window
@@ -3408,7 +3408,7 @@ namespace litehtml
 		/// <value>
 		/// The navigator.
 		/// </value>
-		Navigator* navigator();
+		Navigator& navigator();
 
 		/// <summary>
 		/// Returns a reference to the window that created the window
@@ -3416,7 +3416,7 @@ namespace litehtml
 		/// <value>
 		/// The opener.
 		/// </value>
-		Window* opener();
+		Window& opener();
 
 		/// <summary>
 		/// Returns the height of the browser window, including toolbars/scrollbars
@@ -3456,7 +3456,7 @@ namespace litehtml
 		/// <value>
 		/// The parent.
 		/// </value>
-		Window* parent();
+		Window& parent();
 
 		/// <summary>
 		/// Returns the Screen object for the window (See Screen object)
@@ -3464,7 +3464,7 @@ namespace litehtml
 		/// <value>
 		/// The screen.
 		/// </value>
-		Screen* screen();
+		Screen& screen();
 
 		/// <summary>
 		/// Returns the horizontal coordinate of the window relative to the screen
@@ -3504,7 +3504,7 @@ namespace litehtml
 		/// <value>
 		/// The session storage.
 		/// </value>
-		Storage* sessionStorage();
+		Storage& sessionStorage();
 
 		/// <summary>
 		/// An alias of pageXOffset
@@ -3528,7 +3528,7 @@ namespace litehtml
 		/// <value>
 		/// The self.
 		/// </value>
-		Window* self();
+		Window& self();
 
 		/// <summary>
 		/// Sets or returns the text in the statusbar of a window
@@ -3545,7 +3545,7 @@ namespace litehtml
 		/// <value>
 		/// The top.
 		/// </value>
-		Window* top();
+		Window& top();
 
 		/// <summary>
 		/// Displays an alert box with a message and an OK button
@@ -3607,7 +3607,7 @@ namespace litehtml
 		/// <param name="element">The element.</param>
 		/// <param name="pseudoElement">The pseudo element.</param>
 		/// <returns></returns>
-		Style* getComputedStyle(wchar_t* element, wchar_t* pseudoElement);
+		Style& getComputedStyle(wchar_t* element, wchar_t* pseudoElement);
 
 		/// <summary>
 		/// Returns a Selection object representing the range of text selected by the user
@@ -3620,7 +3620,7 @@ namespace litehtml
 		/// </summary>
 		/// <param name="mediaQueryString">The media query string.</param>
 		/// <returns></returns>
-		MediaQueryList* matchMedia(wchar_t* mediaQueryString);
+		MediaQueryList& matchMedia(wchar_t* mediaQueryString);
 
 		/// <summary>
 		/// Moves a window relative to its current position
@@ -3644,7 +3644,7 @@ namespace litehtml
 		/// <param name="specs">The specs.</param>
 		/// <param name="replace">The replace.</param>
 		/// <returns></returns>
-		Window* open(wchar_t* URL = nullptr, wchar_t* name = nullptr, wchar_t* specs = nullptr, bool replace = true);
+		Window& open(wchar_t* URL = nullptr, wchar_t* name = nullptr, wchar_t* specs = nullptr, bool replace = true);
 
 		/// <summary>
 		/// Prints the content of the current window

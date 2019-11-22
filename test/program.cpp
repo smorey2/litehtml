@@ -37,7 +37,7 @@ void api_WindowTest();
 #endif
 
 int main(int argc, char **argv) {
-	int testId = argv[1] ? atoi(argv[1]) : 1;
+	int testId = argv[1] ? atoi(argv[1]) : 6;
 	// Launch test
 	switch (testId) {
 	case 0: mainPause("Press any key to continue."); break;
