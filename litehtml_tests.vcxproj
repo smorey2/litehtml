@@ -139,7 +139,7 @@
     <ClCompile Include="test\media_queryTest.cpp" />
     <ClCompile Include="test\program.cpp" />
     <ClCompile Include="test\web_colorTest.cpp" />
-    <None Include="src\master.css.inc" />
+    <None Include="test\master.css.inc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

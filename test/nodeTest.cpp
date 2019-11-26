@@ -1,6 +1,7 @@
 #include <assert.h>
 #include "litehtml.h"
 #include "test/container_test.h"
+using namespace std;
 using namespace litehtml;
 
 static context ctx;
@@ -21,21 +22,21 @@ static void AttribTest() {
 
 	// https://www.w3schools.com/jsref/prop_attr_name.asp
 	{
-		auto x = document->getElementsByTagName(L"BUTTON")[0].attributes()[0].name();
+		auto x = document->getElementsByTagName(_t("BUTTON"))[0]->attributes()[0]->name();
 	}
 
 	// https://www.w3schools.com/jsref/prop_attr_value.asp
 	{
-		auto x = document->getElementsByTagName(L"BUTTON")[0].attributes()[0].value();
+		auto x = document->getElementsByTagName(_t("BUTTON"))[0]->attributes()[0]->value();
 	}
 	{
-		auto x = (Element&)document->getElementsByTagName(L"IMG")[0];
-		x.getAttributeNode(L"src").value(L"pic_bulbon.gif");
+		auto x = (Element*)document->getElementsByTagName(_t("IMG"))[0];
+		x->getAttributeNode(_t("src"))->value(_t("pic_bulbon.gif"));
 	}
 
 	// https://www.w3schools.com/jsref/prop_attr_specified.asp
 	{
-		auto x = document->getElementById(L"demo").attributes()[0].specified();
+		auto x = document->getElementById(_t("demo"))->attributes()[0]->specified();
 	}
 }
 
@@ -51,48 +52,48 @@ static void NodemapTest() {
 
 	// https://www.w3schools.com/jsref/met_namednodemap_getnameditem.asp
 	{
-		auto btn = (Element&)document->getElementsByTagName(L"BUTTON")[0];
-		auto a = btn.attributes().getNamedItem(L"onclick").value();
+		auto btn = (Element*)document->getElementsByTagName(_t("BUTTON"))[0];
+		auto a = btn->attributes().getNamedItem(_t("onclick"))->value();
 	}
 
 	// https://www.w3schools.com/jsref/met_namednodemap_item.asp
 	{
-		auto x = document->getElementsByTagName(L"BUTTON")[0].attributes().item(0).nodeName();
+		auto x = document->getElementsByTagName(_t("BUTTON"))[0]->attributes().item(0)->nodeName();
 	}
 	{
-		auto a = document->getElementsByTagName(L"BUTTON")[0].attributes().item(1);   // The 2nd attribute
+		auto a = document->getElementsByTagName(_t("BUTTON"))[0]->attributes().item(1);   // The 2nd attribute
 	}
 	{
-		auto a = document->getElementsByTagName(L"BUTTON")[0].attributes()[1];        // The 2nd attribute
+		auto a = document->getElementsByTagName(_t("BUTTON"))[0]->attributes()[1];        // The 2nd attribute
 	}
 	{
-		document->getElementsByTagName(L"BUTTON")[0].attributes()[1].value(L"newClass");
+		document->getElementsByTagName(_t("BUTTON"))[0]->attributes()[1]->value(_t("newClass"));
 	}
 
 	// https://www.w3schools.com/jsref/prop_namednodemap_length.asp
 	{
-		auto x = document->getElementsByTagName(L"BUTTON")[0].attributes().length();
+		auto x = document->getElementsByTagName(_t("BUTTON"))[0]->attributes().length();
 	}
 	{
-		auto txt = L"";
-		auto x = document->getElementById(L"myBtn").attributes();
+		auto txt = wstring();
+		auto x = document->getElementById(_t("myBtn"))->attributes();
 
-		//for (auto i = 0; i < x.length(); i++)
-		//{
-		//	txt += L"Attribute name: " + x[i].name + L"<br>";
-		//}
+		for (auto i = 0; i < x.length(); i++)
+		{
+			txt += _t("Attribute name: ") + tstring(x[i]->name()) + _t("<br>");
+		}
 	}
 	{
-		auto x = document->getElementById(L"myImg").attributes().length();
+		auto x = document->getElementById(_t("myImg"))->attributes().length();
 	}
 	{
-		auto txt = L"";
-		auto x = document->getElementById(L"myImg");
+		auto txt = wstring();
+		auto x = document->getElementById(_t("myImg"));
 
-		//for (auto i = 0; i < x.attributes().length(); i++)
-		//{
-		//	txt = txt + x.attributes()[i].name() + L" = " + x.attributes()[i].value() + L"<br>";
-		//}
+		for (auto i = 0; i < x->attributes().length(); i++)
+		{
+			txt = txt + wstring(x->attributes()[i]->name()) + _t(" = ") + tstring(x->attributes()[i]->value()) + _t("<br>");
+		}
 	}
 }
 

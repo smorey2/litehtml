@@ -73,7 +73,7 @@ namespace litehtml
 		/// Logs the number of times that this particular call to count() has been called
 		/// </summary>
 		/// <param name="label">The label.</param>
-		void count(wchar_t* label = nullptr);
+		void count(tstring label = nullptr);
 
 		/// <summary>
 		/// Outputs an error message to the console
@@ -85,13 +85,13 @@ namespace litehtml
 		/// Creates a new inline group in the console. This indents following console messages by an additional level, until console.groupEnd() is called
 		/// </summary>
 		/// <param name="label">The label.</param>
-		void group(wchar_t* label = nullptr);
+		void group(tstring label = nullptr);
 
 		/// <summary>
 		/// Creates a new inline group in the console. However, the new group is created collapsed. The user will need to use the disclosure button to expand it
 		/// </summary>
 		/// <param name="label">The label.</param>
-		void groupCollapsed(wchar_t* label = nullptr);
+		void groupCollapsed(tstring label = nullptr);
 
 		/// <summary>
 		/// Exits the current inline group in the console
@@ -121,19 +121,19 @@ namespace litehtml
 		/// Starts a timer (can track how long an operation takes)
 		/// </summary>
 		/// <param name="label">The label.</param>
-		void time(wchar_t* label = nullptr);
+		void time(tstring label = nullptr);
 
 		/// <summary>
 		/// Stops a timer that was previously started by console.time()
 		/// </summary>
 		/// <param name="label">The label.</param>
-		void timeEnd(wchar_t* label = nullptr);
+		void timeEnd(tstring label = nullptr);
 
 		/// <summary>
 		/// Outputs a stack trace to the console
 		/// </summary>
 		/// <param name="label">The label.</param>
-		void trace(wchar_t* label = nullptr);
+		void trace(tstring label = nullptr);
 
 		/// <summary>
 		/// Outputs a warning message to the console
@@ -155,7 +155,7 @@ namespace litehtml
 		/// <value>
 		/// The active element.
 		/// </value>
-		Element& activeElement();
+		Element* activeElement();
 
 		/// <summary>
 		/// Attaches an event handler to the document
@@ -163,14 +163,14 @@ namespace litehtml
 		/// <param name="event">The event.</param>
 		/// <param name="function">The function.</param>
 		/// <param name="useCapture">if set to <c>true</c> [use capture].</param>
-		void addEventListener(wchar_t* event, wchar_t* function, bool useCapture = false);
+		void addEventListener(tstring event, tstring function, bool useCapture = false);
 
 		/// <summary>
 		/// Adopts a node from another document
 		/// </summary>
 		/// <param name="node">The node.</param>
 		/// <returns></returns>
-		Node& adoptNode(Node& node);
+		Node* adoptNode(Node* node);
 
 		/// <summary>
 		/// Returns a collection of all <a> elements in the document that have a name attribute
@@ -194,7 +194,7 @@ namespace litehtml
 		/// <value>
 		/// The base URI.
 		/// </value>
-		wchar_t* baseURI();
+		tstring baseURI();
 
 		/// <summary>
 		/// Sets or returns the document's body (the <body> element)
@@ -202,8 +202,8 @@ namespace litehtml
 		/// <value>
 		/// The body.
 		/// </value>
-		Element& body();
-		void body(Element& value);
+		Element* body();
+		void body(Element* value);
 
 		/// <summary>
 		/// Closes the output stream previously opened with document.open()
@@ -216,8 +216,8 @@ namespace litehtml
 		/// <value>
 		/// The cookie.
 		/// </value>
-		wchar_t* cookie();
-		void cookie(wchar_t* value);
+		tstring cookie();
+		void cookie(tstring value);
 
 		/// <summary>
 		/// Returns the character encoding for the document
@@ -225,48 +225,48 @@ namespace litehtml
 		/// <value>
 		/// The character set.
 		/// </value>
-		wchar_t* characterSet();
+		tstring characterSet();
 
 		/// <summary>
 		/// Creates an attribute node
 		/// </summary>
 		/// <param name="attributename">The attributename.</param>
 		/// <returns></returns>
-		Node& createAttribute(wchar_t* attributename);
+		Node* createAttribute(tstring attributename);
 
 		/// <summary>
 		/// Creates a Comment node with the specified text
 		/// </summary>
 		/// <param name="text">The text.</param>
 		/// <returns></returns>
-		Node& createComment(wchar_t* text); //: IComment
+		Node* createComment(tstring text); //: IComment
 
 		/// <summary>
 		/// Creates an empty DocumentFragment node
 		/// </summary>
 		/// <returns></returns>
-		DocumentFragment& createDocumentFragment();
+		DocumentFragment* createDocumentFragment();
 
 		/// <summary>
 		/// Creates an Element node
 		/// </summary>
 		/// <param name="nodename">The nodename.</param>
 		/// <returns></returns>
-		Element& createElement(wchar_t* nodename);
+		Element* createElement(tstring nodename);
 
 		/// <summary>
 		/// Creates a new event
 		/// </summary>
 		/// <param name="type">The type.</param>
 		/// <returns></returns>
-		Event& createEvent(wchar_t* type);
+		Event* createEvent(tstring type);
 
 		/// <summary>
 		/// Creates a Text node
 		/// </summary>
 		/// <param name="text">The text.</param>
 		/// <returns></returns>
-		Node& createTextNode(wchar_t* text); //: IText
+		Node* createTextNode(tstring text); //: IText
 
 		/// <summary>
 		/// Returns the window object associated with a document, or nullptr if none is available.
@@ -274,7 +274,7 @@ namespace litehtml
 		/// <value>
 		/// The default view.
 		/// </value>
-		Window& defaultView();
+		Window* defaultView();
 
 		/// <summary>
 		/// Controls whether the entire document should be editable or not.
@@ -282,8 +282,8 @@ namespace litehtml
 		/// <value>
 		/// The design mode.
 		/// </value>
-		wchar_t* designMode(); //= "off"
-		void designMode(wchar_t* value);
+		tstring designMode(); //= "off"
+		void designMode(tstring value);
 
 		/// <summary>
 		/// Returns the Document Type Declaration associated with the document
@@ -291,7 +291,7 @@ namespace litehtml
 		/// <value>
 		/// The doctype.
 		/// </value>
-		DocumentType& doctype();
+		DocumentType* doctype();
 
 		/// <summary>
 		/// Returns the Document Element of the document (the <html> element)
@@ -299,7 +299,7 @@ namespace litehtml
 		/// <value>
 		/// The document element.
 		/// </value>
-		Element& documentElement();
+		Element* documentElement();
 
 		/// <summary>
 		/// Sets or returns the location of the document
@@ -307,8 +307,8 @@ namespace litehtml
 		/// <value>
 		/// The document URI.
 		/// </value>
-		wchar_t* documentURI();
-		void documentURI(wchar_t* value);
+		tstring documentURI();
+		void documentURI(tstring value);
 
 		/// <summary>
 		/// Returns the domain name of the server that loaded the document
@@ -316,7 +316,7 @@ namespace litehtml
 		/// <value>
 		/// The domain.
 		/// </value>
-		wchar_t* domain();
+		tstring domain();
 
 		/// <summary>
 		/// Returns a collection of all <embed> elements the document
@@ -333,7 +333,7 @@ namespace litehtml
 		/// <param name="showUI">if set to <c>true</c> [show UI].</param>
 		/// <param name="value">The value.</param>
 		/// <returns></returns>
-		bool execCommand(wchar_t* command, bool showUI, void* value = nullptr);
+		bool execCommand(tstring command, bool showUI, void* value = nullptr);
 
 		/// <summary>
 		/// Returns a collection of all <form> elements in the document
@@ -349,7 +349,7 @@ namespace litehtml
 		/// <value>
 		/// The fullscreen element.
 		/// </value>
-		Element& fullscreenElement();
+		Element* fullscreenElement();
 
 		/// <summary>
 		/// Returns a Boolean value indicating whether the document can be viewed in fullscreen mode
@@ -362,28 +362,28 @@ namespace litehtml
 		/// </summary>
 		/// <param name="elementID">The element identifier.</param>
 		/// <returns></returns>
-		Element& getElementById(wchar_t* elementID);
+		Element* getElementById(tstring elementID);
 
 		/// <summary>
 		/// Returns a NodeList containing all elements with the specified class name
 		/// </summary>
 		/// <param name="classname">The classname.</param>
 		/// <returns></returns>
-		NodeList getElementsByClassName(wchar_t* classname);
+		NodeList& getElementsByClassName(tstring classname);
 
 		/// <summary>
 		/// Returns a NodeList containing all elements with a specified name
 		/// </summary>
 		/// <param name="name">The name.</param>
 		/// <returns></returns>
-		NodeList getElementsByName(wchar_t* name);
+		NodeList& getElementsByName(tstring name);
 
 		/// <summary>
 		/// Returns a NodeList containing all elements with the specified tag name
 		/// </summary>
 		/// <param name="tagname">The tagname.</param>
 		/// <returns></returns>
-		NodeList getElementsByTagName(wchar_t* tagname);
+		NodeList& getElementsByTagName(tstring tagname);
 
 		/// <summary>
 		/// Returns a Boolean value indicating whether the document has focus
@@ -399,7 +399,7 @@ namespace litehtml
 		/// <value>
 		/// The head.
 		/// </value>
-		Element& head();
+		Element* head();
 
 		/// <summary>
 		///Returns a collection of all <img> elements in the document
@@ -415,7 +415,7 @@ namespace litehtml
 		/// <value>
 		/// The implementation.
 		/// </value>
-		DocumentImplementation& implementation();
+		DocumentImplementation* implementation();
 
 		/// <summary>
 		/// Imports a node from another document
@@ -423,7 +423,7 @@ namespace litehtml
 		/// <param name="node">The node.</param>
 		/// <param name="deep">if set to <c>true</c> [deep].</param>
 		/// <returns></returns>
-		Node& importNode(Node& node, bool deep);
+		Node* importNode(Node* node, bool deep);
 
 		/// <summary>
 		/// Returns the encoding, character set, used for the document
@@ -431,7 +431,7 @@ namespace litehtml
 		/// <value>
 		/// The input encoding.
 		/// </value>
-		wchar_t* inputEncoding();
+		tstring inputEncoding();
 
 		/// <summary>
 		/// Returns the date and time the document was last modified
@@ -459,21 +459,21 @@ namespace litehtml
 		/// </summary>
 		/// <param name="MIMEtype">The mim etype.</param>
 		/// <param name="replace">The replace.</param>
-		void open(wchar_t* MIMEtype = nullptr, wchar_t* replace = nullptr);
+		void open(tstring MIMEtype = nullptr, tstring replace = nullptr);
 
 		/// <summary>
 		/// Returns the first element that matches a specified CSS selector(s) in the document
 		/// </summary>
 		/// <param name="selectors">The selectors.</param>
 		/// <returns></returns>
-		Element& querySelector(wchar_t* selectors);
+		Element* querySelector(tstring selectors);
 
 		/// <summary>
 		/// Returns a static NodeList containing all elements that matches a specified CSS selector(s) in the document
 		/// </summary>
 		/// <param name="selectors">The selectors.</param>
 		/// <returns></returns>
-		NodeList querySelectorAll(wchar_t* selectors);
+		NodeList& querySelectorAll(tstring selectors);
 
 		/// <summary>
 		/// Returns the (loading) status of the document
@@ -481,7 +481,7 @@ namespace litehtml
 		/// <value>
 		/// The state of the ready.
 		/// </value>
-		wchar_t* readyState();
+		tstring readyState();
 
 		/// <summary>
 		/// Returns the URL of the document that loaded the current document
@@ -489,7 +489,7 @@ namespace litehtml
 		/// <value>
 		/// The referrer.
 		/// </value>
-		wchar_t* referrer();
+		tstring referrer();
 
 		/// <summary>
 		/// Removes an event handler from the document (that has been attached with the addEventListener() method)
@@ -497,7 +497,7 @@ namespace litehtml
 		/// <param name="event">The event.</param>
 		/// <param name="function">The function.</param>
 		/// <param name="useCapture">if set to <c>true</c> [use capture].</param>
-		void removeEventListener(wchar_t* event, wchar_t* function, bool useCapture = false);
+		void removeEventListener(tstring event, tstring function, bool useCapture = false);
 
 		/// <summary>
 		/// Renames the specified node
@@ -506,7 +506,7 @@ namespace litehtml
 		/// <param name="namespaceURI">The namespace URI.</param>
 		/// <param name="nodename">The nodename.</param>
 		/// <returns></returns>
-		Node& renameNode(Node& node, wchar_t* namespaceURI, wchar_t* nodename);
+		Node* renameNode(Node* node, tstring namespaceURI, tstring nodename);
 
 		/// <summary>
 		/// Returns a collection of <script> elements in the document
@@ -531,8 +531,8 @@ namespace litehtml
 		/// <value>
 		/// The title.
 		/// </value>
-		wchar_t* title();
-		void title(wchar_t* value);
+		tstring title();
+		void title(tstring value);
 
 		/// <summary>
 		/// Returns the full URL of the HTML document
@@ -540,7 +540,7 @@ namespace litehtml
 		/// <value>
 		/// The URL.
 		/// </value>
-		wchar_t* URL();
+		tstring URL();
 
 		/// <summary>
 		/// Writes HTML expressions or JavaScript code to a document
@@ -577,14 +577,14 @@ namespace litehtml
 		/// <param name="event">The event.</param>
 		/// <param name="function">The function.</param>
 		/// <param name="useCapture">if set to <c>true</c> [use capture].</param>
-		void addEventListener(wchar_t* event, wchar_t* function, bool useCapture = false);
+		void addEventListener(tstring event, tstring function, bool useCapture = false);
 
 		///// <summary>
 		///// Adds a new child node, to an element, as the last child node
 		///// </summary>
 		///// <param name="node">The node.</param>
 		///// <returns></returns>
-		//Node& appendChild(Node& node);
+		//Node* appendChild(Node* node);
 
 		///// <summary>
 		///// Returns a NamedNodeMap of an element's attributes
@@ -610,7 +610,7 @@ namespace litehtml
 		///// <summary>
 		///// Returns a collection of an element's child nodes (including text and comment nodes)
 		///// </summary>
-		//NodeList childNodes();
+		//NodeList& childNodes();
 
 		/// <summary>
 		/// Returns a collection of an element's child element (excluding text and comment nodes)
@@ -631,8 +631,8 @@ namespace litehtml
 		/// <value>
 		/// The name of the class.
 		/// </value>
-		wchar_t* className();
-		void className(wchar_t* value);
+		tstring className();
+		void className(tstring value);
 
 		/// <summary>
 		/// Simulates a mouse-click on an element
@@ -676,14 +676,14 @@ namespace litehtml
 		///// </summary>
 		///// <param name="deep">if set to <c>true</c> [deep].</param>
 		///// <returns></returns>
-		//Node& cloneNode(bool deep = false);
+		//Node* cloneNode(bool deep = false);
 
 		///// <summary>
 		///// Compares the document position of two elements
 		///// </summary>
 		///// <param name="node">The node.</param>
 		///// <returns></returns>
-		//int compareDocumentPosition(Node& node);
+		//int compareDocumentPosition(Node* node);
 
 		/// <summary>
 		/// Returns true if a node is a descendant of a node, otherwise false
@@ -692,7 +692,7 @@ namespace litehtml
 		/// <returns>
 		///   <c>true</c> if [contains] [the specified node]; otherwise, <c>false</c>.
 		/// </returns>
-		bool contains(Node& node);
+		bool contains(Node* node);
 
 		/// <summary>
 		/// Sets or returns whether the content of an element is editable or not
@@ -700,8 +700,8 @@ namespace litehtml
 		/// <value>
 		/// The content editable.
 		/// </value>
-		wchar_t* contentEditable();
-		void contentEditable(wchar_t* value);
+		tstring contentEditable();
+		void contentEditable(tstring value);
 
 		/// <summary>
 		/// Sets or returns the value of the dir attribute of an element
@@ -709,8 +709,8 @@ namespace litehtml
 		/// <value>
 		/// The dir.
 		/// </value>
-		wchar_t* dir();
-		void dir(wchar_t* value);
+		tstring dir();
+		void dir(tstring value);
 
 		/// <summary>
 		/// Cancels an element in fullscreen mode
@@ -723,7 +723,7 @@ namespace litehtml
 		///// <value>
 		///// The first child.
 		///// </value>
-		//Node& firstChild();
+		//Node* firstChild();
 
 		/// <summary>
 		/// Returns the first child element of an element
@@ -731,7 +731,7 @@ namespace litehtml
 		/// <value>
 		/// The first element child.
 		/// </value>
-		Node& firstElementChild();
+		Node* firstElementChild();
 
 		/// <summary>
 		/// Gives focus to an element
@@ -743,34 +743,34 @@ namespace litehtml
 		/// </summary>
 		/// <param name="attributename">The attributename.</param>
 		/// <returns></returns>
-		wchar_t* getAttribute(wchar_t* attributename);
+		tstring getAttribute(tstring attributename);
 
 		/// <summary>
 		/// Returns the specified attribute node
 		/// </summary>
 		/// <param name="attributename">The attributename.</param>
 		/// <returns></returns>
-		Attr& getAttributeNode(wchar_t* attributename);
+		Attr* getAttributeNode(tstring attributename);
 
 		/// <summary>
 		/// Returns the size of an element and its position relative to the viewport
 		/// </summary>
 		/// <returns></returns>
-		Rect& getBoundingClientRect();
+		Rect* getBoundingClientRect();
 
 		/// <summary>
 		/// Returns a collection of all child elements with the specified class name
 		/// </summary>
 		/// <param name="classname">The classname.</param>
 		/// <returns></returns>
-		NodeList getElementsByClassName(wchar_t* classname);
+		NodeList& getElementsByClassName(tstring classname);
 
 		/// <summary>
 		/// Returns a collection of all child elements with the specified tag name
 		/// </summary>
 		/// <param name="tagname">The tagname.</param>
 		/// <returns></returns>
-		NodeList getElementsByTagName(wchar_t* tagname);
+		NodeList& getElementsByTagName(tstring tagname);
 
 		///// <summary>
 		///// Returns true if an element has the specified attribute, otherwise false
@@ -779,7 +779,7 @@ namespace litehtml
 		///// <returns>
 		/////   <c>true</c> if the specified attributename has attribute; otherwise, <c>false</c>.
 		///// </returns>
-		//bool hasAttribute(wchar_t* attributename);
+		//bool hasAttribute(tstring attributename);
 
 		///// <summary>
 		///// Returns true if an element has any attributes, otherwise false
@@ -803,8 +803,8 @@ namespace litehtml
 		/// <value>
 		/// The identifier.
 		/// </value>
-		wchar_t* id();
-		void id(wchar_t* value);
+		tstring id();
+		void id(tstring value);
 
 		/// <summary>
 		/// Sets or returns the content of an element
@@ -812,8 +812,8 @@ namespace litehtml
 		/// <value>
 		/// The inner HTML.
 		/// </value>
-		wchar_t* innerHTML();
-		void innerHTML(wchar_t* value);
+		tstring innerHTML();
+		void innerHTML(tstring value);
 
 		/// <summary>
 		/// Sets or returns the text content of a node and its descendants
@@ -821,29 +821,29 @@ namespace litehtml
 		/// <value>
 		/// The inner text.
 		/// </value>
-		wchar_t* innerText();
-		void innerText(wchar_t* value);
+		tstring innerText();
+		void innerText(tstring value);
 
 		/// <summary>
 		/// Inserts a HTML element at the specified position relative to the current element
 		/// </summary>
 		/// <param name="position">The position.</param>
 		/// <param name="element">The element.</param>
-		void insertAdjacentElement(wchar_t* position, Element* element);
+		void insertAdjacentElement(tstring position, Element* element);
 
 		/// <summary>
 		/// Inserts a HTML formatted text at the specified position relative to the current element
 		/// </summary>
 		/// <param name="position">The position.</param>
 		/// <param name="text">The text.</param>
-		void insertAdjacentHTML(wchar_t* position, wchar_t* text);
+		void insertAdjacentHTML(tstring position, tstring text);
 
 		/// <summary>
 		/// Inserts text into the specified position relative to the current element
 		/// </summary>
 		/// <param name="position">The position.</param>
 		/// <param name="text">The text.</param>
-		void insertAdjacentText(wchar_t* position, wchar_t* text);
+		void insertAdjacentText(tstring position, tstring text);
 
 		/// <summary>
 		/// Inserts a new child node before a specified, existing, child node
@@ -867,7 +867,7 @@ namespace litehtml
 		///// <returns>
 		/////   <c>true</c> if [is default namespace] [the specified namespace URI]; otherwise, <c>false</c>.
 		///// </returns>
-		//bool isDefaultNamespace(wchar_t* namespaceURI);
+		//bool isDefaultNamespace(tstring namespaceURI);
 
 		///// <summary>
 		///// Checks if two elements are equal
@@ -876,7 +876,7 @@ namespace litehtml
 		///// <returns>
 		/////   <c>true</c> if [is equal node] [the specified node]; otherwise, <c>false</c>.
 		///// </returns>
-		//bool isEqualNode(Node& node);
+		//bool isEqualNode(Node* node);
 
 		///// <summary>
 		///// Checks if two elements are the same node
@@ -885,7 +885,7 @@ namespace litehtml
 		///// <returns>
 		/////   <c>true</c> if [is same node] [the specified node]; otherwise, <c>false</c>.
 		///// </returns>
-		//bool isSameNode(Node& node);
+		//bool isSameNode(Node* node);
 
 		/// <summary>
 		/// Sets or returns the value of the lang attribute of an element
@@ -893,8 +893,8 @@ namespace litehtml
 		/// <value>
 		/// The language.
 		/// </value>
-		wchar_t* lang();
-		void lang(wchar_t* value);
+		tstring lang();
+		void lang(tstring value);
 
 		///// <summary>
 		///// Returns the last child node of an element
@@ -902,7 +902,7 @@ namespace litehtml
 		///// <value>
 		///// The last child.
 		///// </value>
-		//Node& lastChild();
+		//Node* lastChild();
 
 		/// <summary>
 		/// Returns the last child element of an element
@@ -910,7 +910,7 @@ namespace litehtml
 		/// <value>
 		/// The last element child.
 		/// </value>
-		Node& lastElementChild();
+		Node* lastElementChild();
 
 		/// <summary>
 		/// Returns the namespace URI of an element
@@ -918,7 +918,7 @@ namespace litehtml
 		/// <value>
 		/// The namespace URI.
 		/// </value>
-		wchar_t* namespaceURI();
+		tstring namespaceURI();
 
 		///// <summary>
 		///// Returns the next node at the same node tree level
@@ -926,7 +926,7 @@ namespace litehtml
 		///// <value>
 		///// The next sibling.
 		///// </value>
-		//Node& nextSibling();
+		//Node* nextSibling();
 
 		/// <summary>
 		/// Returns the next element at the same node tree level
@@ -934,7 +934,7 @@ namespace litehtml
 		/// <value>
 		/// The next element sibling.
 		/// </value>
-		Node& nextElementSibling();
+		Node* nextElementSibling();
 
 		///// <summary>
 		///// Returns the name of a node
@@ -942,7 +942,7 @@ namespace litehtml
 		///// <value>
 		///// The name of the node.
 		///// </value>
-		//wchar_t* nodeName();
+		//tstring nodeName();
 
 		///// <summary>
 		///// Returns the node type of a node
@@ -958,8 +958,8 @@ namespace litehtml
 		///// <value>
 		///// The node value.
 		///// </value>
-		//wchar_t* nodeValue();
-		//void nodeValue(wchar_t* value);
+		//tstring nodeValue();
+		//void nodeValue(tstring value);
 
 		///// <summary>
 		///// Joins adjacent text nodes and removes empty text nodes in an element
@@ -996,7 +996,7 @@ namespace litehtml
 		/// <value>
 		/// The offset parent.
 		/// </value>
-		Node& offsetParent();
+		Node* offsetParent();
 
 		/// <summary>
 		/// Returns the vertical offset position of an element
@@ -1012,7 +1012,7 @@ namespace litehtml
 		///// <value>
 		///// The owner document.
 		///// </value>
-		//Document& ownerDocument();
+		//Document* ownerDocument();
 
 		///// <summary>
 		///// Returns the parent node of an element
@@ -1020,7 +1020,7 @@ namespace litehtml
 		///// <value>
 		///// The parent node.
 		///// </value>
-		//Node& parentNode();
+		//Node* parentNode();
 
 		/// <summary>
 		/// Returns the parent element node of an element
@@ -1028,7 +1028,7 @@ namespace litehtml
 		/// <value>
 		/// The parent element.
 		/// </value>
-		Element& parentElement();
+		Element* parentElement();
 
 		///// <summary>
 		///// Returns the previous node at the same node tree level
@@ -1036,7 +1036,7 @@ namespace litehtml
 		///// <value>
 		///// The previous sibling.
 		///// </value>
-		//Node& previousSibling();
+		//Node* previousSibling();
 
 		/// <summary>
 		/// Returns the previous element at the same node tree level
@@ -1044,41 +1044,41 @@ namespace litehtml
 		/// <value>
 		/// The previous element sibling.
 		/// </value>
-		Node& previousElementSibling();
+		Node* previousElementSibling();
 
 		/// <summary>
 		/// Returns the first child element that matches a specified CSS selector(s) of an element
 		/// </summary>
 		/// <param name="selectors">The selectors.</param>
 		/// <returns></returns>
-		Element& querySelector(wchar_t* selectors);
+		Element* querySelector(tstring selectors);
 
 		/// <summary>
 		/// Returns all child elements that matches a specified CSS selector(s) of an element
 		/// </summary>
 		/// <param name="selectors">The selectors.</param>
 		/// <returns></returns>
-		NodeList querySelectorAll(wchar_t* selectors);
+		NodeList& querySelectorAll(tstring selectors);
 
 		/// <summary>
 		/// Removes a specified attribute from an element
 		/// </summary>
 		/// <param name="attributename">The attributename.</param>
-		void removeAttribute(wchar_t* attributename);
+		void removeAttribute(tstring attributename);
 
 		/// <summary>
 		/// Removes a specified attribute node, and returns the removed node
 		/// </summary>
 		/// <param name="attributenode">The attributenode.</param>
 		/// <returns></returns>
-		Attr& removeAttributeNode(Attr& attributenode);
+		Attr* removeAttributeNode(Attr* attributenode);
 
 		///// <summary>
 		///// Removes a child node from an element
 		///// </summary>
 		///// <param name="node">The node.</param>
 		///// <returns></returns>
-		//Node& removeChild(Node& node);
+		//Node* removeChild(Node* node);
 
 		/// <summary>
 		/// Removes an event handler that has been attached with the addEventListener() method
@@ -1086,7 +1086,7 @@ namespace litehtml
 		/// <param name="event">The event.</param>
 		/// <param name="function">The function.</param>
 		/// <param name="useCapture">if set to <c>true</c> [use capture].</param>
-		void removeEventListener(wchar_t* event, wchar_t* function, bool useCapture = false);
+		void removeEventListener(tstring event, tstring function, bool useCapture = false);
 
 		///// <summary>
 		///// Replaces a child node in an element
@@ -1094,7 +1094,7 @@ namespace litehtml
 		///// <param name="newnode">The newnode.</param>
 		///// <param name="oldnode">The oldnode.</param>
 		///// <returns></returns>
-		//Node& replaceChild(Node& newnode, Node& oldnode);
+		//Node* replaceChild(Node* newnode, Node* oldnode);
 
 		/// <summary>
 		/// Shows an element in fullscreen mode
@@ -1144,14 +1144,14 @@ namespace litehtml
 		/// </summary>
 		/// <param name="attributename">The attributename.</param>
 		/// <param name="attributevalue">The attributevalue.</param>
-		void setAttribute(wchar_t* attributename, wchar_t* attributevalue);
+		void setAttribute(tstring attributename, tstring attributevalue);
 
 		/// <summary>
 		/// Sets or changes the specified attribute node
 		/// </summary>
 		/// <param name="attributenode">The attributenode.</param>
 		/// <returns></returns>
-		Attr& setAttributeNode(Attr& attributenode);
+		Attr* setAttributeNode(Attr* attributenode);
 
 		/// <summary>
 		/// Sets or returns the value of the style attribute of an element
@@ -1159,7 +1159,7 @@ namespace litehtml
 		/// <value>
 		/// The style.
 		/// </value>
-		Style& style();
+		Style* style();
 
 		/// <summary>
 		/// Sets or returns the value of the tabindex attribute of an element
@@ -1176,7 +1176,7 @@ namespace litehtml
 		/// <value>
 		/// The name of the tag.
 		/// </value>
-		wchar_t* tagName();
+		tstring tagName();
 
 		///// <summary>
 		///// Sets or returns the textual content of a node and its descendants
@@ -1184,8 +1184,8 @@ namespace litehtml
 		///// <value>
 		///// The content of the text.
 		///// </value>
-		//wchar_t* textContent();
-		//void textContent(wchar_t* value);
+		//tstring textContent();
+		//void textContent(tstring value);
 
 		/// <summary>
 		/// Sets or returns the value of the title attribute of an element
@@ -1193,13 +1193,13 @@ namespace litehtml
 		/// <value>
 		/// The title.
 		/// </value>
-		wchar_t* title();
-		void title(wchar_t* value);
+		tstring title();
+		void title(tstring value);
 
 		/// <summary>
 		/// Converts an element to a string
 		/// </summary>
-		wchar_t* toString();
+		tstring toString();
 	};
 
 	/// <summary>
@@ -1227,7 +1227,7 @@ namespace litehtml
 		/// Returns the reason of an error occurring when using the geolocating device
 		/// </summary>
 		/// <value>The position error.</value>
-		wchar_t* positionError();
+		tstring positionError();
 
 		/// <summary>
 		/// Describes an object containing option properties to pass as a parameter of Geolocation.getCurrentPosition() and Geolocation.watchPosition()
@@ -1307,21 +1307,21 @@ namespace litehtml
 		/// </value>
 		/// <param name="index">The index.</param>
 		/// <returns></returns>
-		Element& operator[](int index);
+		Element* operator[](int index);
 
 		/// <summary>
 		/// Returns the element at the specified index in an HTMLCollection
 		/// </summary>
 		/// <param name="index">The index.</param>
 		/// <returns></returns>
-		Element& item(int index);
+		Element* item(int index);
 
 		/// <summary>
 		/// Returns the element with the specified ID, or name, in an HTMLCollection
 		/// </summary>
 		/// <param name="name">The name.</param>
 		/// <returns></returns>
-		Element& namedItem(wchar_t* name);
+		Element* namedItem(tstring name);
 	};
 
 	/// <summary>
@@ -1337,8 +1337,8 @@ namespace litehtml
 		/// <value>
 		/// The hash.
 		/// </value>
-		wchar_t* hash();
-		void hash(wchar_t* value);
+		tstring hash();
+		void hash(tstring value);
 
 		/// <summary>
 		/// Sets or returns the hostname and port number of a URL
@@ -1346,8 +1346,8 @@ namespace litehtml
 		/// <value>
 		/// The host.
 		/// </value>
-		wchar_t* host();
-		void host(wchar_t* value);
+		tstring host();
+		void host(tstring value);
 
 		/// <summary>
 		/// Sets or returns the hostname of a URL
@@ -1355,8 +1355,8 @@ namespace litehtml
 		/// <value>
 		/// The hostname.
 		/// </value>
-		wchar_t* hostname();
-		void hostname(wchar_t* value);
+		tstring hostname();
+		void hostname(tstring value);
 
 		/// <summary>
 		/// Sets or returns the entire URL
@@ -1364,8 +1364,8 @@ namespace litehtml
 		/// <value>
 		/// The href.
 		/// </value>
-		wchar_t* href();
-		void href(wchar_t* value);
+		tstring href();
+		void href(tstring value);
 
 		/// <summary>
 		/// Returns the protocol, hostname and port number of a URL
@@ -1373,7 +1373,7 @@ namespace litehtml
 		/// <value>
 		/// The origin.
 		/// </value>
-		wchar_t* origin();
+		tstring origin();
 
 		/// <summary>
 		/// Sets or returns the path name of a URL
@@ -1381,8 +1381,8 @@ namespace litehtml
 		/// <value>
 		/// The pathname.
 		/// </value>
-		wchar_t* pathname();
-		void pathname(wchar_t* value);
+		tstring pathname();
+		void pathname(tstring value);
 
 		/// <summary>
 		/// Sets or returns the port number of a URL
@@ -1390,8 +1390,8 @@ namespace litehtml
 		/// <value>
 		/// The port.
 		/// </value>
-		wchar_t* port();
-		void port(wchar_t* value);
+		tstring port();
+		void port(tstring value);
 
 		/// <summary>
 		/// Sets or returns the protocol of a URL
@@ -1399,8 +1399,8 @@ namespace litehtml
 		/// <value>
 		/// The protocol.
 		/// </value>
-		wchar_t* protocol();
-		void protocol(wchar_t* value);
+		tstring protocol();
+		void protocol(tstring value);
 
 		/// <summary>
 		/// Sets or returns the querystring part of a URL
@@ -1408,14 +1408,14 @@ namespace litehtml
 		/// <value>
 		/// The search.
 		/// </value>
-		wchar_t* search();
-		void search(wchar_t* value);
+		tstring search();
+		void search(tstring value);
 
 		/// <summary>
 		/// Loads a new document
 		/// </summary>
 		/// <param name="URL">The URL.</param>
-		void assign(wchar_t* URL);
+		void assign(tstring URL);
 
 		/// <summary>
 		/// Reloads the current document
@@ -1427,7 +1427,7 @@ namespace litehtml
 		/// Replaces the current document with a new one
 		/// </summary>
 		/// <param name="newURL">The new URL.</param>
-		void replace(wchar_t* newURL);
+		void replace(tstring newURL);
 	};
 
 	/// <summary>
@@ -1451,7 +1451,7 @@ namespace litehtml
 		/// <value>
 		/// The media.
 		/// </value>
-		wchar_t* media();
+		tstring media();
 
 		/// <summary>
 		/// Adds a new listener function, which is executed whenever the media query's evaluated result changes
@@ -1481,7 +1481,7 @@ namespace litehtml
 	   /// <value>
 	   /// The name of the application code.
 	   /// </value>
-		wchar_t* appCodeName();
+		tstring appCodeName();
 
 		/// <summary>
 		/// Returns the name of the browser
@@ -1489,7 +1489,7 @@ namespace litehtml
 		/// <value>
 		/// The name of the application.
 		/// </value>
-		wchar_t* appName();
+		tstring appName();
 
 		/// <summary>
 		/// Returns the version information of the browser
@@ -1497,7 +1497,7 @@ namespace litehtml
 		/// <value>
 		/// The application version.
 		/// </value>
-		wchar_t* appVersion();
+		tstring appVersion();
 
 		/// <summary>
 		/// Determines whether cookies are enabled in the browser
@@ -1513,7 +1513,7 @@ namespace litehtml
 		/// <value>
 		/// The geolocation.
 		/// </value>
-		Geolocation& geolocation();
+		Geolocation* geolocation();
 
 		/// <summary>
 		/// Returns the language of the browser
@@ -1521,7 +1521,7 @@ namespace litehtml
 		/// <value>
 		/// The language.
 		/// </value>
-		wchar_t* language();
+		tstring language();
 
 		/// <summary>
 		/// Determines whether the browser is online
@@ -1537,7 +1537,7 @@ namespace litehtml
 		/// <value>
 		/// The platform.
 		/// </value>
-		wchar_t* platform();
+		tstring platform();
 
 		/// <summary>
 		/// Returns the engine name of the browser
@@ -1545,7 +1545,7 @@ namespace litehtml
 		/// <value>
 		/// The product.
 		/// </value>
-		wchar_t* product();
+		tstring product();
 
 		/// <summary>
 		/// Returns the user-agent header sent by the browser to the server
@@ -1553,7 +1553,7 @@ namespace litehtml
 		/// <value>
 		/// The user agent.
 		/// </value>
-		wchar_t* userAgent();
+		tstring userAgent();
 
 		/// <summary>
 		/// Specifies whether or not the browser has Java enabled
@@ -1629,8 +1629,8 @@ namespace litehtml
 		/// Sets or returns the alignment between the lines inside a flexible container when the items do not use all available space
 		/// </summary>
 		/// <value>The content of the align.</value>
-		wchar_t* alignContent();
-		void alignContent(wchar_t* value);
+		tstring alignContent();
+		void alignContent(tstring value);
 
 		/// <summary>
 		/// Sets or returns the alignment for items inside a flexible container
@@ -1638,8 +1638,8 @@ namespace litehtml
 		/// <value>
 		/// The align items.
 		/// </value>
-		wchar_t* alignItems();
-		void alignItems(wchar_t* value);
+		tstring alignItems();
+		void alignItems(tstring value);
 
 		/// <summary>
 		/// Sets or returns the alignment for selected items inside a flexible container
@@ -1647,8 +1647,8 @@ namespace litehtml
 		/// <value>
 		/// The align self.
 		/// </value>
-		wchar_t* alignSelf();
-		void alignSelf(wchar_t* value);
+		tstring alignSelf();
+		void alignSelf(tstring value);
 
 		/// <summary>
 		/// A shorthand property for all the animation properties below, except the animationPlayState property
@@ -1656,8 +1656,8 @@ namespace litehtml
 		/// <value>
 		/// The animation.
 		/// </value>
-		wchar_t* animation();
-		void animation(wchar_t* value);
+		tstring animation();
+		void animation(tstring value);
 
 		/// <summary>
 		/// Sets or returns when the animation will start
@@ -1665,8 +1665,8 @@ namespace litehtml
 		/// <value>
 		/// The animation delay.
 		/// </value>
-		wchar_t* animationDelay();
-		void animationDelay(wchar_t* value);
+		tstring animationDelay();
+		void animationDelay(tstring value);
 
 		/// <summary>
 		/// Sets or returns whether or not the animation should play in reverse on alternate cycles
@@ -1674,8 +1674,8 @@ namespace litehtml
 		/// <value>
 		/// The animation direction.
 		/// </value>
-		wchar_t* animationDirection();
-		void animationDirection(wchar_t* value);
+		tstring animationDirection();
+		void animationDirection(tstring value);
 
 		/// <summary>
 		/// Sets or returns how many seconds or milliseconds an animation takes to complete one cycle
@@ -1683,8 +1683,8 @@ namespace litehtml
 		/// <value>
 		/// The duration of the animation.
 		/// </value>
-		wchar_t* animationDuration();
-		void animationDuration(wchar_t* value);
+		tstring animationDuration();
+		void animationDuration(tstring value);
 
 		/// <summary>
 		/// Sets or returns what values are applied by the animation outside the time it is executing
@@ -1692,8 +1692,8 @@ namespace litehtml
 		/// <value>
 		/// The animation fill mode.
 		/// </value>
-		wchar_t* animationFillMode();
-		void animationFillMode(wchar_t* value);
+		tstring animationFillMode();
+		void animationFillMode(tstring value);
 
 		/// <summary>
 		/// Sets or returns the number of times an animation should be played
@@ -1701,8 +1701,8 @@ namespace litehtml
 		/// <value>
 		/// The animation iteration count.
 		/// </value>
-		wchar_t* animationIterationCount();
-		void animationIterationCount(wchar_t* value);
+		tstring animationIterationCount();
+		void animationIterationCount(tstring value);
 
 		/// <summary>
 		/// Sets or returns a name for the @keyframes animation
@@ -1710,8 +1710,8 @@ namespace litehtml
 		/// <value>
 		/// The name of the animation.
 		/// </value>
-		wchar_t* animationName();
-		void animationName(wchar_t* value);
+		tstring animationName();
+		void animationName(tstring value);
 
 		/// <summary>
 		/// Sets or returns the speed curve of the animation
@@ -1719,8 +1719,8 @@ namespace litehtml
 		/// <value>
 		/// The animation timing function.
 		/// </value>
-		wchar_t* animationTimingFunction();
-		void animationTimingFunction(wchar_t* value);
+		tstring animationTimingFunction();
+		void animationTimingFunction(tstring value);
 
 		/// <summary>
 		/// Sets or returns whether the animation is running or paused
@@ -1728,8 +1728,8 @@ namespace litehtml
 		/// <value>
 		/// The state of the animation play.
 		/// </value>
-		wchar_t* animationPlayState();
-		void animationPlayState(wchar_t* value);
+		tstring animationPlayState();
+		void animationPlayState(tstring value);
 
 		/// <summary>
 		/// Sets or returns all the background properties in one declaration
@@ -1737,8 +1737,8 @@ namespace litehtml
 		/// <value>
 		/// The background.
 		/// </value>
-		wchar_t* background();
-		void background(wchar_t* value);
+		tstring background();
+		void background(tstring value);
 
 		/// <summary>
 		/// Sets or returns whether a background-image is fixed or scrolls with the page
@@ -1746,8 +1746,8 @@ namespace litehtml
 		/// <value>
 		/// The background attachment.
 		/// </value>
-		wchar_t* backgroundAttachment();
-		void backgroundAttachment(wchar_t* value);
+		tstring backgroundAttachment();
+		void backgroundAttachment(tstring value);
 
 		/// <summary>
 		/// Sets or returns the background-color of an element
@@ -1755,8 +1755,8 @@ namespace litehtml
 		/// <value>
 		/// The color of the background.
 		/// </value>
-		wchar_t* backgroundColor();
-		void backgroundColor(wchar_t* value);
+		tstring backgroundColor();
+		void backgroundColor(tstring value);
 
 		/// <summary>
 		/// Sets or returns the background-image for an element
@@ -1764,8 +1764,8 @@ namespace litehtml
 		/// <value>
 		/// The background image.
 		/// </value>
-		wchar_t* backgroundImage();
-		void backgroundImage(wchar_t* value);
+		tstring backgroundImage();
+		void backgroundImage(tstring value);
 
 		/// <summary>
 		/// Sets or returns the starting position of a background-image
@@ -1773,8 +1773,8 @@ namespace litehtml
 		/// <value>
 		/// The background position.
 		/// </value>
-		wchar_t* backgroundPosition();
-		void backgroundPosition(wchar_t* value);
+		tstring backgroundPosition();
+		void backgroundPosition(tstring value);
 
 		/// <summary>
 		/// Sets or returns how to repeat (tile) a background-image
@@ -1782,8 +1782,8 @@ namespace litehtml
 		/// <value>
 		/// The background repeat.
 		/// </value>
-		wchar_t* backgroundRepeat();
-		void backgroundRepeat(wchar_t* value);
+		tstring backgroundRepeat();
+		void backgroundRepeat(tstring value);
 
 		/// <summary>
 		/// Sets or returns the painting area of the background
@@ -1791,8 +1791,8 @@ namespace litehtml
 		/// <value>
 		/// The background clip.
 		/// </value>
-		wchar_t* backgroundClip();
-		void backgroundClip(wchar_t* value);
+		tstring backgroundClip();
+		void backgroundClip(tstring value);
 
 		/// <summary>
 		/// Sets or returns the positioning area of the background images
@@ -1800,8 +1800,8 @@ namespace litehtml
 		/// <value>
 		/// The background origin.
 		/// </value>
-		wchar_t* backgroundOrigin();
-		void backgroundOrigin(wchar_t* value);
+		tstring backgroundOrigin();
+		void backgroundOrigin(tstring value);
 
 		/// <summary>
 		/// Sets or returns the size of the background image
@@ -1809,8 +1809,8 @@ namespace litehtml
 		/// <value>
 		/// The size of the background.
 		/// </value>
-		wchar_t* backgroundSize();
-		void backgroundSize(wchar_t* value);
+		tstring backgroundSize();
+		void backgroundSize(tstring value);
 
 		/// <summary>
 		/// Sets or returns whether or not an element should be visible when not facing the screen
@@ -1818,8 +1818,8 @@ namespace litehtml
 		/// <value>
 		/// The backface visibility.
 		/// </value>
-		wchar_t* backfaceVisibility();
-		void backfaceVisibility(wchar_t* value);
+		tstring backfaceVisibility();
+		void backfaceVisibility(tstring value);
 
 		/// <summary>
 		/// Sets or returns borderWidth, borderStyle, and borderColor in one declaration
@@ -1827,8 +1827,8 @@ namespace litehtml
 		/// <value>
 		/// The border.
 		/// </value>
-		wchar_t* border();
-		void border(wchar_t* value);
+		tstring border();
+		void border(tstring value);
 
 		/// <summary>
 		/// Sets or returns all the borderBottom properties in one declaration
@@ -1836,8 +1836,8 @@ namespace litehtml
 		/// <value>
 		/// The border bottom.
 		/// </value>
-		wchar_t* borderBottom();
-		void borderBottom(wchar_t* value);
+		tstring borderBottom();
+		void borderBottom(tstring value);
 
 		/// <summary>
 		/// Sets or returns the color of the bottom border
@@ -1845,8 +1845,8 @@ namespace litehtml
 		/// <value>
 		/// The border bottom.
 		/// </value>
-		wchar_t* borderBottomColor();
-		void borderBottomColor(wchar_t* value);
+		tstring borderBottomColor();
+		void borderBottomColor(tstring value);
 
 		/// <summary>
 		/// Sets or returns the shape of the border of the bottom-left corner
@@ -1854,8 +1854,8 @@ namespace litehtml
 		/// <value>
 		/// The border bottom.
 		/// </value>
-		wchar_t* borderBottomLeftRadius();
-		void borderBottomLeftRadius(wchar_t* value);
+		tstring borderBottomLeftRadius();
+		void borderBottomLeftRadius(tstring value);
 
 		/// <summary>
 		/// Sets or returns the shape of the border of the bottom-right corner
@@ -1863,8 +1863,8 @@ namespace litehtml
 		/// <value>
 		/// The border bottom.
 		/// </value>
-		wchar_t* borderBottomRightRadius();
-		void borderBottomRightRadius(wchar_t* value);
+		tstring borderBottomRightRadius();
+		void borderBottomRightRadius(tstring value);
 
 		/// <summary>
 		/// Sets or returns the style of the bottom border
@@ -1872,8 +1872,8 @@ namespace litehtml
 		/// <value>
 		/// The border bottom.
 		/// </value>
-		wchar_t* borderBottomStyle();
-		void borderBottomStyle(wchar_t* value);
+		tstring borderBottomStyle();
+		void borderBottomStyle(tstring value);
 
 		/// <summary>
 		/// Sets or returns the width of the bottom border
@@ -1881,8 +1881,8 @@ namespace litehtml
 		/// <value>
 		/// The border bottom.
 		/// </value>
-		wchar_t* borderBottomWidth();
-		void borderBottomWidth(wchar_t* value);
+		tstring borderBottomWidth();
+		void borderBottomWidth(tstring value);
 
 		/// <summary>
 		/// Sets or returns whether the table border should be collapsed into a single border, or not
@@ -1890,8 +1890,8 @@ namespace litehtml
 		/// <value>
 		/// The border collapse.
 		/// </value>
-		wchar_t* borderCollapse();
-		void borderCollapse(wchar_t* value);
+		tstring borderCollapse();
+		void borderCollapse(tstring value);
 
 		/// <summary>
 		/// Sets or returns the color of an element's border (can have up to four values)
@@ -1899,8 +1899,8 @@ namespace litehtml
 		/// <value>
 		/// The color of the border.
 		/// </value>
-		wchar_t* borderColor();
-		void borderColor(wchar_t* value);
+		tstring borderColor();
+		void borderColor(tstring value);
 
 		/// <summary>
 		/// A shorthand property for setting or returning all the borderImage properties
@@ -1908,8 +1908,8 @@ namespace litehtml
 		/// <value>
 		/// The border image.
 		/// </value>
-		wchar_t* borderImage();
-		void borderImage(wchar_t* value);
+		tstring borderImage();
+		void borderImage(tstring value);
 
 		/// <summary>
 		/// Sets or returns the amount by which the border image area extends beyond the border box
@@ -1917,8 +1917,8 @@ namespace litehtml
 		/// <value>
 		/// The border image outset.
 		/// </value>
-		wchar_t* borderImageOutset();
-		void borderImageOutset(wchar_t* value);
+		tstring borderImageOutset();
+		void borderImageOutset(tstring value);
 
 		/// <summary>
 		/// Sets or returns whether the image-border should be repeated, rounded or stretched
@@ -1926,8 +1926,8 @@ namespace litehtml
 		/// <value>
 		/// The border image repeat.
 		/// </value>
-		wchar_t* borderImageRepeat();
-		void borderImageRepeat(wchar_t* value);
+		tstring borderImageRepeat();
+		void borderImageRepeat(tstring value);
 
 		/// <summary>
 		/// Sets or returns the inward offsets of the image-border
@@ -1935,8 +1935,8 @@ namespace litehtml
 		/// <value>
 		/// The border image slice.
 		/// </value>
-		wchar_t* borderImageSlice();
-		void borderImageSlice(wchar_t* value);
+		tstring borderImageSlice();
+		void borderImageSlice(tstring value);
 
 		/// <summary>
 		/// Sets or returns the image to be used as a border
@@ -1944,8 +1944,8 @@ namespace litehtml
 		/// <value>
 		/// The border image source.
 		/// </value>
-		wchar_t* borderImageSource();
-		void borderImageSource(wchar_t* value);
+		tstring borderImageSource();
+		void borderImageSource(tstring value);
 
 		/// <summary>
 		/// Sets or returns the widths of the image-border
@@ -1953,8 +1953,8 @@ namespace litehtml
 		/// <value>
 		/// The width of the border image.
 		/// </value>
-		wchar_t* borderImageWidth();
-		void borderImageWidth(wchar_t* value);
+		tstring borderImageWidth();
+		void borderImageWidth(tstring value);
 
 		/// <summary>
 		/// Sets or returns all the borderLeft properties in one declaration
@@ -1962,8 +1962,8 @@ namespace litehtml
 		/// <value>
 		/// The border left.
 		/// </value>
-		wchar_t* borderLeft();
-		void borderLeft(wchar_t* value);
+		tstring borderLeft();
+		void borderLeft(tstring value);
 
 		/// <summary>
 		/// Sets or returns the color of the left border
@@ -1971,8 +1971,8 @@ namespace litehtml
 		/// <value>
 		/// The color of the border left.
 		/// </value>
-		wchar_t* borderLeftColor();
-		void borderLeftColor(wchar_t* value);
+		tstring borderLeftColor();
+		void borderLeftColor(tstring value);
 
 		/// <summary>
 		/// Sets or returns the style of the left border
@@ -1980,8 +1980,8 @@ namespace litehtml
 		/// <value>
 		/// The border left style.
 		/// </value>
-		wchar_t* borderLeftStyle();
-		void borderLeftStyle(wchar_t* value);
+		tstring borderLeftStyle();
+		void borderLeftStyle(tstring value);
 
 		/// <summary>
 		/// Sets or returns the width of the left border
@@ -1989,8 +1989,8 @@ namespace litehtml
 		/// <value>
 		/// The width of the border left.
 		/// </value>
-		wchar_t* borderLeftWidth();
-		void borderLeftWidth(wchar_t* value);
+		tstring borderLeftWidth();
+		void borderLeftWidth(tstring value);
 
 		/// <summary>
 		/// A shorthand property for setting or returning all the four borderRadius properties
@@ -1998,8 +1998,8 @@ namespace litehtml
 		/// <value>
 		/// The border radius.
 		/// </value>
-		wchar_t* borderRadius();
-		void borderRadius(wchar_t* value);
+		tstring borderRadius();
+		void borderRadius(tstring value);
 
 		/// <summary>
 		/// Sets or returns all the borderRight properties in one declaration
@@ -2007,8 +2007,8 @@ namespace litehtml
 		/// <value>
 		/// The border right.
 		/// </value>
-		wchar_t* borderRight();
-		void borderRight(wchar_t* value);
+		tstring borderRight();
+		void borderRight(tstring value);
 
 		/// <summary>
 		/// Sets or returns the color of the right border
@@ -2016,8 +2016,8 @@ namespace litehtml
 		/// <value>
 		/// The color of the border right.
 		/// </value>
-		wchar_t* borderRightColor();
-		void borderRightColor(wchar_t* value);
+		tstring borderRightColor();
+		void borderRightColor(tstring value);
 
 		/// <summary>
 		/// Sets or returns the style of the right border
@@ -2025,8 +2025,8 @@ namespace litehtml
 		/// <value>
 		/// The border right style.
 		/// </value>
-		wchar_t* borderRightStyle();
-		void borderRightStyle(wchar_t* value);
+		tstring borderRightStyle();
+		void borderRightStyle(tstring value);
 
 		/// <summary>
 		/// Sets or returns the width of the right border
@@ -2034,8 +2034,8 @@ namespace litehtml
 		/// <value>
 		/// The width of the border right.
 		/// </value>
-		wchar_t* borderRightWidth();
-		void borderRightWidth(wchar_t* value);
+		tstring borderRightWidth();
+		void borderRightWidth(tstring value);
 
 		/// <summary>
 		/// Sets or returns the space between cells in a table
@@ -2043,8 +2043,8 @@ namespace litehtml
 		/// <value>
 		/// The border spacing.
 		/// </value>
-		wchar_t* borderSpacing();
-		void borderSpacing(wchar_t* value);
+		tstring borderSpacing();
+		void borderSpacing(tstring value);
 
 		/// <summary>
 		/// Sets or returns the style of an element's border (can have up to four values)
@@ -2052,8 +2052,8 @@ namespace litehtml
 		/// <value>
 		/// The border style.
 		/// </value>
-		wchar_t* borderStyle();
-		void borderStyle(wchar_t* value);
+		tstring borderStyle();
+		void borderStyle(tstring value);
 
 		/// <summary>
 		/// Sets or returns all the borderTop properties in one declaration
@@ -2061,8 +2061,8 @@ namespace litehtml
 		/// <value>
 		/// The border top.
 		/// </value>
-		wchar_t* borderTop();
-		void borderTop(wchar_t* value);
+		tstring borderTop();
+		void borderTop(tstring value);
 
 		/// <summary>
 		/// Sets or returns the color of the top border
@@ -2070,8 +2070,8 @@ namespace litehtml
 		/// <value>
 		/// The color of the border top.
 		/// </value>
-		wchar_t* borderTopColor();
-		void borderTopColor(wchar_t* value);
+		tstring borderTopColor();
+		void borderTopColor(tstring value);
 
 		/// <summary>
 		/// Sets or returns the shape of the border of the top-left corner
@@ -2079,8 +2079,8 @@ namespace litehtml
 		/// <value>
 		/// The border top left radius.
 		/// </value>
-		wchar_t* borderTopLeftRadius();
-		void borderTopLeftRadius(wchar_t* value);
+		tstring borderTopLeftRadius();
+		void borderTopLeftRadius(tstring value);
 
 		/// <summary>
 		/// Sets or returns the shape of the border of the top-right corner
@@ -2088,8 +2088,8 @@ namespace litehtml
 		/// <value>
 		/// The border top right radius.
 		/// </value>
-		wchar_t* borderTopRightRadius();
-		void borderTopRightRadius(wchar_t* value);
+		tstring borderTopRightRadius();
+		void borderTopRightRadius(tstring value);
 
 		/// <summary>
 		/// Sets or returns the style of the top border
@@ -2097,8 +2097,8 @@ namespace litehtml
 		/// <value>
 		/// The border top style.
 		/// </value>
-		wchar_t* borderTopStyle();
-		void borderTopStyle(wchar_t* value);
+		tstring borderTopStyle();
+		void borderTopStyle(tstring value);
 
 		/// <summary>
 		/// Sets or returns the width of the top border
@@ -2106,8 +2106,8 @@ namespace litehtml
 		/// <value>
 		/// The width of the border top.
 		/// </value>
-		wchar_t* borderTopWidth();
-		void borderTopWidth(wchar_t* value);
+		tstring borderTopWidth();
+		void borderTopWidth(tstring value);
 
 		/// <summary>
 		/// Sets or returns the width of an element's border (can have up to four values)
@@ -2115,8 +2115,8 @@ namespace litehtml
 		/// <value>
 		/// The width of the border.
 		/// </value>
-		wchar_t* borderWidth();
-		void borderWidth(wchar_t* value);
+		tstring borderWidth();
+		void borderWidth(tstring value);
 
 		/// <summary>
 		/// Sets or returns the bottom position of a positioned element
@@ -2124,8 +2124,8 @@ namespace litehtml
 		/// <value>
 		/// The bottom.
 		/// </value>
-		wchar_t* bottom();
-		void bottom(wchar_t* value);
+		tstring bottom();
+		void bottom(tstring value);
 
 		/// <summary>
 		/// Sets or returns the behaviour of the background and border of an element at page-break, or, for in-line elements, at line-break.
@@ -2133,8 +2133,8 @@ namespace litehtml
 		/// <value>
 		/// The box decoration break.
 		/// </value>
-		wchar_t* boxDecorationBreak();
-		void boxDecorationBreak(wchar_t* value);
+		tstring boxDecorationBreak();
+		void boxDecorationBreak(tstring value);
 
 		/// <summary>
 		/// Attaches one or more drop-shadows to the box
@@ -2142,8 +2142,8 @@ namespace litehtml
 		/// <value>
 		/// The box shadow.
 		/// </value>
-		wchar_t* boxShadow();
-		void boxShadow(wchar_t* value);
+		tstring boxShadow();
+		void boxShadow(tstring value);
 
 		/// <summary>
 		/// Allows you to define certain elements to fit an area in a certain way
@@ -2151,8 +2151,8 @@ namespace litehtml
 		/// <value>
 		/// The box sizing.
 		/// </value>
-		wchar_t* boxSizing();
-		void boxSizing(wchar_t* value);
+		tstring boxSizing();
+		void boxSizing(tstring value);
 
 		/// <summary>
 		/// Sets or returns the position of the table caption
@@ -2160,8 +2160,8 @@ namespace litehtml
 		/// <value>
 		/// The caption side.
 		/// </value>
-		wchar_t* captionSide();
-		void captionSide(wchar_t* value);
+		tstring captionSide();
+		void captionSide(tstring value);
 
 		/// <summary>
 		/// Sets or returns the position of the element relative to floating objects
@@ -2169,8 +2169,8 @@ namespace litehtml
 		/// <value>
 		/// The clear.
 		/// </value>
-		wchar_t* clear();
-		void clear(wchar_t* value);
+		tstring clear();
+		void clear(tstring value);
 
 		/// <summary>
 		/// Sets or returns which part of a positioned element is visible
@@ -2178,8 +2178,8 @@ namespace litehtml
 		/// <value>
 		/// The clip.
 		/// </value>
-		wchar_t* clip();
-		void clip(wchar_t* value);
+		tstring clip();
+		void clip(tstring value);
 
 		/// <summary>
 		/// Sets or returns the color of the text
@@ -2187,8 +2187,8 @@ namespace litehtml
 		/// <value>
 		/// The color.
 		/// </value>
-		wchar_t* color();
-		void color(wchar_t* value);
+		tstring color();
+		void color(tstring value);
 
 		/// <summary>
 		/// Sets or returns the number of columns an element should be divided into
@@ -2196,8 +2196,8 @@ namespace litehtml
 		/// <value>
 		/// The column count.
 		/// </value>
-		wchar_t* columnCount();
-		void columnCount(wchar_t* value);
+		tstring columnCount();
+		void columnCount(tstring value);
 
 		/// <summary>
 		/// Sets or returns how to fill columns
@@ -2205,8 +2205,8 @@ namespace litehtml
 		/// <value>
 		/// The column fill.
 		/// </value>
-		wchar_t* columnFill();
-		void columnFill(wchar_t* value);
+		tstring columnFill();
+		void columnFill(tstring value);
 
 		/// <summary>
 		/// Sets or returns the gap between the columns
@@ -2214,8 +2214,8 @@ namespace litehtml
 		/// <value>
 		/// The column gap.
 		/// </value>
-		wchar_t* columnGap();
-		void columnGap(wchar_t* value);
+		tstring columnGap();
+		void columnGap(tstring value);
 
 		/// <summary>
 		/// A shorthand property for setting or returning all the columnRule properties
@@ -2223,8 +2223,8 @@ namespace litehtml
 		/// <value>
 		/// The column rule.
 		/// </value>
-		wchar_t* columnRule();
-		void columnRule(wchar_t* value);
+		tstring columnRule();
+		void columnRule(tstring value);
 
 		/// <summary>
 		/// Sets or returns the color of the rule between columns
@@ -2232,8 +2232,8 @@ namespace litehtml
 		/// <value>
 		/// The color of the column rule.
 		/// </value>
-		wchar_t* columnRuleColor();
-		void columnRuleColor(wchar_t* value);
+		tstring columnRuleColor();
+		void columnRuleColor(tstring value);
 
 		/// <summary>
 		/// Sets or returns the style of the rule between columns
@@ -2241,8 +2241,8 @@ namespace litehtml
 		/// <value>
 		/// The column rule style.
 		/// </value>
-		wchar_t* columnRuleStyle();
-		void columnRuleStyle(wchar_t* value);
+		tstring columnRuleStyle();
+		void columnRuleStyle(tstring value);
 
 		/// <summary>
 		/// Sets or returns the width of the rule between columns
@@ -2250,8 +2250,8 @@ namespace litehtml
 		/// <value>
 		/// The width of the column rule.
 		/// </value>
-		wchar_t* columnRuleWidth();
-		void columnRuleWidth(wchar_t* value);
+		tstring columnRuleWidth();
+		void columnRuleWidth(tstring value);
 
 		/// <summary>
 		/// A shorthand property for setting or returning columnWidth and columnCount
@@ -2259,8 +2259,8 @@ namespace litehtml
 		/// <value>
 		/// The columns.
 		/// </value>
-		wchar_t* columns();
-		void columns(wchar_t* value);
+		tstring columns();
+		void columns(tstring value);
 
 		/// <summary>
 		/// Sets or returns how many columns an element should span across
@@ -2268,8 +2268,8 @@ namespace litehtml
 		/// <value>
 		/// The column span.
 		/// </value>
-		wchar_t* columnSpan();
-		void columnSpan(wchar_t* value);
+		tstring columnSpan();
+		void columnSpan(tstring value);
 
 		/// <summary>
 		/// Sets or returns the width of the columns
@@ -2277,8 +2277,8 @@ namespace litehtml
 		/// <value>
 		/// The width of the column.
 		/// </value>
-		wchar_t* columnWidth();
-		void columnWidth(wchar_t* value);
+		tstring columnWidth();
+		void columnWidth(tstring value);
 
 		/// <summary>
 		/// Used with the :before and :after pseudo-elements, to insert generated content
@@ -2286,8 +2286,8 @@ namespace litehtml
 		/// <value>
 		/// The content.
 		/// </value>
-		wchar_t* content();
-		void content(wchar_t* value);
+		tstring content();
+		void content(tstring value);
 
 		/// <summary>
 		/// Increments one or more counters
@@ -2295,8 +2295,8 @@ namespace litehtml
 		/// <value>
 		/// The counter increment.
 		/// </value>
-		wchar_t* counterIncrement();
-		void counterIncrement(wchar_t* value);
+		tstring counterIncrement();
+		void counterIncrement(tstring value);
 
 		/// <summary>
 		/// Creates or resets one or more counters
@@ -2304,8 +2304,8 @@ namespace litehtml
 		/// <value>
 		/// The counter reset.
 		/// </value>
-		wchar_t* counterReset();
-		void counterReset(wchar_t* value);
+		tstring counterReset();
+		void counterReset(tstring value);
 
 		/// <summary>
 		/// Sets or returns the type of cursor to display for the mouse pointer
@@ -2313,8 +2313,8 @@ namespace litehtml
 		/// <value>
 		/// The cursor.
 		/// </value>
-		wchar_t* cursor();
-		void cursor(wchar_t* value);
+		tstring cursor();
+		void cursor(tstring value);
 
 		/// <summary>
 		/// Sets or returns the text direction
@@ -2322,8 +2322,8 @@ namespace litehtml
 		/// <value>
 		/// The direction.
 		/// </value>
-		wchar_t* direction();
-		void direction(wchar_t* value);
+		tstring direction();
+		void direction(tstring value);
 
 		/// <summary>
 		/// Sets or returns an element's display type
@@ -2331,8 +2331,8 @@ namespace litehtml
 		/// <value>
 		/// The display.
 		/// </value>
-		wchar_t* display();
-		void display(wchar_t* value);
+		tstring display();
+		void display(tstring value);
 
 		/// <summary>
 		/// Sets or returns whether to show the border and background of empty cells, or not
@@ -2340,8 +2340,8 @@ namespace litehtml
 		/// <value>
 		/// The empty cells.
 		/// </value>
-		wchar_t* emptyCells();
-		void emptyCells(wchar_t* value);
+		tstring emptyCells();
+		void emptyCells(tstring value);
 
 		/// <summary>
 		/// Sets or returns image filters (visual effects, like blur and saturation)
@@ -2349,8 +2349,8 @@ namespace litehtml
 		/// <value>
 		/// The filter.
 		/// </value>
-		wchar_t* filter();
-		void filter(wchar_t* value);
+		tstring filter();
+		void filter(tstring value);
 
 		/// <summary>
 		/// Sets or returns the length of the item, relative to the rest
@@ -2358,8 +2358,8 @@ namespace litehtml
 		/// <value>
 		/// The flex.
 		/// </value>
-		wchar_t* flex();
-		void flex(wchar_t* value);
+		tstring flex();
+		void flex(tstring value);
 
 		/// <summary>
 		/// Sets or returns the initial length of a flexible item
@@ -2367,8 +2367,8 @@ namespace litehtml
 		/// <value>
 		/// The flex basis.
 		/// </value>
-		wchar_t* flexBasis();
-		void flexBasis(wchar_t* value);
+		tstring flexBasis();
+		void flexBasis(tstring value);
 
 		/// <summary>
 		/// Sets or returns the direction of the flexible items
@@ -2376,8 +2376,8 @@ namespace litehtml
 		/// <value>
 		/// The flex direction.
 		/// </value>
-		wchar_t* flexDirection();
-		void flexDirection(wchar_t* value);
+		tstring flexDirection();
+		void flexDirection(tstring value);
 
 		/// <summary>
 		/// A shorthand property for the flexDirection and the flexWrap properties
@@ -2385,8 +2385,8 @@ namespace litehtml
 		/// <value>
 		/// The flex flow.
 		/// </value>
-		wchar_t* flexFlow();
-		void flexFlow(wchar_t* value);
+		tstring flexFlow();
+		void flexFlow(tstring value);
 
 		/// <summary>
 		/// Sets or returns how much the item will grow relative to the rest
@@ -2394,8 +2394,8 @@ namespace litehtml
 		/// <value>
 		/// The flex grow.
 		/// </value>
-		wchar_t* flexGrow();
-		void flexGrow(wchar_t* value);
+		tstring flexGrow();
+		void flexGrow(tstring value);
 
 		/// <summary>
 		/// Sets or returns how the item will shrink relative to the rest
@@ -2403,8 +2403,8 @@ namespace litehtml
 		/// <value>
 		/// The flex shrink.
 		/// </value>
-		wchar_t* flexShrink();
-		void flexShrink(wchar_t* value);
+		tstring flexShrink();
+		void flexShrink(tstring value);
 
 		/// <summary>
 		/// Sets or returns whether the flexible items should wrap or not
@@ -2412,8 +2412,8 @@ namespace litehtml
 		/// <value>
 		/// The flex wrap.
 		/// </value>
-		wchar_t* flexWrap();
-		void flexWrap(wchar_t* value);
+		tstring flexWrap();
+		void flexWrap(tstring value);
 
 		/// <summary>
 		/// Sets or returns the horizontal alignment of an element
@@ -2421,8 +2421,8 @@ namespace litehtml
 		/// <value>
 		/// The CSS float.
 		/// </value>
-		wchar_t* cssFloat();
-		void cssFloat(wchar_t* value);
+		tstring cssFloat();
+		void cssFloat(tstring value);
 
 		/// <summary>
 		/// Sets or returns fontStyle, fontVariant, fontWeight, fontSize, lineHeight, and fontFamily in one declaration
@@ -2430,8 +2430,8 @@ namespace litehtml
 		/// <value>
 		/// The font.
 		/// </value>
-		wchar_t* font();
-		void font(wchar_t* value);
+		tstring font();
+		void font(tstring value);
 
 		/// <summary>
 		/// Sets or returns the font family for text
@@ -2439,8 +2439,8 @@ namespace litehtml
 		/// <value>
 		/// The font family.
 		/// </value>
-		wchar_t* fontFamily();
-		void fontFamily(wchar_t* value);
+		tstring fontFamily();
+		void fontFamily(tstring value);
 
 		/// <summary>
 		/// Sets or returns the font size of the text
@@ -2448,8 +2448,8 @@ namespace litehtml
 		/// <value>
 		/// The size of the font.
 		/// </value>
-		wchar_t* fontSize();
-		void fontSize(wchar_t* value);
+		tstring fontSize();
+		void fontSize(tstring value);
 
 		/// <summary>
 		/// Sets or returns whether the style of the font is normal, italic or oblique
@@ -2457,8 +2457,8 @@ namespace litehtml
 		/// <value>
 		/// The font style.
 		/// </value>
-		wchar_t* fontStyle();
-		void fontStyle(wchar_t* value);
+		tstring fontStyle();
+		void fontStyle(tstring value);
 
 		/// <summary>
 		/// Sets or returns whether the font should be displayed in small capital letters
@@ -2466,8 +2466,8 @@ namespace litehtml
 		/// <value>
 		/// The font variant.
 		/// </value>
-		wchar_t* fontVariant();
-		void fontVariant(wchar_t* value);
+		tstring fontVariant();
+		void fontVariant(tstring value);
 
 		/// <summary>
 		/// Sets or returns the boldness of the font
@@ -2475,8 +2475,8 @@ namespace litehtml
 		/// <value>
 		/// The font weight.
 		/// </value>
-		wchar_t* fontWeight();
-		void fontWeight(wchar_t* value);
+		tstring fontWeight();
+		void fontWeight(tstring value);
 
 		/// <summary>
 		/// Preserves the readability of text when font fallback occurs
@@ -2484,8 +2484,8 @@ namespace litehtml
 		/// <value>
 		/// The font size adjust.
 		/// </value>
-		wchar_t* fontSizeAdjust();
-		void fontSizeAdjust(wchar_t* value);
+		tstring fontSizeAdjust();
+		void fontSizeAdjust(tstring value);
 
 		/// <summary>
 		/// Selects a normal, condensed, or expanded face from a font family
@@ -2493,8 +2493,8 @@ namespace litehtml
 		/// <value>
 		/// The font stretch.
 		/// </value>
-		wchar_t* fontStretch();
-		void fontStretch(wchar_t* value);
+		tstring fontStretch();
+		void fontStretch(tstring value);
 
 		/// <summary>
 		/// Specifies whether a punctuation character may be placed outside the line box
@@ -2502,8 +2502,8 @@ namespace litehtml
 		/// <value>
 		/// The hanging punctuation.
 		/// </value>
-		wchar_t* hangingPunctuation();
-		void hangingPunctuation(wchar_t* value);
+		tstring hangingPunctuation();
+		void hangingPunctuation(tstring value);
 
 		/// <summary>
 		/// Sets or returns the height of an element
@@ -2511,8 +2511,8 @@ namespace litehtml
 		/// <value>
 		/// The height.
 		/// </value>
-		wchar_t* height();
-		void height(wchar_t* value);
+		tstring height();
+		void height(tstring value);
 
 		/// <summary>
 		/// Sets how to split words to improve the layout of paragraphs
@@ -2520,8 +2520,8 @@ namespace litehtml
 		/// <value>
 		/// The hyphens.
 		/// </value>
-		wchar_t* hyphens();
-		void hyphens(wchar_t* value);
+		tstring hyphens();
+		void hyphens(tstring value);
 
 		/// <summary>
 		/// Provides the author the ability to style an element with an iconic equivalent
@@ -2529,8 +2529,8 @@ namespace litehtml
 		/// <value>
 		/// The icon.
 		/// </value>
-		wchar_t* icon();
-		void icon(wchar_t* value);
+		tstring icon();
+		void icon(tstring value);
 
 		/// <summary>
 		/// Specifies a rotation in the right or clockwise direction that a user agent applies to an image
@@ -2538,8 +2538,8 @@ namespace litehtml
 		/// <value>
 		/// The image orientation.
 		/// </value>
-		wchar_t* imageOrientation();
-		void imageOrientation(wchar_t* value);
+		tstring imageOrientation();
+		void imageOrientation(tstring value);
 
 		/// <summary>
 		/// Defines whether an element must create a new stacking content
@@ -2547,8 +2547,8 @@ namespace litehtml
 		/// <value>
 		/// The isolation.
 		/// </value>
-		wchar_t* isolation();
-		void isolation(wchar_t* value);
+		tstring isolation();
+		void isolation(tstring value);
 
 		/// <summary>
 		/// Sets or returns the alignment between the items inside a flexible container when the items do not use all available space.
@@ -2556,8 +2556,8 @@ namespace litehtml
 		/// <value>
 		/// The content of the justify.
 		/// </value>
-		wchar_t* justifyContent();
-		void justifyContent(wchar_t* value);
+		tstring justifyContent();
+		void justifyContent(tstring value);
 
 		/// <summary>
 		/// Sets or returns the left position of a positioned element
@@ -2565,8 +2565,8 @@ namespace litehtml
 		/// <value>
 		/// The left.
 		/// </value>
-		wchar_t* left();
-		void left(wchar_t* value);
+		tstring left();
+		void left(tstring value);
 
 		/// <summary>
 		/// Sets or returns the space between characters in a text
@@ -2574,8 +2574,8 @@ namespace litehtml
 		/// <value>
 		/// The letter spacing.
 		/// </value>
-		wchar_t* letterSpacing();
-		void letterSpacing(wchar_t* value);
+		tstring letterSpacing();
+		void letterSpacing(tstring value);
 
 		/// <summary>
 		/// Sets or returns the distance between lines in a text
@@ -2583,8 +2583,8 @@ namespace litehtml
 		/// <value>
 		/// The height of the line.
 		/// </value>
-		wchar_t* lineHeight();
-		void lineHeight(wchar_t* value);
+		tstring lineHeight();
+		void lineHeight(tstring value);
 
 		/// <summary>
 		/// Sets or returns listStyleImage, listStylePosition, and listStyleType in one declaration
@@ -2592,8 +2592,8 @@ namespace litehtml
 		/// <value>
 		/// The list style.
 		/// </value>
-		wchar_t* listStyle();
-		void listStyle(wchar_t* value);
+		tstring listStyle();
+		void listStyle(tstring value);
 
 		/// <summary>
 		/// Sets or returns an image as the list-item marker
@@ -2601,8 +2601,8 @@ namespace litehtml
 		/// <value>
 		/// The list style image.
 		/// </value>
-		wchar_t* listStyleImage();
-		void listStyleImage(wchar_t* value);
+		tstring listStyleImage();
+		void listStyleImage(tstring value);
 
 		/// <summary>
 		/// Sets or returns the position of the list-item marker
@@ -2610,8 +2610,8 @@ namespace litehtml
 		/// <value>
 		/// The list style position.
 		/// </value>
-		wchar_t* listStylePosition();
-		void listStylePosition(wchar_t* value);
+		tstring listStylePosition();
+		void listStylePosition(tstring value);
 
 		/// <summary>
 		/// Sets or returns the list-item marker type
@@ -2619,8 +2619,8 @@ namespace litehtml
 		/// <value>
 		/// The type of the list style.
 		/// </value>
-		wchar_t* listStyleType();
-		void listStyleType(wchar_t* value);
+		tstring listStyleType();
+		void listStyleType(tstring value);
 
 		/// <summary>
 		/// Sets or returns the margins of an element (can have up to four values)
@@ -2628,8 +2628,8 @@ namespace litehtml
 		/// <value>
 		/// The margin.
 		/// </value>
-		wchar_t* margin();
-		void margin(wchar_t* value);
+		tstring margin();
+		void margin(tstring value);
 
 		/// <summary>
 		/// Sets or returns the bottom margin of an element
@@ -2637,8 +2637,8 @@ namespace litehtml
 		/// <value>
 		/// The margin bottom.
 		/// </value>
-		wchar_t* marginBottom();
-		void marginBottom(wchar_t* value);
+		tstring marginBottom();
+		void marginBottom(tstring value);
 
 		/// <summary>
 		/// Sets or returns the left margin of an element
@@ -2646,8 +2646,8 @@ namespace litehtml
 		/// <value>
 		/// The margin left.
 		/// </value>
-		wchar_t* marginLeft();
-		void marginLeft(wchar_t* value);
+		tstring marginLeft();
+		void marginLeft(tstring value);
 
 		/// <summary>
 		/// Sets or returns the right margin of an element
@@ -2655,8 +2655,8 @@ namespace litehtml
 		/// <value>
 		/// The margin right.
 		/// </value>
-		wchar_t* marginRight();
-		void marginRight(wchar_t* value);
+		tstring marginRight();
+		void marginRight(tstring value);
 
 		/// <summary>
 		/// Sets or returns the top margin of an element
@@ -2664,8 +2664,8 @@ namespace litehtml
 		/// <value>
 		/// The margin top.
 		/// </value>
-		wchar_t* marginTop();
-		void marginTop(wchar_t* value);
+		tstring marginTop();
+		void marginTop(tstring value);
 
 		/// <summary>
 		/// Sets or returns the maximum height of an element
@@ -2673,8 +2673,8 @@ namespace litehtml
 		/// <value>
 		/// The maximum height.
 		/// </value>
-		wchar_t* maxHeight();
-		void maxHeight(wchar_t* value);
+		tstring maxHeight();
+		void maxHeight(tstring value);
 
 		/// <summary>
 		/// Sets or returns the maximum width of an element
@@ -2682,8 +2682,8 @@ namespace litehtml
 		/// <value>
 		/// The maximum width.
 		/// </value>
-		wchar_t* maxWidth();
-		void maxWidth(wchar_t* value);
+		tstring maxWidth();
+		void maxWidth(tstring value);
 
 		/// <summary>
 		/// Sets or returns the minimum height of an element
@@ -2691,8 +2691,8 @@ namespace litehtml
 		/// <value>
 		/// The minimum height.
 		/// </value>
-		wchar_t* minHeight();
-		void minHeight(wchar_t* value);
+		tstring minHeight();
+		void minHeight(tstring value);
 
 		/// <summary>
 		/// Sets or returns the minimum width of an element
@@ -2700,8 +2700,8 @@ namespace litehtml
 		/// <value>
 		/// The minimum width.
 		/// </value>
-		wchar_t* minWidth();
-		void minWidth(wchar_t* value);
+		tstring minWidth();
+		void minWidth(tstring value);
 
 		/// <summary>
 		/// Sets or returns where to navigate when using the arrow-down navigation key
@@ -2709,8 +2709,8 @@ namespace litehtml
 		/// <value>
 		/// The nav down.
 		/// </value>
-		wchar_t* navDown();
-		void navDown(wchar_t* value);
+		tstring navDown();
+		void navDown(tstring value);
 
 		/// <summary>
 		/// Sets or returns the tabbing order for an element
@@ -2718,8 +2718,8 @@ namespace litehtml
 		/// <value>
 		/// The index of the nav.
 		/// </value>
-		wchar_t* navIndex();
-		void navIndex(wchar_t* value);
+		tstring navIndex();
+		void navIndex(tstring value);
 
 		/// <summary>
 		/// Sets or returns where to navigate when using the arrow-left navigation key
@@ -2727,8 +2727,8 @@ namespace litehtml
 		/// <value>
 		/// The nav left.
 		/// </value>
-		wchar_t* navLeft();
-		void navLeft(wchar_t* value);
+		tstring navLeft();
+		void navLeft(tstring value);
 
 		/// <summary>
 		/// Sets or returns where to navigate when using the arrow-right navigation key
@@ -2736,8 +2736,8 @@ namespace litehtml
 		/// <value>
 		/// The nav right.
 		/// </value>
-		wchar_t* navRight();
-		void navRight(wchar_t* value);
+		tstring navRight();
+		void navRight(tstring value);
 
 		/// <summary>
 		/// Sets or returns where to navigate when using the arrow-up navigation key
@@ -2745,8 +2745,8 @@ namespace litehtml
 		/// <value>
 		/// The nav up.
 		/// </value>
-		wchar_t* navUp();
-		void navUp(wchar_t* value);
+		tstring navUp();
+		void navUp(tstring value);
 
 		/// <summary>
 		/// Specifies how the contents of a replaced element should be fitted to the box established by its used height and width
@@ -2754,8 +2754,8 @@ namespace litehtml
 		/// <value>
 		/// The object fit.
 		/// </value>
-		wchar_t* objectFit();
-		void objectFit(wchar_t* value);
+		tstring objectFit();
+		void objectFit(tstring value);
 
 		/// <summary>
 		/// Specifies the alignment of the replaced element inside its box
@@ -2763,8 +2763,8 @@ namespace litehtml
 		/// <value>
 		/// The object position.
 		/// </value>
-		wchar_t* objectPosition();
-		void objectPosition(wchar_t* value);
+		tstring objectPosition();
+		void objectPosition(tstring value);
 
 		/// <summary>
 		/// Sets or returns the opacity level for an element
@@ -2772,8 +2772,8 @@ namespace litehtml
 		/// <value>
 		/// The opacity.
 		/// </value>
-		wchar_t* opacity();
-		void opacity(wchar_t* value);
+		tstring opacity();
+		void opacity(tstring value);
 
 		/// <summary>
 		/// Sets or returns the order of the flexible item, relative to the rest
@@ -2781,8 +2781,8 @@ namespace litehtml
 		/// <value>
 		/// The order.
 		/// </value>
-		wchar_t* order();
-		void order(wchar_t* value);
+		tstring order();
+		void order(tstring value);
 
 		/// <summary>
 		/// Sets or returns the minimum number of lines for an element that must be left at the bottom of a page when a page break occurs inside an element
@@ -2790,8 +2790,8 @@ namespace litehtml
 		/// <value>
 		/// The orphans.
 		/// </value>
-		wchar_t* orphans();
-		void orphans(wchar_t* value);
+		tstring orphans();
+		void orphans(tstring value);
 
 		/// <summary>
 		/// Sets or returns all the outline properties in one declaration
@@ -2799,8 +2799,8 @@ namespace litehtml
 		/// <value>
 		/// The outline.
 		/// </value>
-		wchar_t* outline();
-		void outline(wchar_t*);
+		tstring outline();
+		void outline(tstring);
 
 		/// <summary>
 		/// Sets or returns the color of the outline around a element
@@ -2808,8 +2808,8 @@ namespace litehtml
 		/// <value>
 		/// The color of the outline.
 		/// </value>
-		wchar_t* outlineColor();
-		void outlineColor(wchar_t* value);
+		tstring outlineColor();
+		void outlineColor(tstring value);
 
 		/// <summary>
 		/// Offsets an outline, and draws it beyond the border edge
@@ -2817,8 +2817,8 @@ namespace litehtml
 		/// <value>
 		/// The outline offset.
 		/// </value>
-		wchar_t* outlineOffset();
-		void outlineOffset(wchar_t* value);
+		tstring outlineOffset();
+		void outlineOffset(tstring value);
 
 		/// <summary>
 		/// Sets or returns the style of the outline around an element
@@ -2826,8 +2826,8 @@ namespace litehtml
 		/// <value>
 		/// The outline style.
 		/// </value>
-		wchar_t* outlineStyle();
-		void outlineStyle(wchar_t* value);
+		tstring outlineStyle();
+		void outlineStyle(tstring value);
 
 		/// <summary>
 		/// Sets or returns the width of the outline around an element
@@ -2835,8 +2835,8 @@ namespace litehtml
 		/// <value>
 		/// The width of the outline.
 		/// </value>
-		wchar_t* outlineWidth();
-		void outlineWidth(wchar_t* value);
+		tstring outlineWidth();
+		void outlineWidth(tstring value);
 
 		/// <summary>
 		/// Sets or returns what to do with content that renders outside the element box
@@ -2844,8 +2844,8 @@ namespace litehtml
 		/// <value>
 		/// The overflow.
 		/// </value>
-		wchar_t* overflow();
-		void overflow(wchar_t* value);
+		tstring overflow();
+		void overflow(tstring value);
 
 		/// <summary>
 		/// Specifies what to do with the left/right edges of the content, if it overflows the element's content area
@@ -2853,8 +2853,8 @@ namespace litehtml
 		/// <value>
 		/// The overflow x.
 		/// </value>
-		wchar_t* overflowX();
-		void overflowX(wchar_t* value);
+		tstring overflowX();
+		void overflowX(tstring value);
 
 		/// <summary>
 		/// Specifies what to do with the top/bottom edges of the content, if it overflows the element's content area
@@ -2862,8 +2862,8 @@ namespace litehtml
 		/// <value>
 		/// The overflow y.
 		/// </value>
-		wchar_t* overflowY();
-		void overflowY(wchar_t* value);
+		tstring overflowY();
+		void overflowY(tstring value);
 
 		/// <summary>
 		/// Sets or returns the padding of an element (can have up to four values)
@@ -2871,8 +2871,8 @@ namespace litehtml
 		/// <value>
 		/// The padding.
 		/// </value>
-		wchar_t* padding();
-		void padding(wchar_t* value);
+		tstring padding();
+		void padding(tstring value);
 
 		/// <summary>
 		/// Sets or returns the bottom padding of an element
@@ -2880,8 +2880,8 @@ namespace litehtml
 		/// <value>
 		/// The padding bottom.
 		/// </value>
-		wchar_t* paddingBottom();
-		void paddingBottom(wchar_t* value);
+		tstring paddingBottom();
+		void paddingBottom(tstring value);
 
 		/// <summary>
 		/// Sets or returns the left padding of an element
@@ -2889,8 +2889,8 @@ namespace litehtml
 		/// <value>
 		/// The padding left.
 		/// </value>
-		wchar_t* paddingLeft();
-		void paddingLeft(wchar_t* value);
+		tstring paddingLeft();
+		void paddingLeft(tstring value);
 
 		/// <summary>
 		/// Sets or returns the right padding of an element
@@ -2898,8 +2898,8 @@ namespace litehtml
 		/// <value>
 		/// The padding right.
 		/// </value>
-		wchar_t* paddingRight();
-		void paddingRight(wchar_t* value);
+		tstring paddingRight();
+		void paddingRight(tstring value);
 
 		/// <summary>
 		/// Sets or returns the top padding of an element
@@ -2907,8 +2907,8 @@ namespace litehtml
 		/// <value>
 		/// The padding top.
 		/// </value>
-		wchar_t* paddingTop();
-		void paddingTop(wchar_t* value);
+		tstring paddingTop();
+		void paddingTop(tstring value);
 
 		/// <summary>
 		/// Sets or returns the page-break behavior after an element
@@ -2916,8 +2916,8 @@ namespace litehtml
 		/// <value>
 		/// The page break after.
 		/// </value>
-		wchar_t* pageBreakAfter();
-		void pageBreakAfter(wchar_t* value);
+		tstring pageBreakAfter();
+		void pageBreakAfter(tstring value);
 
 		/// <summary>
 		/// Sets or returns the page-break behavior before an element
@@ -2925,8 +2925,8 @@ namespace litehtml
 		/// <value>
 		/// The page break before.
 		/// </value>
-		wchar_t* pageBreakBefore();
-		void pageBreakBefore(wchar_t* value);
+		tstring pageBreakBefore();
+		void pageBreakBefore(tstring value);
 
 		/// <summary>
 		/// Sets or returns the page-break behavior inside an element
@@ -2934,8 +2934,8 @@ namespace litehtml
 		/// <value>
 		/// The page break inside.
 		/// </value>
-		wchar_t* pageBreakInside();
-		void pageBreakInside(wchar_t* value);
+		tstring pageBreakInside();
+		void pageBreakInside(tstring value);
 
 		/// <summary>
 		/// Sets or returns the perspective on how 3D elements are viewed
@@ -2943,8 +2943,8 @@ namespace litehtml
 		/// <value>
 		/// The perspective.
 		/// </value>
-		wchar_t* perspective();
-		void perspective(wchar_t* value);
+		tstring perspective();
+		void perspective(tstring value);
 
 		/// <summary>
 		/// Sets or returns the bottom position of 3D elements
@@ -2952,8 +2952,8 @@ namespace litehtml
 		/// <value>
 		/// The perspective origin.
 		/// </value>
-		wchar_t* perspectiveOrigin();
-		void perspectiveOrigin(wchar_t* value);
+		tstring perspectiveOrigin();
+		void perspectiveOrigin(tstring value);
 
 		/// <summary>
 		/// Sets or returns the type of positioning method used for an element (static, relative, absolute or fixed)
@@ -2961,8 +2961,8 @@ namespace litehtml
 		/// <value>
 		/// The position.
 		/// </value>
-		wchar_t* position();
-		void position(wchar_t* value);
+		tstring position();
+		void position(tstring value);
 
 		/// <summary>
 		/// Sets or returns the type of quotation marks for embedded quotations
@@ -2970,8 +2970,8 @@ namespace litehtml
 		/// <value>
 		/// The quotes.
 		/// </value>
-		wchar_t* quotes();
-		void quotes(wchar_t* value);
+		tstring quotes();
+		void quotes(tstring value);
 
 		/// <summary>
 		/// Sets or returns whether or not an element is resizable by the user
@@ -2979,8 +2979,8 @@ namespace litehtml
 		/// <value>
 		/// The resize.
 		/// </value>
-		wchar_t* resize();
-		void resize(wchar_t* value);
+		tstring resize();
+		void resize(tstring value);
 
 		/// <summary>
 		/// Sets or returns the right position of a positioned element
@@ -2988,8 +2988,8 @@ namespace litehtml
 		/// <value>
 		/// The right.
 		/// </value>
-		wchar_t* right();
-		void right(wchar_t* value);
+		tstring right();
+		void right(tstring value);
 
 		/// <summary>
 		/// Sets or returns the way to lay out table cells, rows, and columns
@@ -2997,8 +2997,8 @@ namespace litehtml
 		/// <value>
 		/// The table layout.
 		/// </value>
-		wchar_t* tableLayout();
-		void tableLayout(wchar_t* value);
+		tstring tableLayout();
+		void tableLayout(tstring value);
 
 		/// <summary>
 		/// Sets or returns the length of the tab-character
@@ -3006,8 +3006,8 @@ namespace litehtml
 		/// <value>
 		/// The size of the tab.
 		/// </value>
-		wchar_t* tabSize();
-		void tabSize(wchar_t* value);
+		tstring tabSize();
+		void tabSize(tstring value);
 
 		/// <summary>
 		/// Sets or returns the horizontal alignment of text
@@ -3015,8 +3015,8 @@ namespace litehtml
 		/// <value>
 		/// The text align.
 		/// </value>
-		wchar_t* textAlign();
-		void textAlign(wchar_t* value);
+		tstring textAlign();
+		void textAlign(tstring value);
 
 		/// <summary>
 		/// Sets or returns how the last line of a block or a line right before a forced line break is aligned when text-align is "justify"
@@ -3024,8 +3024,8 @@ namespace litehtml
 		/// <value>
 		/// The text align last.
 		/// </value>
-		wchar_t* textAlignLast();
-		void textAlignLast(wchar_t* value);
+		tstring textAlignLast();
+		void textAlignLast(tstring value);
 
 		/// <summary>
 		/// Sets or returns the decoration of a text
@@ -3033,8 +3033,8 @@ namespace litehtml
 		/// <value>
 		/// The text decoration.
 		/// </value>
-		wchar_t* textDecoration();
-		void textDecoration(wchar_t* value);
+		tstring textDecoration();
+		void textDecoration(tstring value);
 
 		/// <summary>
 		/// Sets or returns the color of the text-decoration
@@ -3042,8 +3042,8 @@ namespace litehtml
 		/// <value>
 		/// The color of the text decoration.
 		/// </value>
-		wchar_t* textDecorationColor();
-		void textDecorationColor(wchar_t* value);
+		tstring textDecorationColor();
+		void textDecorationColor(tstring value);
 
 		/// <summary>
 		/// Sets or returns the type of line in a text-decoration
@@ -3051,8 +3051,8 @@ namespace litehtml
 		/// <value>
 		/// The text decoration line.
 		/// </value>
-		wchar_t* textDecorationLine();
-		void textDecorationLine(wchar_t* value);
+		tstring textDecorationLine();
+		void textDecorationLine(tstring value);
 
 		/// <summary>
 		/// Sets or returns the style of the line in a text decoration
@@ -3060,8 +3060,8 @@ namespace litehtml
 		/// <value>
 		/// The text decoration style.
 		/// </value>
-		wchar_t* textDecorationStyle();
-		void textDecorationStyle(wchar_t* value);
+		tstring textDecorationStyle();
+		void textDecorationStyle(tstring value);
 
 		/// <summary>
 		/// Sets or returns the indentation of the first line of text
@@ -3069,8 +3069,8 @@ namespace litehtml
 		/// <value>
 		/// The text indent.
 		/// </value>
-		wchar_t* textIndent();
-		void textIndent(wchar_t* value);
+		tstring textIndent();
+		void textIndent(tstring value);
 
 		/// <summary>
 		/// Sets or returns the justification method used when text-align is "justify"
@@ -3078,8 +3078,8 @@ namespace litehtml
 		/// <value>
 		/// The text justify.
 		/// </value>
-		wchar_t* textJustify();
-		void textJustify(wchar_t* value);
+		tstring textJustify();
+		void textJustify(tstring value);
 
 		/// <summary>
 		/// Sets or returns what should happen when text overflows the containing element
@@ -3087,8 +3087,8 @@ namespace litehtml
 		/// <value>
 		/// The text overflow.
 		/// </value>
-		wchar_t* textOverflow();
-		void textOverflow(wchar_t* value);
+		tstring textOverflow();
+		void textOverflow(tstring value);
 
 		/// <summary>
 		/// Sets or returns the shadow effect of a text
@@ -3096,8 +3096,8 @@ namespace litehtml
 		/// <value>
 		/// The text shadow.
 		/// </value>
-		wchar_t* textShadow();
-		void textShadow(wchar_t* value);
+		tstring textShadow();
+		void textShadow(tstring value);
 
 		/// <summary>
 		/// Sets or returns the capitalization of a text
@@ -3105,8 +3105,8 @@ namespace litehtml
 		/// <value>
 		/// The text transform.
 		/// </value>
-		wchar_t* textTransform();
-		void textTransform(wchar_t* value);
+		tstring textTransform();
+		void textTransform(tstring value);
 
 		/// <summary>
 		/// Sets or returns the top position of a positioned element
@@ -3114,8 +3114,8 @@ namespace litehtml
 		/// <value>
 		/// The top.
 		/// </value>
-		wchar_t* top();
-		void top(wchar_t* value);
+		tstring top();
+		void top(tstring value);
 
 		/// <summary>
 		/// Applies a 2D or 3D transformation to an element
@@ -3123,8 +3123,8 @@ namespace litehtml
 		/// <value>
 		/// The transform.
 		/// </value>
-		wchar_t* transform();
-		void transform(wchar_t* value);
+		tstring transform();
+		void transform(tstring value);
 
 		/// <summary>
 		/// Sets or returns the position of transformed elements
@@ -3132,8 +3132,8 @@ namespace litehtml
 		/// <value>
 		/// The transform origin.
 		/// </value>
-		wchar_t* transformOrigin();
-		void transformOrigin(wchar_t* value);
+		tstring transformOrigin();
+		void transformOrigin(tstring value);
 
 		/// <summary>
 		/// Sets or returns how nested elements are rendered in 3D space
@@ -3141,8 +3141,8 @@ namespace litehtml
 		/// <value>
 		/// The transform style.
 		/// </value>
-		wchar_t* transformStyle();
-		void transformStyle(wchar_t* value);
+		tstring transformStyle();
+		void transformStyle(tstring value);
 
 		/// <summary>
 		/// A shorthand property for setting or returning the four transition properties
@@ -3150,8 +3150,8 @@ namespace litehtml
 		/// <value>
 		/// The transition.
 		/// </value>
-		wchar_t* transition();
-		void transition(wchar_t* value);
+		tstring transition();
+		void transition(tstring value);
 
 		/// <summary>
 		/// Sets or returns the CSS property that the transition effect is for
@@ -3159,8 +3159,8 @@ namespace litehtml
 		/// <value>
 		/// The transition property.
 		/// </value>
-		wchar_t* transitionProperty();
-		void transitionProperty(wchar_t* value);
+		tstring transitionProperty();
+		void transitionProperty(tstring value);
 
 		/// <summary>
 		/// Sets or returns how many seconds or milliseconds a transition effect takes to complete
@@ -3168,8 +3168,8 @@ namespace litehtml
 		/// <value>
 		/// The duration of the transition.
 		/// </value>
-		wchar_t* transitionDuration();
-		void transitionDuration(wchar_t* value);
+		tstring transitionDuration();
+		void transitionDuration(tstring value);
 
 		/// <summary>
 		/// Sets or returns the speed curve of the transition effect
@@ -3177,8 +3177,8 @@ namespace litehtml
 		/// <value>
 		/// The transition timing function.
 		/// </value>
-		wchar_t* transitionTimingFunction();
-		void transitionTimingFunction(wchar_t* value);
+		tstring transitionTimingFunction();
+		void transitionTimingFunction(tstring value);
 
 		/// <summary>
 		/// Sets or returns when the transition effect will start
@@ -3186,8 +3186,8 @@ namespace litehtml
 		/// <value>
 		/// The transition delay.
 		/// </value>
-		wchar_t* transitionDelay();
-		void transitionDelay(wchar_t* value);
+		tstring transitionDelay();
+		void transitionDelay(tstring value);
 
 		/// <summary>
 		/// Sets or returns whether the text should be overridden to support multiple languages in the same document
@@ -3195,8 +3195,8 @@ namespace litehtml
 		/// <value>
 		/// The unicode bidi.
 		/// </value>
-		wchar_t* unicodeBidi();
-		void unicodeBidi(wchar_t* value);
+		tstring unicodeBidi();
+		void unicodeBidi(tstring value);
 
 		/// <summary>
 		/// Sets or returns whether the text of an element can be selected or not
@@ -3204,8 +3204,8 @@ namespace litehtml
 		/// <value>
 		/// The user select.
 		/// </value>
-		wchar_t* userSelect();
-		void userSelect(wchar_t* value);
+		tstring userSelect();
+		void userSelect(tstring value);
 
 		/// <summary>
 		/// Sets or returns the vertical alignment of the content in an element
@@ -3213,8 +3213,8 @@ namespace litehtml
 		/// <value>
 		/// The vertical align.
 		/// </value>
-		wchar_t* verticalAlign();
-		void verticalAlign(wchar_t* value);
+		tstring verticalAlign();
+		void verticalAlign(tstring value);
 
 		/// <summary>
 		/// Sets or returns whether an element should be visible
@@ -3222,8 +3222,8 @@ namespace litehtml
 		/// <value>
 		/// The visibility.
 		/// </value>
-		wchar_t* visibility();
-		void visibility(wchar_t* value);
+		tstring visibility();
+		void visibility(tstring value);
 
 		/// <summary>
 		/// Sets or returns how to handle tabs, line breaks and whitespace in a text
@@ -3231,8 +3231,8 @@ namespace litehtml
 		/// <value>
 		/// The white space.
 		/// </value>
-		wchar_t* whiteSpace();
-		void whiteSpace(wchar_t* value);
+		tstring whiteSpace();
+		void whiteSpace(tstring value);
 
 		/// <summary>
 		/// Sets or returns the width of an element
@@ -3240,8 +3240,8 @@ namespace litehtml
 		/// <value>
 		/// The width.
 		/// </value>
-		wchar_t* width();
-		void width(wchar_t* value);
+		tstring width();
+		void width(tstring value);
 
 		/// <summary>
 		/// Sets or returns line breaking rules for non-CJK scripts
@@ -3249,8 +3249,8 @@ namespace litehtml
 		/// <value>
 		/// The word break.
 		/// </value>
-		wchar_t* wordBreak();
-		void wordBreak(wchar_t* value);
+		tstring wordBreak();
+		void wordBreak(tstring value);
 
 		/// <summary>
 		/// Sets or returns the spacing between words in a text
@@ -3258,8 +3258,8 @@ namespace litehtml
 		/// <value>
 		/// The word spacing.
 		/// </value>
-		wchar_t* wordSpacing();
-		void wordSpacing(wchar_t* value);
+		tstring wordSpacing();
+		void wordSpacing(tstring value);
 
 		/// <summary>
 		/// Allows long, unbreakable words to be broken and wrap to the next line
@@ -3267,8 +3267,8 @@ namespace litehtml
 		/// <value>
 		/// The word wrap.
 		/// </value>
-		wchar_t* wordWrap();
-		void wordWrap(wchar_t* value);
+		tstring wordWrap();
+		void wordWrap(tstring value);
 
 		/// <summary>
 		/// Sets or returns the minimum number of lines for an element that must be visible at the top of a page
@@ -3276,8 +3276,8 @@ namespace litehtml
 		/// <value>
 		/// The widows.
 		/// </value>
-		wchar_t* widows();
-		void widows(wchar_t* value);
+		tstring widows();
+		void widows(tstring value);
 
 		/// <summary>
 		/// Sets or returns the stack order of a positioned element
@@ -3285,8 +3285,8 @@ namespace litehtml
 		/// <value>
 		/// The index of the z.
 		/// </value>
-		wchar_t* zIndex();
-		void zIndex(wchar_t* value);
+		tstring zIndex();
+		void zIndex(tstring value);
 	};
 
 	/// <summary>
@@ -3310,7 +3310,7 @@ namespace litehtml
 		/// <value>
 		/// The console.
 		/// </value>
-		Console& console();
+		Console* console();
 
 		/// <summary>
 		/// Sets or returns the default text in the statusbar of a window
@@ -3318,8 +3318,8 @@ namespace litehtml
 		/// <value>
 		/// The default status.
 		/// </value>
-		wchar_t* defaultStatus();
-		void defaultStatus(wchar_t* value);
+		tstring defaultStatus();
+		void defaultStatus(tstring value);
 
 		/// <summary>
 		/// Returns the Document object for the window (See Document object)
@@ -3327,7 +3327,7 @@ namespace litehtml
 		/// <value>
 		/// The document.
 		/// </value>
-		Document& document();
+		Document* document();
 
 		/// <summary>
 		/// Returns the <iframe> element in which the current window is inserted
@@ -3335,7 +3335,7 @@ namespace litehtml
 		/// <value>
 		/// The frame element.
 		/// </value>
-		Element& frameElement();
+		Element* frameElement();
 
 		/// <summary>
 		/// Returns all <iframe> elements in the current window
@@ -3343,7 +3343,7 @@ namespace litehtml
 		/// <value>
 		/// The frames.
 		/// </value>
-		std::vector<Element&> frames();
+		std::vector<Element*> frames();
 
 		/// <summary>
 		/// Returns the History object for the window (See History object)
@@ -3351,7 +3351,7 @@ namespace litehtml
 		/// <value>
 		/// The history.
 		/// </value>
-		History& history();
+		History* history();
 
 		/// <summary>
 		/// Returns the height of the window's content area (viewport) including scrollbars
@@ -3383,7 +3383,7 @@ namespace litehtml
 		/// <value>
 		/// The local storage.
 		/// </value>
-		Storage& localStorage();
+		Storage* localStorage();
 
 		/// <summary>
 		/// Returns the Location object for the window (See Location object)
@@ -3391,7 +3391,7 @@ namespace litehtml
 		/// <value>
 		/// The location.
 		/// </value>
-		Location& location();
+		Location* location();
 
 		/// <summary>
 		/// Sets or returns the name of a window
@@ -3399,8 +3399,8 @@ namespace litehtml
 		/// <value>
 		/// The name.
 		/// </value>
-		wchar_t* name();
-		void name(wchar_t* value);
+		tstring name();
+		void name(tstring value);
 
 		/// <summary>
 		/// Returns the Navigator object for the window (See Navigator object)
@@ -3408,7 +3408,7 @@ namespace litehtml
 		/// <value>
 		/// The navigator.
 		/// </value>
-		Navigator& navigator();
+		Navigator* navigator();
 
 		/// <summary>
 		/// Returns a reference to the window that created the window
@@ -3416,7 +3416,7 @@ namespace litehtml
 		/// <value>
 		/// The opener.
 		/// </value>
-		Window& opener();
+		Window* opener();
 
 		/// <summary>
 		/// Returns the height of the browser window, including toolbars/scrollbars
@@ -3456,7 +3456,7 @@ namespace litehtml
 		/// <value>
 		/// The parent.
 		/// </value>
-		Window& parent();
+		Window* parent();
 
 		/// <summary>
 		/// Returns the Screen object for the window (See Screen object)
@@ -3464,7 +3464,7 @@ namespace litehtml
 		/// <value>
 		/// The screen.
 		/// </value>
-		Screen& screen();
+		Screen* screen();
 
 		/// <summary>
 		/// Returns the horizontal coordinate of the window relative to the screen
@@ -3504,7 +3504,7 @@ namespace litehtml
 		/// <value>
 		/// The session storage.
 		/// </value>
-		Storage& sessionStorage();
+		Storage* sessionStorage();
 
 		/// <summary>
 		/// An alias of pageXOffset
@@ -3528,7 +3528,7 @@ namespace litehtml
 		/// <value>
 		/// The self.
 		/// </value>
-		Window& self();
+		Window* self();
 
 		/// <summary>
 		/// Sets or returns the text in the statusbar of a window
@@ -3536,8 +3536,8 @@ namespace litehtml
 		/// <value>
 		/// The status.
 		/// </value>
-		wchar_t* status();
-		void status(wchar_t* value);
+		tstring status();
+		void status(tstring value);
 
 		/// <summary>
 		/// Returns the topmost browser window
@@ -3545,20 +3545,20 @@ namespace litehtml
 		/// <value>
 		/// The top.
 		/// </value>
-		Window& top();
+		Window* top();
 
 		/// <summary>
 		/// Displays an alert box with a message and an OK button
 		/// </summary>
 		/// <param name="message">The message.</param>
-		void alert(wchar_t* message);
+		void alert(tstring message);
 
 		/// <summary>
 		/// Decodes a base-64 encoded string
 		/// </summary>
 		/// <param name="encodedStr">The encoded string.</param>
 		/// <returns></returns>
-		wchar_t* atob(wchar_t* encodedStr);
+		tstring atob(tstring encodedStr);
 
 		/// <summary>
 		/// Removes focus from the current window
@@ -3570,19 +3570,19 @@ namespace litehtml
 		/// </summary>
 		/// <param name="str">The string.</param>
 		/// <returns></returns>
-		wchar_t* btoa(wchar_t* str);
+		tstring btoa(tstring str);
 
 		/// <summary>
 		/// Clears a timer set with setInterval()
 		/// </summary>
 		/// <param name="var">The variable.</param>
-		void clearInterval(wchar_t* var);
+		void clearInterval(tstring var);
 
 		/// <summary>
 		/// Clears a timer set with setTimeout()
 		/// </summary>
 		/// <param name="id_of_settimeout">The identifier of settimeout.</param>
-		void clearTimeout(wchar_t* id_of_settimeout);
+		void clearTimeout(tstring id_of_settimeout);
 
 		/// <summary>
 		/// Closes the current window
@@ -3594,7 +3594,7 @@ namespace litehtml
 		/// </summary>
 		/// <param name="message">The message.</param>
 		/// <returns></returns>
-		bool confirm(wchar_t* message);
+		bool confirm(tstring message);
 
 		/// <summary>
 		/// Sets focus to the current window
@@ -3607,7 +3607,7 @@ namespace litehtml
 		/// <param name="element">The element.</param>
 		/// <param name="pseudoElement">The pseudo element.</param>
 		/// <returns></returns>
-		Style& getComputedStyle(wchar_t* element, wchar_t* pseudoElement);
+		Style* getComputedStyle(tstring element, tstring pseudoElement);
 
 		/// <summary>
 		/// Returns a Selection object representing the range of text selected by the user
@@ -3620,7 +3620,7 @@ namespace litehtml
 		/// </summary>
 		/// <param name="mediaQueryString">The media query string.</param>
 		/// <returns></returns>
-		MediaQueryList& matchMedia(wchar_t* mediaQueryString);
+		MediaQueryList& matchMedia(tstring mediaQueryString);
 
 		/// <summary>
 		/// Moves a window relative to its current position
@@ -3644,7 +3644,7 @@ namespace litehtml
 		/// <param name="specs">The specs.</param>
 		/// <param name="replace">The replace.</param>
 		/// <returns></returns>
-		Window& open(wchar_t* URL = nullptr, wchar_t* name = nullptr, wchar_t* specs = nullptr, bool replace = true);
+		Window* open(tstring URL = nullptr, tstring name = nullptr, tstring specs = nullptr, bool replace = true);
 
 		/// <summary>
 		/// Prints the content of the current window
@@ -3657,7 +3657,7 @@ namespace litehtml
 		/// <param name="text">The text.</param>
 		/// <param name="defaultText">The default text.</param>
 		/// <returns></returns>
-		wchar_t* prompt(wchar_t* text, wchar_t* defaultText = nullptr);
+		tstring prompt(tstring text, tstring defaultText = nullptr);
 
 		/// <summary>
 		/// Requests the browser to call a function to update an animation before the next repaint
@@ -3700,7 +3700,7 @@ namespace litehtml
 		/// <param name="milliseconds">The milliseconds.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns></returns>
-		int setInterval(wchar_t* function, int milliseconds, ...);
+		int setInterval(tstring function, int milliseconds, ...);
 
 		/// <summary>
 		/// Calls a function or evaluates an expression after a specified number of milliseconds
@@ -3709,7 +3709,7 @@ namespace litehtml
 		/// <param name="milliseconds">The milliseconds.</param>
 		/// <param name="args">The arguments.</param>
 		/// <returns></returns>
-		int setTimeout(wchar_t* function, int milliseconds, ...);
+		int setTimeout(tstring function, int milliseconds, ...);
 
 		/// <summary>
 		/// Stops the window from loading
@@ -3729,7 +3729,7 @@ namespace litehtml
 		/// </summary>
 		/// <param name="index">The index.</param>
 		/// <returns></returns>
-		wchar_t* key(int index);
+		tstring key(int index);
 
 		/// <summary>
 		/// Returns the number of data items stored in the Storage object
@@ -3744,7 +3744,7 @@ namespace litehtml
 		/// </summary>
 		/// <param name="keyname">The keyname.</param>
 		/// <returns></returns>
-		wchar_t* getItem(wchar_t* keyname);
+		tstring getItem(tstring keyname);
 
 		/// <summary>
 		/// Adds that key to the storage, or update that key's value if it already exists
@@ -3752,13 +3752,13 @@ namespace litehtml
 		/// <param name="keyname">The keyname.</param>
 		/// <param name="value">The value.</param>
 		/// <returns></returns>
-		wchar_t* setItem(wchar_t* keyname, wchar_t* value);
+		tstring setItem(tstring keyname, tstring value);
 
 		/// <summary>
 		/// Removes that key from the storage
 		/// </summary>
 		/// <param name="keyname">The keyname.</param>
-		void removeItem(wchar_t* keyname);
+		void removeItem(tstring keyname);
 
 		/// <summary>
 		/// Empty all key out of the storage
