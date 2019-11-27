@@ -1,6 +1,9 @@
 #include "html.h"
 #include "api_node.h"
 
+/// <summary>
+/// NodeList
+/// </summary>
 namespace litehtml
 {
 	Node* NodeList::operator[](int index)
@@ -9,14 +12,24 @@ namespace litehtml
 	}
 }
 
+/// <summary>
+/// NamedNodeMap
+/// </summary>
 namespace litehtml
 {
+	NamedNodeMap* NamedNodeMap::Empty;
+	NamedNodeMap::NamedNodeMap(string_map* attrs) : m_attrs(attrs) { }
+
 	/// <summary>
 	/// Returns a specified attribute node from a NamedNodeMap
 	/// </summary>
-	template <class TNode>
-	TNode* NamedNodeMap<TNode>::getNamedItem(tstring nodename)
+	Attr* NamedNodeMap::getNamedItem(tstring nodename)
 	{
+		string_map::const_iterator attr = m_attrs->find(nodename);
+		//if (attr != m_attrs->end())
+		//{
+		//	return new attr(attr->second.c_str());
+		//}
 		return nullptr;
 	}
 
@@ -29,8 +42,7 @@ namespace litehtml
 	/// <param name="index">The index.</param>
 	/// <returns></returns>
 	// Overloading [] operator to access elements in array style 
-	template <class TNode>
-	TNode* NamedNodeMap<TNode>::operator[](int index)
+	Attr* NamedNodeMap::operator[](int index)
 	{
 		return nullptr;
 	}
@@ -40,8 +52,7 @@ namespace litehtml
 	/// </summary>
 	/// <param name="index">The index.</param>
 	/// <returns></returns>
-	template <class TNode>
-	TNode* NamedNodeMap<TNode>::item(int index)
+	Attr* NamedNodeMap::item(int index)
 	{
 		return nullptr;
 	}
@@ -52,8 +63,7 @@ namespace litehtml
 	/// <value>
 	/// The length.
 	/// </value>
-	template <class TNode>
-	int NamedNodeMap<TNode>::length()
+	int NamedNodeMap::length()
 	{
 		return 0;
 	}
@@ -64,8 +74,7 @@ namespace litehtml
 	/// <param name="nodename">The nodename.</param>
 	/// <returns></returns>
 	/// <exception cref="NotImplementedException"></exception>
-	template <class TNode>
-	TNode* NamedNodeMap<TNode>::removeNamedItem(tstring nodename)
+	Attr* NamedNodeMap::removeNamedItem(tstring nodename)
 	{
 		return nullptr;
 	}
@@ -76,15 +85,15 @@ namespace litehtml
 	/// <param name="node">The node.</param>
 	/// <returns></returns>
 	/// <exception cref="NotImplementedException"></exception>
-	template <class TNode>
-	TNode* NamedNodeMap<TNode>::setNamedItem(TNode* node)
+	Attr* NamedNodeMap::setNamedItem(Attr* node)
 	{
 		return nullptr;
 	}
-
-	template class NamedNodeMap<Attr>;
 }
 
+/// <summary>
+/// DOMTokenList
+/// </summary>
 namespace litehtml
 {
 	/// <summary>

@@ -1,8 +1,10 @@
 #include "html.h"
 #include "node.h"
 #include "document.h"
-//#include "element.h"
 
+/// <summary>
+/// Node
+/// </summary>
 namespace litehtml
 {
 	/// <summary>
@@ -12,6 +14,7 @@ namespace litehtml
 	/// <returns></returns>
 	Node* Node::appendChild(Node* node)
 	{
+		//throw;
 		return nullptr;
 	}
 
@@ -21,10 +24,9 @@ namespace litehtml
 	/// <value>
 	/// The attributes.
 	/// </value>
-	NamedNodeMap<Attr>& Node::attributes()
+	NamedNodeMap& Node::attributes()
 	{
-		NamedNodeMap<Attr> a;
-		return a;
+		return NamedNodeMap(nullptr); // NamedNodeMap(((html_tag)_t)._attrs);
 	}
 
 	/// <summary>
@@ -74,47 +76,6 @@ namespace litehtml
 	/// The first child.
 	/// </value>
 	Node* Node::firstChild()
-	{
-		return nullptr;
-	}
-
-	///// <summary>
-	///// Returns a DOM object which implements the specialized APIs of the specified feature and version
-	///// </summary>
-	///// <param name="feature">The feature.</param>
-	///// <param name="version">The version.</param>
-	///// <returns></returns>
-	//void* Node::getFeature(tstring feature, tstring version); //: Base
-
-	/// <summary>
-	/// Returns the object associated to a key on a this node. The object must first have been set to this node by calling setUserData with the same key
-	/// </summary>
-	/// <param name="key">The key.</param>
-	/// <returns></returns>
-	tstring Node::getUserData(tstring key) //: Base
-	{
-		return nullptr;
-	}
-
-	/// <summary>
-	/// Returns true if an element has the specified attribute, otherwise false
-	/// </summary>
-	/// <param name="attributename">The attributename.</param>
-	/// <returns>
-	///   <c>true</c> if the specified attributename has attribute; otherwise, <c>false</c>.
-	/// </returns>
-	bool Node::hasAttribute(tstring attributename) //: Node
-	{
-		return nullptr;
-	}
-
-	/// <summary>
-	/// Returns true if an element has any attributes, otherwise false
-	/// </summary>
-	/// <returns>
-	///   <c>true</c> if this instance has attributes; otherwise, <c>false</c>.
-	/// </returns>
-	bool Node::hasAttributes()
 	{
 		return nullptr;
 	}
@@ -320,16 +281,6 @@ namespace litehtml
 	}
 
 	/// <summary>
-	/// Sets the user data.
-	/// </summary>
-	/// <param name="key">The key.</param>
-	/// <param name="data">The data.</param>
-	/// <param name="handler">The handler.</param>
-	void Node::setUserData(tstring key, tstring data, tstring handler) //: Base
-	{
-	}
-
-	/// <summary>
 	/// Sets or returns the textual content of a node and its descendants
 	/// </summary>
 	/// <value>
@@ -344,6 +295,9 @@ namespace litehtml
 	}
 }
 
+/// <summary>
+/// Attr
+/// </summary>
 namespace litehtml
 {
 	/// <summary>
@@ -383,6 +337,9 @@ namespace litehtml
 	}
 }
 
+/// <summary>
+/// Element
+/// </summary>
 namespace litehtml
 {
 	/// <summary>
@@ -575,6 +532,29 @@ namespace litehtml
 		css_selector sel(elem);
 		((element*)this)->select_all(sel);
 		return NodeList();
+	}
+
+	/// <summary>
+	/// Returns true if an element has the specified attribute, otherwise false
+	/// </summary>
+	/// <param name="attributename">The attributename.</param>
+	/// <returns>
+	///   <c>true</c> if the specified attributename has attribute; otherwise, <c>false</c>.
+	/// </returns>
+	bool Element::hasAttribute(tstring attributename) //: Node
+	{
+		return nullptr;
+	}
+
+	/// <summary>
+	/// Returns true if an element has any attributes, otherwise false
+	/// </summary>
+	/// <returns>
+	///   <c>true</c> if this instance has attributes; otherwise, <c>false</c>.
+	/// </returns>
+	bool Element::hasAttributes()
+	{
+		return nullptr;
 	}
 
 	/// <summary>
@@ -861,9 +841,11 @@ namespace litehtml
 	tstring Element::toString() { return nullptr; }
 }
 
+/// <summary>
+/// Document
+/// </summary>
 namespace litehtml
 {
-
 	/// <summary>
 	/// Returns the currently focused element in the document
 	/// </summary>

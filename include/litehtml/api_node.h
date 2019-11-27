@@ -8,8 +8,8 @@ namespace litehtml
 	class Document;
 	class Attr;
 	class NodeList;
-	template <typename TNode>
 	class NamedNodeMap;
+	typedef std::map<litehtml::tstring, litehtml::tstring> string_map;
 
 	/// <summary>
 	/// Node
@@ -30,7 +30,7 @@ namespace litehtml
 		/// <value>
 		/// The attributes.
 		/// </value>
-		NamedNodeMap<Attr>& attributes();
+		NamedNodeMap& attributes();
 
 		/// <summary>
 		/// Returns the absolute base URI of a node
@@ -66,38 +66,6 @@ namespace litehtml
 		/// The first child.
 		/// </value>
 		Node* firstChild();
-
-		///// <summary>
-		///// Returns a DOM object which implements the specialized APIs of the specified feature and version
-		///// </summary>
-		///// <param name="feature">The feature.</param>
-		///// <param name="version">The version.</param>
-		///// <returns></returns>
-		//void* getFeature(tstring feature, tstring version); //: Base
-
-		/// <summary>
-		/// Returns the object associated to a key on a this node. The object must first have been set to this node by calling setUserData with the same key
-		/// </summary>
-		/// <param name="key">The key.</param>
-		/// <returns></returns>
-		tstring getUserData(tstring key); //: Base
-
-		/// <summary>
-		/// Returns true if an element has the specified attribute, otherwise false
-		/// </summary>
-		/// <param name="attributename">The attributename.</param>
-		/// <returns>
-		///   <c>true</c> if the specified attributename has attribute; otherwise, <c>false</c>.
-		/// </returns>
-		bool hasAttribute(tstring attributename);  //: Node
-
-		/// <summary>
-		/// Returns true if an element has any attributes, otherwise false
-		/// </summary>
-		/// <returns>
-		///   <c>true</c> if this instance has attributes; otherwise, <c>false</c>.
-		/// </returns>
-		bool hasAttributes();
 
 		/// <summary>
 		/// Returns true if an element has any child nodes, otherwise false
@@ -243,14 +211,6 @@ namespace litehtml
 		Node* replaceChild(Node* newnode, Node* oldnode);
 
 		/// <summary>
-		/// Sets the user data.
-		/// </summary>
-		/// <param name="key">The key.</param>
-		/// <param name="data">The data.</param>
-		/// <param name="handler">The handler.</param>
-		void setUserData(tstring key, tstring data, tstring handler); //: Base
-
-		/// <summary>
 		/// Sets or returns the textual content of a node and its descendants
 		/// </summary>
 		/// <value>
@@ -307,14 +267,17 @@ namespace litehtml
 	/// <summary>
 	/// NamedNodeMap
 	/// </summary>
-	template <typename TNode>
-	class NamedNodeMap
+	struct NamedNodeMap
 	{
-	public:
+		static NamedNodeMap* Empty;
+		string_map* m_attrs;
+
+		NamedNodeMap(string_map* attrs);
+
 		/// <summary>
 		/// Returns a specified attribute node from a NamedNodeMap
 		/// </summary>
-		TNode* getNamedItem(tstring nodename);
+		Attr* getNamedItem(tstring nodename);
 
 		/// <summary>
 		/// Gets the <see cref="Node"/> with the specified index.
@@ -325,14 +288,14 @@ namespace litehtml
 		/// <param name="index">The index.</param>
 		/// <returns></returns>
 		// Overloading [] operator to access elements in array style 
-		TNode* operator[](int index);
+		Attr* operator[](int index);
 
 		/// <summary>
 		/// Returns the attribute node at a specified index in a NamedNodeMap
 		/// </summary>
 		/// <param name="index">The index.</param>
 		/// <returns></returns>
-		TNode* item(int index);
+		Attr* item(int index);
 
 		/// <summary>
 		/// Returns the number of attribute nodes in a NamedNodeMap
@@ -348,7 +311,7 @@ namespace litehtml
 		/// <param name="nodename">The nodename.</param>
 		/// <returns></returns>
 		/// <exception cref="NotImplementedException"></exception>
-		TNode* removeNamedItem(tstring nodename);
+		Attr* removeNamedItem(tstring nodename);
 
 		/// <summary>
 		/// Sets the specified attribute node (by name)
@@ -356,7 +319,7 @@ namespace litehtml
 		/// <param name="node">The node.</param>
 		/// <returns></returns>
 		/// <exception cref="NotImplementedException"></exception>
-		TNode* setNamedItem(TNode* node);
+		Attr* setNamedItem(Attr* node);
 	};
 
 	/// <summary>

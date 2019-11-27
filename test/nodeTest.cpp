@@ -23,20 +23,24 @@ static void AttribTest() {
 	// https://www.w3schools.com/jsref/prop_attr_name.asp
 	{
 		auto x = document->getElementsByTagName(_t("BUTTON"))[0]->attributes()[0]->name();
+		assert(!t_strcmp(_t("onclick"), x.c_str()));
 	}
 
 	// https://www.w3schools.com/jsref/prop_attr_value.asp
 	{
 		auto x = document->getElementsByTagName(_t("BUTTON"))[0]->attributes()[0]->value();
+		assert(!t_strcmp(_t("myFunction()"), x.c_str()));
 	}
 	{
 		auto x = (Element*)document->getElementsByTagName(_t("IMG"))[0];
 		x->getAttributeNode(_t("src"))->value(_t("pic_bulbon.gif"));
+		assert(!t_strcmp(_t("pic_bulbon.gif"), x->getAttributeNode(_t("src"))->value().c_str()));
 	}
 
 	// https://www.w3schools.com/jsref/prop_attr_specified.asp
 	{
 		auto x = document->getElementById(_t("demo"))->attributes()[0]->specified();
+		assert(x);
 	}
 }
 

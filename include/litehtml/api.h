@@ -772,22 +772,22 @@ namespace litehtml
 		/// <returns></returns>
 		NodeList& getElementsByTagName(tstring tagname);
 
-		///// <summary>
-		///// Returns true if an element has the specified attribute, otherwise false
-		///// </summary>
-		///// <param name="attributename">The attributename.</param>
-		///// <returns>
-		/////   <c>true</c> if the specified attributename has attribute; otherwise, <c>false</c>.
-		///// </returns>
-		//bool hasAttribute(tstring attributename);
+		/// <summary>
+		/// Returns true if an element has the specified attribute, otherwise false
+		/// </summary>
+		/// <param name="attributename">The attributename.</param>
+		/// <returns>
+		///   <c>true</c> if the specified attributename has attribute; otherwise, <c>false</c>.
+		/// </returns>
+		bool hasAttribute(tstring attributename);
 
-		///// <summary>
-		///// Returns true if an element has any attributes, otherwise false
-		///// </summary>
-		///// <returns>
-		/////   <c>true</c> if this instance has attributes; otherwise, <c>false</c>.
-		///// </returns>
-		//bool hasAttributes();
+		/// <summary>
+		/// Returns true if an element has any attributes, otherwise false
+		/// </summary>
+		/// <returns>
+		///   <c>true</c> if this instance has attributes; otherwise, <c>false</c>.
+		/// </returns>
+		bool hasAttributes();
 
 		///// <summary>
 		///// Returns true if an element has any child nodes, otherwise false
