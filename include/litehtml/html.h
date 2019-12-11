@@ -10,14 +10,13 @@
 #include <algorithm>
 #include <sstream>
 #include "os_types.h"
-#include "script_engine.h"
+#include "api.h"
 #include "types.h"
 #include "background.h"
 #include "borders.h"
 #include "html_tag.h"
 #include "web_color.h"
 #include "media_query.h"
-#include "node.h"
 
 namespace litehtml
 {

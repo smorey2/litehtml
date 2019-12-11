@@ -105,9 +105,9 @@ namespace litehtml
 
 	public:
 		Element* getElementById(tstring elementID);
-		NodeList& getElementsByClassName(tstring classname);
-		NodeList& getElementsByName(tstring name);
-		NodeList& getElementsByTagName(tstring tagname);
+		NodeList getElementsByClassName(tstring classname);
+		NodeList getElementsByName(tstring name);
+		NodeList getElementsByTagName(tstring tagname);
 
 	private:
 		litehtml::uint_ptr	add_font(const tchar_t* name, int size, const tchar_t* weight, const tchar_t* style, const tchar_t* decoration, font_metrics* fm);

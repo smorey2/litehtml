@@ -27,7 +27,7 @@
 #include "gumbo.h"
 #include "utf8_strings.h"
 
-litehtml::document::document(litehtml::document_container* objContainer, litehtml::context* ctx)
+litehtml::document::document(litehtml::document_container* objContainer, litehtml::context* ctx) : NodeList()
 {
 	m_container = objContainer;
 	m_context = ctx;

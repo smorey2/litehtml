@@ -55,7 +55,7 @@ namespace litehtml
         /// </summary>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        Element** composedPath();
+        Element* composedPath();
 
         /// <summary>
         /// Returns the element whose event listeners triggered the event

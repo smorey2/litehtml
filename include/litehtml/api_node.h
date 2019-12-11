@@ -9,14 +9,23 @@ namespace litehtml
 	class Attr;
 	class NodeList;
 	class NamedNodeMap;
+	class element;
+	class html_tag;
 	typedef std::map<litehtml::tstring, litehtml::tstring> string_map;
+	typedef std::vector<std::shared_ptr<litehtml::element>> elements_vector;
 
 	/// <summary>
 	/// Node
 	/// </summary>
 	class Node
 	{
+		friend class node;
+	protected:
+		element* _elem;
 	public:
+		Node();
+		virtual ~Node();
+
 		/// <summary>
 		/// Adds a new child node, to an element, as the last child node
 		/// </summary>
@@ -30,7 +39,7 @@ namespace litehtml
 		/// <value>
 		/// The attributes.
 		/// </value>
-		NamedNodeMap& attributes();
+		NamedNodeMap attributes();
 
 		/// <summary>
 		/// Returns the absolute base URI of a node
@@ -43,7 +52,7 @@ namespace litehtml
 		/// <summary>
 		/// Returns a collection of an element's child nodes (including text and comment nodes)
 		/// </summary>
-		NodeList& childNodes();
+		NodeList childNodes();
 
 		/// <summary>
 		/// Clones an element
@@ -226,7 +235,12 @@ namespace litehtml
 	/// </summary>
 	class Attr : public Node
 	{
+		string_map* _attrs;
+		tstring _name;
 	public:
+		typedef std::shared_ptr<Attr> ptr;
+	public:
+		Attr(string_map* attrs, tstring name);
 		/// <summary>
 		/// Returns the name of an attribute
 		/// </summary>
@@ -258,26 +272,28 @@ namespace litehtml
 	/// </summary>
 	class NodeList
 	{
-		std::vector<Node*> list;
+		elements_vector list;
 	public:
-		// Overloading [] operator to access elements in array style 
+		NodeList();
+		NodeList(elements_vector& elements);
+		~NodeList();
 		Node* operator[](int index);
 	};
 
 	/// <summary>
 	/// NamedNodeMap
 	/// </summary>
-	struct NamedNodeMap
+	class NamedNodeMap
 	{
-		static NamedNodeMap* Empty;
-		string_map* m_attrs;
-
-		NamedNodeMap(string_map* attrs);
+		string_map m_attrs;
+	public:
+		static NamedNodeMap Empty;
+		NamedNodeMap(string_map& attrs);
 
 		/// <summary>
 		/// Returns a specified attribute node from a NamedNodeMap
 		/// </summary>
-		Attr* getNamedItem(tstring nodename);
+		Attr::ptr getNamedItem(tstring nodename);
 
 		/// <summary>
 		/// Gets the <see cref="Node"/> with the specified index.
@@ -288,14 +304,14 @@ namespace litehtml
 		/// <param name="index">The index.</param>
 		/// <returns></returns>
 		// Overloading [] operator to access elements in array style 
-		Attr* operator[](int index);
+		Attr::ptr operator[](int index);
 
 		/// <summary>
 		/// Returns the attribute node at a specified index in a NamedNodeMap
 		/// </summary>
 		/// <param name="index">The index.</param>
 		/// <returns></returns>
-		Attr* item(int index);
+		Attr::ptr item(int index);
 
 		/// <summary>
 		/// Returns the number of attribute nodes in a NamedNodeMap
@@ -311,7 +327,7 @@ namespace litehtml
 		/// <param name="nodename">The nodename.</param>
 		/// <returns></returns>
 		/// <exception cref="NotImplementedException"></exception>
-		Attr* removeNamedItem(tstring nodename);
+		Attr::ptr removeNamedItem(tstring nodename);
 
 		/// <summary>
 		/// Sets the specified attribute node (by name)
@@ -319,7 +335,7 @@ namespace litehtml
 		/// <param name="node">The node.</param>
 		/// <returns></returns>
 		/// <exception cref="NotImplementedException"></exception>
-		Attr* setNamedItem(Attr* node);
+		Attr::ptr setNamedItem(Attr::ptr node);
 	};
 
 	/// <summary>

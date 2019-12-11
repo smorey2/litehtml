@@ -5,9 +5,15 @@
 
 namespace litehtml
 {
-	class node : public Node
-	{
-	};
+	///// <summary>
+	///// EventTarget
+	///// </summary>
+	//class EventTarget
+	//{
+	//protected:
+	//	EventTarget();
+	//	virtual ~EventTarget();
+	//};
 }
 
 #endif  // LH_NODE_H

@@ -33,6 +33,8 @@ namespace litehtml
 
 	class html_tag : public element
 	{
+		friend class Node;
+		friend class Element;
 		friend class elements_iterator;
 		friend class el_table;
 		friend class table_grid;

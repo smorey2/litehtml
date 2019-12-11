@@ -9,13 +9,14 @@ namespace litehtml
 {
 	class box;
 
-	class element : public std::enable_shared_from_this<element>, public Element
+	class element : public std::enable_shared_from_this<element>, public Element //, public EventTarget
 	{
 		friend class block_box;
 		friend class line_box;
 		friend class html_tag;
 		friend class el_table;
 		friend class document;
+		friend class Element;
 	public:
 		typedef std::shared_ptr<litehtml::element>			ptr;
 		typedef std::shared_ptr<const litehtml::element>	const_ptr;

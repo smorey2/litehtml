@@ -8,7 +8,7 @@
 #include <locale>
 #include "el_before_after.h"
 
-litehtml::html_tag::html_tag(const std::shared_ptr<litehtml::document>& doc) : litehtml::element(doc)
+litehtml::html_tag::html_tag(const std::shared_ptr<litehtml::document>& doc) : litehtml::element(doc), m_tag(_t("NEW"))
 {
 	m_box_sizing = box_sizing_content_box;
 	m_z_index = 0;

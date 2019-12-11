@@ -12,7 +12,7 @@ namespace litehtml
 	class element;
 
 	typedef std::map<litehtml::tstring, litehtml::tstring>			string_map;
-	typedef std::vector< std::shared_ptr<litehtml::element> >		elements_vector;
+	typedef std::vector<std::shared_ptr<litehtml::element>>			elements_vector;
 	typedef std::vector<int>										int_vector;
 	typedef std::vector<litehtml::tstring>							string_vector;
 

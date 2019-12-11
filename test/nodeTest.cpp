@@ -57,18 +57,22 @@ static void NodemapTest() {
 	// https://www.w3schools.com/jsref/met_namednodemap_getnameditem.asp
 	{
 		auto btn = (Element*)document->getElementsByTagName(_t("BUTTON"))[0];
-		auto a = btn->attributes().getNamedItem(_t("onclick"))->value();
+		auto x = btn->attributes().getNamedItem(_t("onclick"))->value();
+		assert(!t_strcmp(_t("myFunction()"), x.c_str()));
 	}
 
 	// https://www.w3schools.com/jsref/met_namednodemap_item.asp
 	{
 		auto x = document->getElementsByTagName(_t("BUTTON"))[0]->attributes().item(0)->nodeName();
+		assert(!t_strcmp(_t("myFunction()"), x.c_str()));
 	}
 	{
-		auto a = document->getElementsByTagName(_t("BUTTON"))[0]->attributes().item(1);   // The 2nd attribute
+		auto x = document->getElementsByTagName(_t("BUTTON"))[0]->attributes().item(1);   // The 2nd attribute
+		//assert(!t_strcmp(_t("myFunction()"), x.c_str()));
 	}
 	{
-		auto a = document->getElementsByTagName(_t("BUTTON"))[0]->attributes()[1];        // The 2nd attribute
+		auto x = document->getElementsByTagName(_t("BUTTON"))[0]->attributes()[1];        // The 2nd attribute
+		//assert(!t_strcmp(_t("myFunction()"), x.c_str()));
 	}
 	{
 		document->getElementsByTagName(_t("BUTTON"))[0]->attributes()[1]->value(_t("newClass"));

@@ -1,8 +1,10 @@
 #ifndef LH_API_H
 #define LH_API_H
 
-#include "events.h"
 #include "api_node.h"
+#include "events.h"
+#include "node.h"
+#include "script_engine.h"
 
 namespace litehtml
 {
@@ -369,21 +371,21 @@ namespace litehtml
 		/// </summary>
 		/// <param name="classname">The classname.</param>
 		/// <returns></returns>
-		NodeList& getElementsByClassName(tstring classname);
+		NodeList getElementsByClassName(tstring classname);
 
 		/// <summary>
 		/// Returns a NodeList containing all elements with a specified name
 		/// </summary>
 		/// <param name="name">The name.</param>
 		/// <returns></returns>
-		NodeList& getElementsByName(tstring name);
+		NodeList getElementsByName(tstring name);
 
 		/// <summary>
 		/// Returns a NodeList containing all elements with the specified tag name
 		/// </summary>
 		/// <param name="tagname">The tagname.</param>
 		/// <returns></returns>
-		NodeList& getElementsByTagName(tstring tagname);
+		NodeList getElementsByTagName(tstring tagname);
 
 		/// <summary>
 		/// Returns a Boolean value indicating whether the document has focus
@@ -473,7 +475,7 @@ namespace litehtml
 		/// </summary>
 		/// <param name="selectors">The selectors.</param>
 		/// <returns></returns>
-		NodeList& querySelectorAll(tstring selectors);
+		NodeList querySelectorAll(tstring selectors);
 
 		/// <summary>
 		/// Returns the (loading) status of the document
@@ -562,6 +564,8 @@ namespace litehtml
 	class Element : public Node
 	{
 	public:
+		Element();
+
 		/// <summary>
 		/// Gets or sets the access key.
 		/// </summary>
@@ -610,7 +614,7 @@ namespace litehtml
 		///// <summary>
 		///// Returns a collection of an element's child nodes (including text and comment nodes)
 		///// </summary>
-		//NodeList& childNodes();
+		//NodeList childNodes();
 
 		/// <summary>
 		/// Returns a collection of an element's child element (excluding text and comment nodes)
@@ -750,7 +754,7 @@ namespace litehtml
 		/// </summary>
 		/// <param name="attributename">The attributename.</param>
 		/// <returns></returns>
-		Attr* getAttributeNode(tstring attributename);
+		Attr::ptr getAttributeNode(tstring attributename);
 
 		/// <summary>
 		/// Returns the size of an element and its position relative to the viewport
@@ -763,14 +767,14 @@ namespace litehtml
 		/// </summary>
 		/// <param name="classname">The classname.</param>
 		/// <returns></returns>
-		NodeList& getElementsByClassName(tstring classname);
+		NodeList getElementsByClassName(tstring classname);
 
 		/// <summary>
 		/// Returns a collection of all child elements with the specified tag name
 		/// </summary>
 		/// <param name="tagname">The tagname.</param>
 		/// <returns></returns>
-		NodeList& getElementsByTagName(tstring tagname);
+		NodeList getElementsByTagName(tstring tagname);
 
 		/// <summary>
 		/// Returns true if an element has the specified attribute, otherwise false
@@ -1058,7 +1062,7 @@ namespace litehtml
 		/// </summary>
 		/// <param name="selectors">The selectors.</param>
 		/// <returns></returns>
-		NodeList& querySelectorAll(tstring selectors);
+		NodeList querySelectorAll(tstring selectors);
 
 		/// <summary>
 		/// Removes a specified attribute from an element
@@ -1071,7 +1075,7 @@ namespace litehtml
 		/// </summary>
 		/// <param name="attributenode">The attributenode.</param>
 		/// <returns></returns>
-		Attr* removeAttributeNode(Attr* attributenode);
+		Attr::ptr removeAttributeNode(Attr::ptr attributenode);
 
 		///// <summary>
 		///// Removes a child node from an element
@@ -1151,7 +1155,7 @@ namespace litehtml
 		/// </summary>
 		/// <param name="attributenode">The attributenode.</param>
 		/// <returns></returns>
-		Attr* setAttributeNode(Attr* attributenode);
+		Attr::ptr setAttributeNode(Attr::ptr attributenode);
 
 		/// <summary>
 		/// Sets or returns the value of the style attribute of an element
