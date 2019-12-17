@@ -1,11 +1,12 @@
 #include "html.h"
-#include "api.h"
 
 /// <summary>
 /// Element
 /// </summary>
 namespace litehtml
 {
+	Element::Element() { _elem = static_cast<element*>(this); }
+
 	/// <summary>
 	/// Gets or sets the access key.
 	/// </summary>
@@ -24,9 +25,37 @@ namespace litehtml
 	void Element::addEventListener(tstring event, tstring function, bool useCapture) { }
 
 	/// <summary>
+	/// Adds a new child node, to an element, as the last child node
+	/// </summary>
+	/// <param name="node">The node.</param>
+	/// <returns></returns>
+	Node* Element::appendChild(Node* node) //: Node
+	{
+		return nullptr;
+	}
+
+	/// <summary>
+	/// Returns a NamedNodeMap of an element's attributes
+	/// </summary>
+	/// <value>
+	/// The attributes.
+	/// </value>
+	NamedNodeMap Element::attributes() { return NamedNodeMap(dynamic_cast<html_tag*>(_elem)->m_attrs); } //: Node
+	
+	/// <summary>
+	/// Returns the absolute base URI of a node
+	/// </summary>
+	/// <value>
+	/// The base URI.
+	/// </value>
+	tstring Element::baseURI() { return _t("base"); } //: Node
+
+	/// <summary>
 	/// Removes focus from an element
 	/// </summary>
-	void Element::blur() { }
+	void Element::blur()
+	{
+	}
 
 	/// <summary>
 	/// Returns the number of child elements an element has
@@ -36,15 +65,15 @@ namespace litehtml
 	/// </value>
 	int Element::childElementCount() { return _elem->m_children.size(); }
 
-	///// <summary>
-	///// Returns a collection of an element's child nodes (including text and comment nodes)
-	///// </summary>
-	//NodeList childNodes();
+	/// <summary>
+	/// Returns a collection of an element's child nodes (including text and comment nodes)
+	/// </summary>
+	NodeList Element::childNodes() { return NodeList(_elem->m_children); } //: Node
 
 	/// <summary>
 	/// Returns a collection of an element's child element (excluding text and comment nodes)
 	/// </summary>
-	HTMLCollection& Element::children() { return HTMLCollection(); } // (_elem._children)
+	HTMLCollection& Element::children() { return HTMLCollection(); } // (_elem->_children)
 
 	/// <summary>
 	/// Returns the class name(s) of an element
@@ -101,6 +130,26 @@ namespace litehtml
 	int Element::clientWidth() { return 0; }
 
 	/// <summary>
+	/// Clones an element
+	/// </summary>
+	/// <param name="deep">if set to <c>true</c> [deep].</param>
+	/// <returns></returns>
+	Node* Element::cloneNode(bool deep /*= false*/) //: Node
+	{
+		return nullptr;
+	}
+
+	/// <summary>
+	/// Compares the document position of two elements
+	/// </summary>
+	/// <param name="node">The node.</param>
+	/// <returns></returns>
+	int Element::compareDocumentPosition(Node* node) //: Node
+	{
+		return 0;
+	}
+
+	/// <summary>
 	/// Returns true if a node is a descendant of a node, otherwise false
 	/// </summary>
 	/// <param name="node">The node.</param>
@@ -133,12 +182,20 @@ namespace litehtml
 	void Element::exitFullscreen() { }
 
 	/// <summary>
+	/// Returns the first child node of an element
+	/// </summary>
+	/// <value>
+	/// The first child.
+	/// </value>
+	Node* Element::firstChild() { return _elem->m_children[0].get(); } //: Node
+	
+	/// <summary>
 	/// Returns the first child element of an element
 	/// </summary>
 	/// <value>
 	/// The first element child.
 	/// </value>
-	Node* Element::firstElementChild() { return !_elem->m_children.empty() ? static_cast<Node*>(_elem->m_children[0].get()) : nullptr; }
+	Node* Element::firstElementChild() { return !_elem->m_children.empty() ? _elem->m_children[0].get() : nullptr; }
 
 	/// <summary>
 	/// Gives focus to an element
@@ -150,17 +207,14 @@ namespace litehtml
 	/// </summary>
 	/// <param name="attributename">The attributename.</param>
 	/// <returns></returns>
-	tstring Element::getAttribute(tstring attributename) { return tstring(_elem->get_attr(attributename.c_str())); }
+	tstring Element::getAttribute(tstring attributename) { return _elem->get_attr(attributename.c_str()); }
 
 	/// <summary>
 	/// Returns the specified attribute node
 	/// </summary>
 	/// <param name="attributename">The attributename.</param>
 	/// <returns></returns>
-	Attr::ptr Element::getAttributeNode(tstring attributename)
-	{
-		return std::make_shared<Attr>(&dynamic_cast<html_tag*>(_elem)->m_attrs, attributename);
-	}
+	Attr::ptr Element::getAttributeNode(tstring attributename) { return std::make_shared<Attr>(&dynamic_cast<html_tag*>(_elem)->m_attrs, attributename); }
 
 	/// <summary>
 	/// Returns the size of an element and its position relative to the viewport
@@ -206,10 +260,8 @@ namespace litehtml
 	/// <returns>
 	///   <c>true</c> if the specified attributename has attribute; otherwise, <c>false</c>.
 	/// </returns>
-	bool Element::hasAttribute(tstring attributename) //: Node
-	{
-		return nullptr;
-	}
+	bool Element::hasAttribute(tstring attributename) { return false; } //: Node
+	
 
 	/// <summary>
 	/// Returns true if an element has any attributes, otherwise false
@@ -217,11 +269,16 @@ namespace litehtml
 	/// <returns>
 	///   <c>true</c> if this instance has attributes; otherwise, <c>false</c>.
 	/// </returns>
-	bool Element::hasAttributes()
-	{
-		return nullptr;
-	}
+	bool Element::hasAttributes() { return false; }
 
+	/// <summary>
+	/// Returns true if an element has any child nodes, otherwise false
+	/// </summary>
+	/// <returns>
+	///   <c>true</c> if [has child nodes]; otherwise, <c>false</c>.
+	/// </returns>
+	bool Element::hasChildNodes() { return !_elem->m_children.empty(); } //: Node
+	
 	/// <summary>
 	/// Sets or returns the value of the id attribute of an element
 	/// </summary>
@@ -286,6 +343,33 @@ namespace litehtml
 	bool Element::isContentEditable() { return false; }
 
 	/// <summary>
+	/// Returns true if a specified namespaceURI is the default, otherwise false
+	/// </summary>
+	/// <param name="namespaceURI">The namespace URI.</param>
+	/// <returns>
+	///   <c>true</c> if [is default namespace] [the specified namespace URI]; otherwise, <c>false</c>.
+	/// </returns>
+	bool Element::isDefaultNamespace(tstring namespaceURI) { return false; } //: Node
+
+	/// <summary>
+	/// Checks if two elements are equal
+	/// </summary>
+	/// <param name="node">The node.</param>
+	/// <returns>
+	///   <c>true</c> if [is equal node] [the specified node]; otherwise, <c>false</c>.
+	/// </returns>
+	bool Element::isEqualNode(Node* node) { return false; } //: Node
+
+	/// <summary>
+	/// Checks if two elements are the same node
+	/// </summary>
+	/// <param name="node">The node.</param>
+	/// <returns>
+	///   <c>true</c> if [is same node] [the specified node]; otherwise, <c>false</c>.
+	/// </returns>
+	bool Element::isSameNode(Node* node) { return false; } //: Node
+
+	/// <summary>
 	/// Sets or returns the value of the lang attribute of an element
 	/// </summary>
 	/// <value>
@@ -295,12 +379,20 @@ namespace litehtml
 	void Element::lang(tstring value) { }
 
 	/// <summary>
+	/// Returns the last child node of an element
+	/// </summary>
+	/// <value>
+	/// The last child.
+	/// </value>
+	Node* Element::lastChild() { return !_elem->m_children.empty() ? _elem->m_children[_elem->m_children.size() - 1].get() : nullptr; } //: Node
+
+	/// <summary>
 	/// Returns the last child element of an element
 	/// </summary>
 	/// <value>
 	/// The last element child.
 	/// </value>
-	Node* Element::lastElementChild() { return !_elem->m_children.empty() ? static_cast<Node*>(_elem->m_children[_elem->m_children.size() - 1].get()) : nullptr; }
+	Node* Element::lastElementChild() { return !_elem->m_children.empty() ? _elem->m_children[_elem->m_children.size() - 1].get() : nullptr; }
 
 	/// <summary>
 	/// Returns the namespace URI of an element
@@ -311,12 +403,50 @@ namespace litehtml
 	tstring Element::namespaceURI() { return nullptr; }
 
 	/// <summary>
+	/// Returns the next node at the same node tree level
+	/// </summary>
+	/// <value>
+	/// The next sibling.
+	/// </value>
+	Node* Element::nextSibling() { return nullptr; } //: Node
+
+	/// <summary>
 	/// Returns the next element at the same node tree level
 	/// </summary>
 	/// <value>
 	/// The next element sibling.
 	/// </value>
 	Node* Element::nextElementSibling() { return nullptr; }
+
+	/// <summary>
+	/// Returns the name of a node
+	/// </summary>
+	/// <value>
+	/// The name of the node.
+	/// </value>
+	tstring Element::nodeName() { return nullptr; } //: Node
+
+	/// <summary>
+	/// Returns the node type of a node
+	/// </summary>
+	/// <value>
+	/// The type of the node.
+	/// </value>
+	int Element::nodeType() { return 0; } //: Node
+
+	/// <summary>
+	/// Sets or returns the value of a node
+	/// </summary>
+	/// <value>
+	/// The node value.
+	/// </value>
+	tstring Element::nodeValue() { return nullptr; } //: Node
+	void Element::nodeValue(tstring value) { } //: Node
+
+	/// <summary>
+	/// Joins adjacent text nodes and removes empty text nodes in an element
+	/// </summary>
+	void Element::normalize() { } //: Node
 
 	/// <summary>
 	/// Returns the height of an element, including padding, border and scrollbar
@@ -359,12 +489,36 @@ namespace litehtml
 	int Element::offsetTop() { return 0; }
 
 	/// <summary>
+	/// Returns the root element (document object) for an element
+	/// </summary>
+	/// <value>
+	/// The owner document.
+	/// </value>
+	Document* Element::ownerDocument() { return nullptr; } //: Node
+
+	/// <summary>
+	/// Returns the parent node of an element
+	/// </summary>
+	/// <value>
+	/// The parent node.
+	/// </value>
+	Node* Element::parentNode() { return nullptr; } //: Node
+
+	/// <summary>
 	/// Returns the parent element node of an element
 	/// </summary>
 	/// <value>
 	/// The parent element.
 	/// </value>
 	Element* Element::parentElement() { return nullptr; }
+
+	/// <summary>
+	/// Returns the previous node at the same node tree level
+	/// </summary>
+	/// <value>
+	/// The previous sibling.
+	/// </value>
+	Node* Element::previousSibling() { return nullptr; } //: Node
 
 	/// <summary>
 	/// Returns the previous element at the same node tree level
@@ -379,7 +533,7 @@ namespace litehtml
 	/// </summary>
 	/// <param name="selectors">The selectors.</param>
 	/// <returns></returns>
-	Element* Element::querySelector(tstring selectors) { return static_cast<Element*>(_elem->select_one(selectors).get()); }
+	Element* Element::querySelector(tstring selectors) { return _elem->select_one(selectors).get(); }
 
 	/// <summary>
 	/// Returns all child elements that matches a specified CSS selector(s) of an element
@@ -402,6 +556,13 @@ namespace litehtml
 	Attr::ptr Element::removeAttributeNode(Attr::ptr attributenode) { return nullptr; }
 
 	/// <summary>
+	/// Removes a child node from an element
+	/// </summary>
+	/// <param name="node">The node.</param>
+	/// <returns></returns>
+	Node* Element::removeChild(Node* node) { return nullptr; } //: Node
+
+	/// <summary>
 	/// Removes an event handler that has been attached with the addEventListener() method
 	/// </summary>
 	/// <param name="event">The event.</param>
@@ -413,6 +574,14 @@ namespace litehtml
 	/// Shows an element in fullscreen mode
 	/// </summary>
 	void Element::requestFullscreen() { }
+
+	/// <summary>
+	/// Replaces a child node in an element
+	/// </summary>
+	/// <param name="newnode">The newnode.</param>
+	/// <param name="oldnode">The oldnode.</param>
+	/// <returns></returns>
+	Node* Element::replaceChild(Node* newnode, Node* oldnode) { return nullptr; } //: Node
 
 	/// <summary>
 	/// Returns the entire height of an element, including padding
@@ -490,6 +659,15 @@ namespace litehtml
 	/// The name of the tag.
 	/// </value>
 	tstring Element::tagName() { return nullptr; }
+
+	/// <summary>
+	/// Sets or returns the textual content of a node and its descendants
+	/// </summary>
+	/// <value>
+	/// The content of the text.
+	/// </value>
+	tstring Element::textContent() { return nullptr; } //: Node
+	void Element::textContent(tstring value) { } //: Node
 
 	/// <summary>
 	/// Sets or returns the value of the title attribute of an element

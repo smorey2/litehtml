@@ -90,7 +90,7 @@ namespace litehtml
 	/// </summary>
 	/// <param name="attributename">The attributename.</param>
 	/// <returns></returns>
-	Node* Document::createAttribute(tstring attributename) { return nullptr; }
+	Attr::ptr Document::createAttribute(tstring attributename) { return std::make_shared<Attr>(nullptr, attributename.c_str()); }
 
 	/// <summary>
 	/// Creates a Comment node with the specified text

@@ -48,8 +48,10 @@ static void NodemapTest() {
 	auto document = MakeDocument(LR"xyz(
 <html>
 <body>
+	<h1>Hello World</h1>
+	<input type="button" value="OK" />
     <img id="myImg" alt="Flower" src="klematis.jpg" width="150" height="113">
-    <button onclick="myFunction()">Try it</button>
+    <button id="myBtn" onclick="myFunction()" class="example">Try it</button>
     <p id="demo"></p>
 </body>
 </html>)xyz");
@@ -64,15 +66,15 @@ static void NodemapTest() {
 	// https://www.w3schools.com/jsref/met_namednodemap_item.asp
 	{
 		auto x = document->getElementsByTagName(_t("BUTTON"))[0]->attributes().item(0)->nodeName();
-		assert(!t_strcmp(_t("myFunction()"), x.c_str()));
+		assert(!t_strcmp(_t("class"), x.c_str()));
 	}
 	{
 		auto x = document->getElementsByTagName(_t("BUTTON"))[0]->attributes().item(1);   // The 2nd attribute
-		//assert(!t_strcmp(_t("myFunction()"), x.c_str()));
+		assert(x != nullptr);
 	}
 	{
 		auto x = document->getElementsByTagName(_t("BUTTON"))[0]->attributes()[1];        // The 2nd attribute
-		//assert(!t_strcmp(_t("myFunction()"), x.c_str()));
+		assert(x != nullptr);
 	}
 	{
 		document->getElementsByTagName(_t("BUTTON"))[0]->attributes()[1]->value(_t("newClass"));
@@ -81,6 +83,7 @@ static void NodemapTest() {
 	// https://www.w3schools.com/jsref/prop_namednodemap_length.asp
 	{
 		auto x = document->getElementsByTagName(_t("BUTTON"))[0]->attributes().length();
+		assert(x == 3);
 	}
 	{
 		auto txt = wstring();
@@ -90,9 +93,11 @@ static void NodemapTest() {
 		{
 			txt += _t("Attribute name: ") + tstring(x[i]->name()) + _t("<br>");
 		}
+		assert(!t_strcmp(_t("Attribute name: class<br>Attribute name: id<br>Attribute name: onclick<br>"), txt.c_str()));
 	}
 	{
 		auto x = document->getElementById(_t("myImg"))->attributes().length();
+		assert(x == 5);
 	}
 	{
 		auto txt = wstring();
@@ -102,6 +107,21 @@ static void NodemapTest() {
 		{
 			txt = txt + wstring(x->attributes()[i]->name()) + _t(" = ") + tstring(x->attributes()[i]->value()) + _t("<br>");
 		}
+		assert(!t_strcmp(_t("alt = Flower<br>height = 113<br>id = myImg<br>src = klematis.jpg<br>width = 150<br>"), txt.c_str()));
+	}
+
+	// https://www.w3schools.com/jsref/met_namednodemap_removenameditem.asp
+	{
+		auto btn = document->getElementsByTagName(_t("INPUT"))[0];
+		btn->attributes().removeNamedItem(_t("type"));
+	}
+
+	// https://www.w3schools.com/jsref/met_namednodemap_setnameditem.asp
+	{
+		auto h = document->getElementsByTagName(_t("H1"))[0];
+		auto typ = document->createAttribute(_t("class"));
+		//typ->value(_t("democlass"));
+		//h->attributes().setNamedItem(typ);
 	}
 }
 

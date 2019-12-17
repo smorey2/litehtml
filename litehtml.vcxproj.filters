@@ -176,6 +176,9 @@
     <ClCompile Include="src\api_node.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\api_service.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\litehtml\attributes.h">
@@ -377,6 +380,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\litehtml\api_node.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\litehtml\api_service.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

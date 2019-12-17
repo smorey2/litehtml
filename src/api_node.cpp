@@ -1,154 +1,18 @@
 #include "html.h"
-#include "api_node.h"
-//#include "node.h"
-//#include "document.h"
 
 /// <summary>
 /// Node
 /// </summary>
 namespace litehtml
 {
-	Node::Node() : _elem(nullptr) { }
-	Node::~Node() { }
-
-	Element::Element() { _elem = static_cast<element*>(this); }
-
-	/// <summary>
-	/// Adds a new child node, to an element, as the last child node
-	/// </summary>
-	/// <param name="node">The node.</param>
-	/// <returns></returns>
-	Node* Node::appendChild(Node* node)
-	{
-		return nullptr;
-	}
-
-	/// <summary>
-	/// Returns a NamedNodeMap of an element's attributes
-	/// </summary>
-	/// <value>
-	/// The attributes.
-	/// </value>
-	NamedNodeMap Node::attributes()
-	{
-		return _elem ? NamedNodeMap(dynamic_cast<html_tag*>(_elem)->m_attrs) : NamedNodeMap::Empty;
-	}
-
-	/// <summary>
-	/// Returns the absolute base URI of a node
-	/// </summary>
-	/// <value>
-	/// The base URI.
-	/// </value>
-	tstring Node::baseURI() //: Base
-	{
-		return _t("base");
-	}
-
-	/// <summary>
-	/// Returns a collection of an element's child nodes (including text and comment nodes)
-	/// </summary>
-	NodeList Node::childNodes()
-	{
-		NodeList a;
-		return a;
-	}
-
-	/// <summary>
-	/// Clones an element
-	/// </summary>
-	/// <param name="deep">if set to <c>true</c> [deep].</param>
-	/// <returns></returns>
-	Node* Node::cloneNode(bool deep)
-	{
-		return nullptr;
-	}
-
-	/// <summary>
-	/// Compares the document position of two elements
-	/// </summary>
-	/// <param name="node">The node.</param>
-	/// <returns></returns>
-	int Node::compareDocumentPosition(Node* node)
-	{
-		return 0;
-	}
-
-	/// <summary>
-	/// Returns the first child node of an element
-	/// </summary>
-	/// <value>
-	/// The first child.
-	/// </value>
-	Node* Node::firstChild()
-	{
-		return nullptr;
-	}
-
-	/// <summary>
-	/// Returns true if an element has any child nodes, otherwise false
-	/// </summary>
-	/// <returns>
-	///   <c>true</c> if [has child nodes]; otherwise, <c>false</c>.
-	/// </returns>
-	bool Node::hasChildNodes()
-	{
-		return nullptr;
-	}
-
-	/// <summary>
-	/// Returns true if a specified namespaceURI is the default, otherwise false
-	/// </summary>
-	/// <param name="namespaceURI">The namespace URI.</param>
-	/// <returns>
-	///   <c>true</c> if [is default namespace] [the specified namespace URI]; otherwise, <c>false</c>.
-	/// </returns>
-	bool Node::isDefaultNamespace(tstring namespaceURI)
-	{
-		return nullptr;
-	}
-
-	/// <summary>
-	/// Checks if two elements are equal
-	/// </summary>
-	/// <param name="node">The node.</param>
-	/// <returns>
-	///   <c>true</c> if [is equal node] [the specified node]; otherwise, <c>false</c>.
-	/// </returns>
-	bool Node::isEqualNode(Node* node)
-	{
-		return nullptr;
-	}
-
-	/// <summary>
-	/// Checks if two elements are the same node
-	/// </summary>
-	/// <param name="node">The node.</param>
-	/// <returns>
-	///   <c>true</c> if [is same node] [the specified node]; otherwise, <c>false</c>.
-	/// </returns>
-	bool Node::isSameNode(Node* node)
-	{
-		return nullptr;
-	}
-
-	/// <summary>
-	/// Returns the last child node of an element
-	/// </summary>
-	/// <value>
-	/// The last child.
-	/// </value>
-	Node* Node::lastChild()
-	{
-		return nullptr;
-	}
+	Node::Node() { }
 
 	/// <summary>
 	/// Returns the namespace URI associated with a given prefix
 	/// </summary>
 	/// <param name="prefix">The prefix.</param>
 	/// <returns></returns>
-	tstring Node::lookupNamespaceURI(tstring prefix) //: Base
+	tstring Node::lookupNamespaceURI(tstring prefix) //: Node
 	{
 		return nullptr;
 	}
@@ -158,83 +22,7 @@ namespace litehtml
 	/// </summary>
 	/// <param name="namespaceURI">The namespace URI.</param>
 	/// <returns></returns>
-	tstring Node::lookupPrefix(tstring namespaceURI) //: Base
-	{
-		return nullptr;
-	}
-
-	/// <summary>
-	/// Returns the next node at the same node tree level
-	/// </summary>
-	/// <value>
-	/// The next sibling.
-	/// </value>
-	Node* Node::nextSibling()
-	{
-		return nullptr;
-	}
-
-	/// <summary>
-	/// Returns the name of a node
-	/// </summary>
-	/// <value>
-	/// The name of the node.
-	/// </value>
-	tstring Node::nodeName()
-	{
-		return nullptr;
-	}
-
-	/// <summary>
-	/// Returns the node type of a node
-	/// </summary>
-	/// <value>
-	/// The type of the node.
-	/// </value>
-	int Node::nodeType()
-	{
-		return 0;
-	}
-
-	/// <summary>
-	/// Sets or returns the value of a node
-	/// </summary>
-	/// <value>
-	/// The node value.
-	/// </value>
-	tstring Node::nodeValue()
-	{
-		return nullptr;
-	}
-	void Node::nodeValue(tstring value)
-	{
-	}
-
-	/// <summary>
-	/// Joins adjacent text nodes and removes empty text nodes in an element
-	/// </summary>
-	void Node::normalize()
-	{
-	}
-
-	/// <summary>
-	/// Returns the root element (document object) for an element
-	/// </summary>
-	/// <value>
-	/// The owner document.
-	/// </value>
-	Document* Node::ownerDocument()
-	{
-		return nullptr;
-	}
-
-	/// <summary>
-	/// Returns the parent node of an element
-	/// </summary>
-	/// <value>
-	/// The parent node.
-	/// </value>
-	Node* Node::parentNode()
+	tstring Node::lookupPrefix(tstring namespaceURI) //: Node
 	{
 		return nullptr;
 	}
@@ -245,57 +33,11 @@ namespace litehtml
 	/// <value>
 	/// The prefix.
 	/// </value>
-	tstring Node::prefix() //: Base
+	tstring Node::prefix() //: Node
 	{
 		return nullptr;
 	}
-	void Node::prefix(tstring value)
-	{
-	}
-
-	/// <summary>
-	/// Returns the previous node at the same node tree level
-	/// </summary>
-	/// <value>
-	/// The previous sibling.
-	/// </value>
-	Node* Node::previousSibling()
-	{
-		return nullptr;
-	}
-
-	/// <summary>
-	/// Removes a child node from an element
-	/// </summary>
-	/// <param name="node">The node.</param>
-	/// <returns></returns>
-	Node* Node::removeChild(Node* node)
-	{
-		return nullptr;
-	}
-
-	/// <summary>
-	/// Replaces a child node in an element
-	/// </summary>
-	/// <param name="newnode">The newnode.</param>
-	/// <param name="oldnode">The oldnode.</param>
-	/// <returns></returns>
-	Node* Node::replaceChild(Node* newnode, Node* oldnode)
-	{
-		return nullptr;
-	}
-
-	/// <summary>
-	/// Sets or returns the textual content of a node and its descendants
-	/// </summary>
-	/// <value>
-	/// The content of the text.
-	/// </value>
-	tstring Node::textContent()
-	{
-		return nullptr;
-	}
-	void Node::textContent(tstring value)
+	void Node::prefix(tstring value) //: Node
 	{
 	}
 }
@@ -308,15 +50,229 @@ namespace litehtml
 	Attr::Attr(string_map* attrs, tstring name) : _attrs(attrs), _name(name) { }
 
 	/// <summary>
+	/// Adds a new child node, to an element, as the last child node
+	/// </summary>
+	/// <param name="node">The node.</param>
+	/// <returns></returns>
+	Node* Attr::appendChild(Node* node) //: Node
+	{
+		return nullptr;
+	}
+
+	/// <summary>
+	/// Returns a NamedNodeMap of an element's attributes
+	/// </summary>
+	/// <value>
+	/// The attributes.
+	/// </value>
+	NamedNodeMap Attr::attributes() { return NamedNodeMap::Empty; } //: Node
+	
+	/// <summary>
+	/// Returns the absolute base URI of a node
+	/// </summary>
+	/// <value>
+	/// The base URI.
+	/// </value>
+	tstring Attr::baseURI() { return _t("base"); } //: Node
+
+	/// <summary>
+	/// Returns a collection of an element's child nodes (including text and comment nodes)
+	/// </summary>
+	NodeList Attr::childNodes() { return NodeList(); } //: Node
+
+	/// <summary>
+	/// Clones an element
+	/// </summary>
+	/// <param name="deep">if set to <c>true</c> [deep].</param>
+	/// <returns></returns>
+	Node* Attr::cloneNode(bool deep) //: Node
+	{
+		return nullptr;
+	}
+
+	/// <summary>
+	/// Compares the document position of two elements
+	/// </summary>
+	/// <param name="node">The node.</param>
+	/// <returns></returns>
+	int Attr::compareDocumentPosition(Node* node) //: Node
+	{
+		return 0;
+	}
+
+	/// <summary>
+	/// Returns the first child node of an element
+	/// </summary>
+	/// <value>
+	/// The first child.
+	/// </value>
+	Node* Attr::firstChild() { return nullptr; } //: Node
+	
+	/// <summary>
+	/// Returns true if an element has any child nodes, otherwise false
+	/// </summary>
+	/// <returns>
+	///   <c>true</c> if [has child nodes]; otherwise, <c>false</c>.
+	/// </returns>
+	bool Attr::hasChildNodes() { return false; } //: Node
+
+	/// <summary>
+	/// Returns true if a specified namespaceURI is the default, otherwise false
+	/// </summary>
+	/// <param name="namespaceURI">The namespace URI.</param>
+	/// <returns>
+	///   <c>true</c> if [is default namespace] [the specified namespace URI]; otherwise, <c>false</c>.
+	/// </returns>
+	bool Attr::isDefaultNamespace(tstring namespaceURI) //: Node
+	{
+		return false;
+	}
+
+	/// <summary>
+	/// Checks if two elements are equal
+	/// </summary>
+	/// <param name="node">The node.</param>
+	/// <returns>
+	///   <c>true</c> if [is equal node] [the specified node]; otherwise, <c>false</c>.
+	/// </returns>
+	bool Attr::isEqualNode(Node* node) //: Node
+	{
+		return false;
+	}
+
+	/// <summary>
+	/// Checks if two elements are the same node
+	/// </summary>
+	/// <param name="node">The node.</param>
+	/// <returns>
+	///   <c>true</c> if [is same node] [the specified node]; otherwise, <c>false</c>.
+	/// </returns>
+	bool Attr::isSameNode(Node* node) //: Node
+	{
+		return false;
+	}
+
+	/// <summary>
+	/// Returns the last child node of an element
+	/// </summary>
+	/// <value>
+	/// The last child.
+	/// </value>
+	Node* Attr::lastChild() { return nullptr; } //: Node
+
+	/// <summary>
+	/// Returns the next node at the same node tree level
+	/// </summary>
+	/// <value>
+	/// The next sibling.
+	/// </value>
+	Node* Attr::nextSibling() { return nullptr; } //: Node
+
+	/// <summary>
+	/// Returns the name of a node
+	/// </summary>
+	/// <value>
+	/// The name of the node.
+	/// </value>
+	tstring Attr::nodeName() { return _name; } //: Node
+	
+	/// <summary>
+	/// Returns the node type of a node
+	/// </summary>
+	/// <value>
+	/// The type of the node.
+	/// </value>
+	int Attr::nodeType() { return 2; } //: Node
+
+	/// <summary>
+	/// Sets or returns the value of a node
+	/// </summary>
+	/// <value>
+	/// The node value.
+	/// </value>
+	tstring Attr::nodeValue() { return (*_attrs)[_name]; } //: Node
+	void Attr::nodeValue(tstring value) { (*_attrs)[_name] = value; } //: Node
+
+	/// <summary>
+	/// Joins adjacent text nodes and removes empty text nodes in an element
+	/// </summary>
+	void Attr::normalize() //: Node
+	{
+	}
+
+	/// <summary>
+	/// Returns the root element (document object) for an element
+	/// </summary>
+	/// <value>
+	/// The owner document.
+	/// </value>
+	Document* Attr::ownerDocument() //: Node
+	{
+		return nullptr;
+	}
+
+	/// <summary>
+	/// Returns the parent node of an element
+	/// </summary>
+	/// <value>
+	/// The parent node.
+	/// </value>
+	Node* Attr::parentNode() //: Node
+	{
+		return nullptr;
+	}
+
+	/// <summary>
+	/// Returns the previous node at the same node tree level
+	/// </summary>
+	/// <value>
+	/// The previous sibling.
+	/// </value>
+	Node* Attr::previousSibling() { return nullptr; } //: Node
+	
+
+	/// <summary>
+	/// Removes a child node from an element
+	/// </summary>
+	/// <param name="node">The node.</param>
+	/// <returns></returns>
+	Node* Attr::removeChild(Node* node) //: Node
+	{
+		return nullptr;
+	}
+
+	/// <summary>
+	/// Replaces a child node in an element
+	/// </summary>
+	/// <param name="newnode">The newnode.</param>
+	/// <param name="oldnode">The oldnode.</param>
+	/// <returns></returns>
+	Node* Attr::replaceChild(Node* newnode, Node* oldnode) //: Node
+	{
+		return nullptr;
+	}
+
+	/// <summary>
+	/// Sets or returns the textual content of a node and its descendants
+	/// </summary>
+	/// <value>
+	/// The content of the text.
+	/// </value>
+	tstring Attr::textContent() //: Node
+	{
+		return nullptr;
+	}
+	void Attr::textContent(tstring value) //: Node
+	{
+	}
+
+	/// <summary>
 	/// Returns the name of an attribute
 	/// </summary>
 	/// <value>
 	/// The name.
 	/// </value>
-	tstring Attr::name()
-	{
-		return _name;
-	}
+	tstring Attr::name() { return _name; }
 
 	/// <summary>
 	/// Sets or returns the value of the attribute
@@ -324,14 +280,8 @@ namespace litehtml
 	/// <value>
 	/// The value.
 	/// </value>
-	tstring Attr::value()
-	{
-		return (*_attrs)[_name];
-	}
-	void Attr::value(tstring value)
-	{
-		(*_attrs)[_name] = value;
-	}
+	tstring Attr::value() { return (*_attrs)[_name]; }
+	void Attr::value(tstring value) { (*_attrs)[_name] = value; }
 
 	/// <summary>
 	/// Returns true if the attribute has been specified, otherwise it returns false
@@ -339,10 +289,7 @@ namespace litehtml
 	/// <value>
 	///   <c>true</c> if specified; otherwise, <c>false</c>.
 	/// </value>
-	bool Attr::specified()
-	{
-		return !(*_attrs)[_name].empty();
-	}
+	bool Attr::specified() { return !(*_attrs)[_name].empty(); }
 }
 
 /// <summary>
@@ -357,7 +304,9 @@ namespace litehtml
 		if (list != (elements_vector)0)
 			list.clear();
 	}
-	Node* NodeList::operator[](int index) { return list != (elements_vector)0 ? (Node*)(node*)list[index].get() : nullptr; }
+	Node* NodeList::operator[](int index) { return list != (elements_vector)0 ? list[index].get() : nullptr; }
+	Node* NodeList::item(int index) { return list != (elements_vector)0 ? list[index].get() : nullptr; }
+	int NodeList::length() { return list != (elements_vector)0 ? (int)list.size() : 0; }
 }
 
 /// <summary>
@@ -371,10 +320,7 @@ namespace litehtml
 	/// <summary>
 	/// Returns a specified attribute node from a NamedNodeMap
 	/// </summary>
-	Attr::ptr NamedNodeMap::getNamedItem(tstring nodename)
-	{
-		return m_attrs.find(nodename) != m_attrs.end() ? std::make_shared<Attr>(&m_attrs, nodename) : nullptr;
-	}
+	Attr::ptr NamedNodeMap::getNamedItem(tstring nodename) { return m_attrs.find(nodename) != m_attrs.end() ? std::make_shared<Attr>(&m_attrs, nodename) : nullptr; }
 
 	/// <summary>
 	/// Gets the <see cref="Node"/> with the specified index.
@@ -384,20 +330,14 @@ namespace litehtml
 	/// </value>
 	/// <param name="index">The index.</param>
 	/// <returns></returns>
-	Attr::ptr NamedNodeMap::operator[](int index)
-	{
-		return index < m_attrs.size() ? std::make_shared<Attr>(&m_attrs, std::next(m_attrs.begin(), index)->first) : nullptr;
-	}
+	Attr::ptr NamedNodeMap::operator[](int index) { return index < m_attrs.size() ? std::make_shared<Attr>(&m_attrs, std::next(m_attrs.begin(), index)->first) : nullptr; }
 
 	/// <summary>
 	/// Returns the attribute node at a specified index in a NamedNodeMap
 	/// </summary>
 	/// <param name="index">The index.</param>
 	/// <returns></returns>
-	Attr::ptr NamedNodeMap::item(int index)
-	{
-		return index < m_attrs.size() ? std::make_shared<Attr>(&m_attrs, std::next(m_attrs.begin(), index)->first) : nullptr;
-	}
+	Attr::ptr NamedNodeMap::item(int index) { return index < m_attrs.size() ? std::make_shared<Attr>(&m_attrs, std::next(m_attrs.begin(), index)->first) : nullptr; }
 
 	/// <summary>
 	/// Returns the number of attribute nodes in a NamedNodeMap
@@ -405,10 +345,7 @@ namespace litehtml
 	/// <value>
 	/// The length.
 	/// </value>
-	int NamedNodeMap::length()
-	{
-		return (int)m_attrs.size();
-	}
+	int NamedNodeMap::length() { return (int)m_attrs.size(); }
 
 	/// <summary>
 	/// Removes a specified attribute node
@@ -418,8 +355,11 @@ namespace litehtml
 	/// <exception cref="NotImplementedException"></exception>
 	Attr::ptr NamedNodeMap::removeNamedItem(tstring nodename)
 	{
-		//string_map::const_iterator attr = m_attrs->find(nodename);
-		return nullptr;
+		string_map::const_iterator attr = m_attrs.find(nodename);
+		if (attr == m_attrs.end())
+			throw;
+		m_attrs.erase(attr);
+		return std::make_shared<Attr>(&m_attrs, nodename.c_str());
 	}
 
 	/// <summary>
@@ -430,7 +370,10 @@ namespace litehtml
 	/// <exception cref="NotImplementedException"></exception>
 	Attr::ptr NamedNodeMap::setNamedItem(Attr::ptr node)
 	{
-		return nullptr;
+		string_map::const_iterator attr = m_attrs.find(node->name());
+		Attr::ptr r = attr != m_attrs.end() ? std::make_shared<Attr>(&m_attrs, node->name().c_str()) : nullptr;
+		m_attrs[node->name()] = node->value();
+		return r;
 	}
 }
 

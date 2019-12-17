@@ -19,19 +19,15 @@ namespace litehtml
 	/// </summary>
 	class Node
 	{
-		friend class node;
-	protected:
-		element* _elem;
 	public:
 		Node();
-		virtual ~Node();
 
 		/// <summary>
 		/// Adds a new child node, to an element, as the last child node
 		/// </summary>
 		/// <param name="node">The node.</param>
 		/// <returns></returns>
-		Node* appendChild(Node* node);
+		virtual Node* appendChild(Node* node) = 0;
 
 		/// <summary>
 		/// Returns a NamedNodeMap of an element's attributes
@@ -39,7 +35,7 @@ namespace litehtml
 		/// <value>
 		/// The attributes.
 		/// </value>
-		NamedNodeMap attributes();
+		virtual NamedNodeMap attributes() = 0;
 
 		/// <summary>
 		/// Returns the absolute base URI of a node
@@ -47,26 +43,26 @@ namespace litehtml
 		/// <value>
 		/// The base URI.
 		/// </value>
-		tstring baseURI(); //: Base
+		virtual tstring baseURI() = 0;
 
 		/// <summary>
 		/// Returns a collection of an element's child nodes (including text and comment nodes)
 		/// </summary>
-		NodeList childNodes();
+		virtual NodeList childNodes() = 0;
 
 		/// <summary>
 		/// Clones an element
 		/// </summary>
 		/// <param name="deep">if set to <c>true</c> [deep].</param>
 		/// <returns></returns>
-		Node* cloneNode(bool deep = false);
+		virtual Node* cloneNode(bool deep = false) = 0;
 
 		/// <summary>
 		/// Compares the document position of two elements
 		/// </summary>
 		/// <param name="node">The node.</param>
 		/// <returns></returns>
-		int compareDocumentPosition(Node* node);
+		virtual int compareDocumentPosition(Node* node) = 0;
 
 		/// <summary>
 		/// Returns the first child node of an element
@@ -74,7 +70,7 @@ namespace litehtml
 		/// <value>
 		/// The first child.
 		/// </value>
-		Node* firstChild();
+		virtual Node* firstChild() = 0;
 
 		/// <summary>
 		/// Returns true if an element has any child nodes, otherwise false
@@ -82,7 +78,7 @@ namespace litehtml
 		/// <returns>
 		///   <c>true</c> if [has child nodes]; otherwise, <c>false</c>.
 		/// </returns>
-		bool hasChildNodes();
+		virtual bool hasChildNodes() = 0;
 
 		/// <summary>
 		/// Returns true if a specified namespaceURI is the default, otherwise false
@@ -91,7 +87,7 @@ namespace litehtml
 		/// <returns>
 		///   <c>true</c> if [is default namespace] [the specified namespace URI]; otherwise, <c>false</c>.
 		/// </returns>
-		bool isDefaultNamespace(tstring namespaceURI);
+		virtual bool isDefaultNamespace(tstring namespaceURI) = 0;
 
 		/// <summary>
 		/// Checks if two elements are equal
@@ -100,7 +96,7 @@ namespace litehtml
 		/// <returns>
 		///   <c>true</c> if [is equal node] [the specified node]; otherwise, <c>false</c>.
 		/// </returns>
-		bool isEqualNode(Node* node);
+		virtual bool isEqualNode(Node* node) = 0;
 
 		/// <summary>
 		/// Checks if two elements are the same node
@@ -109,7 +105,7 @@ namespace litehtml
 		/// <returns>
 		///   <c>true</c> if [is same node] [the specified node]; otherwise, <c>false</c>.
 		/// </returns>
-		bool isSameNode(Node* node);
+		virtual bool isSameNode(Node* node) = 0;
 
 		/// <summary>
 		/// Returns the last child node of an element
@@ -117,7 +113,7 @@ namespace litehtml
 		/// <value>
 		/// The last child.
 		/// </value>
-		Node* lastChild();
+		virtual Node* lastChild() = 0;
 
 		/// <summary>
 		/// Returns the namespace URI associated with a given prefix
@@ -139,7 +135,7 @@ namespace litehtml
 		/// <value>
 		/// The next sibling.
 		/// </value>
-		Node* nextSibling();
+		virtual Node* nextSibling() = 0;
 
 		/// <summary>
 		/// Returns the name of a node
@@ -147,7 +143,7 @@ namespace litehtml
 		/// <value>
 		/// The name of the node.
 		/// </value>
-		tstring nodeName();
+		virtual tstring nodeName() = 0;
 
 		/// <summary>
 		/// Returns the node type of a node
@@ -155,7 +151,7 @@ namespace litehtml
 		/// <value>
 		/// The type of the node.
 		/// </value>
-		int nodeType();
+		virtual int nodeType() = 0;
 
 		/// <summary>
 		/// Sets or returns the value of a node
@@ -163,13 +159,13 @@ namespace litehtml
 		/// <value>
 		/// The node value.
 		/// </value>
-		tstring nodeValue();
-		void nodeValue(tstring value);
+		virtual tstring nodeValue() = 0;
+		virtual void nodeValue(tstring value) = 0;
 
 		/// <summary>
 		/// Joins adjacent text nodes and removes empty text nodes in an element
 		/// </summary>
-		void normalize();
+		virtual void normalize() = 0;
 
 		/// <summary>
 		/// Returns the root element (document object) for an element
@@ -177,7 +173,7 @@ namespace litehtml
 		/// <value>
 		/// The owner document.
 		/// </value>
-		Document* ownerDocument();
+		virtual Document* ownerDocument() = 0;
 
 		/// <summary>
 		/// Returns the parent node of an element
@@ -185,7 +181,7 @@ namespace litehtml
 		/// <value>
 		/// The parent node.
 		/// </value>
-		Node* parentNode();
+		virtual Node* parentNode() = 0;
 
 		/// <summary>
 		/// Sets or returns the namespace prefix of a node
@@ -194,7 +190,7 @@ namespace litehtml
 		/// The prefix.
 		/// </value>
 		tstring prefix(); //: Base
-		void prefix(tstring value);
+		void prefix(tstring value); //: Base
 
 		/// <summary>
 		/// Returns the previous node at the same node tree level
@@ -202,14 +198,14 @@ namespace litehtml
 		/// <value>
 		/// The previous sibling.
 		/// </value>
-		Node* previousSibling();
+		virtual Node* previousSibling() = 0;
 
 		/// <summary>
 		/// Removes a child node from an element
 		/// </summary>
 		/// <param name="node">The node.</param>
 		/// <returns></returns>
-		Node* removeChild(Node* node);
+		virtual Node* removeChild(Node* node) = 0;
 
 		/// <summary>
 		/// Replaces a child node in an element
@@ -217,7 +213,7 @@ namespace litehtml
 		/// <param name="newnode">The newnode.</param>
 		/// <param name="oldnode">The oldnode.</param>
 		/// <returns></returns>
-		Node* replaceChild(Node* newnode, Node* oldnode);
+		virtual Node* replaceChild(Node* newnode, Node* oldnode) = 0;
 
 		/// <summary>
 		/// Sets or returns the textual content of a node and its descendants
@@ -225,8 +221,8 @@ namespace litehtml
 		/// <value>
 		/// The content of the text.
 		/// </value>
-		tstring textContent();
-		void textContent(tstring value);
+		virtual tstring textContent() = 0;
+		virtual void textContent(tstring value) = 0;
 	};
 
 	/// <summary>
@@ -241,6 +237,209 @@ namespace litehtml
 		typedef std::shared_ptr<Attr> ptr;
 	public:
 		Attr(string_map* attrs, tstring name);
+
+		/// <summary>
+		/// Adds a new child node, to an element, as the last child node
+		/// </summary>
+		/// <param name="node">The node.</param>
+		/// <returns></returns>
+		virtual Node* appendChild(Node* node) override; //: Node
+
+		/// <summary>
+		/// Returns a NamedNodeMap of an element's attributes
+		/// </summary>
+		/// <value>
+		/// The attributes.
+		/// </value>
+		virtual NamedNodeMap attributes() override; //: Node
+
+		/// <summary>
+		/// Returns the absolute base URI of a node
+		/// </summary>
+		/// <value>
+		/// The base URI.
+		/// </value>
+		virtual tstring baseURI() override; //: Node
+
+		/// <summary>
+		/// Returns a collection of an element's child nodes (including text and comment nodes)
+		/// </summary>
+		virtual NodeList childNodes() override; //: Node
+
+		/// <summary>
+		/// Clones an element
+		/// </summary>
+		/// <param name="deep">if set to <c>true</c> [deep].</param>
+		/// <returns></returns>
+		virtual Node* cloneNode(bool deep) override; //: Node
+
+		/// <summary>
+		/// Compares the document position of two elements
+		/// </summary>
+		/// <param name="node">The node.</param>
+		/// <returns></returns>
+		virtual int compareDocumentPosition(Node* node) override; //: Node
+
+		/// <summary>
+		/// Returns the first child node of an element
+		/// </summary>
+		/// <value>
+		/// The first child.
+		/// </value>
+		virtual Node* firstChild() override; //: Node
+
+		/// <summary>
+		/// Returns true if an element has any child nodes, otherwise false
+		/// </summary>
+		/// <returns>
+		///   <c>true</c> if [has child nodes]; otherwise, <c>false</c>.
+		/// </returns>
+		virtual bool hasChildNodes() override;//: Node
+
+		/// <summary>
+		/// Returns true if a specified namespaceURI is the default, otherwise false
+		/// </summary>
+		/// <param name="namespaceURI">The namespace URI.</param>
+		/// <returns>
+		///   <c>true</c> if [is default namespace] [the specified namespace URI]; otherwise, <c>false</c>.
+		/// </returns>
+		virtual bool isDefaultNamespace(tstring namespaceURI) override; //: Node
+
+		/// <summary>
+		/// Checks if two elements are equal
+		/// </summary>
+		/// <param name="node">The node.</param>
+		/// <returns>
+		///   <c>true</c> if [is equal node] [the specified node]; otherwise, <c>false</c>.
+		/// </returns>
+		virtual bool isEqualNode(Node* node) override; //: Node
+
+		/// <summary>
+		/// Checks if two elements are the same node
+		/// </summary>
+		/// <param name="node">The node.</param>
+		/// <returns>
+		///   <c>true</c> if [is same node] [the specified node]; otherwise, <c>false</c>.
+		/// </returns>
+		virtual bool isSameNode(Node* node) override; //: Node
+
+		/// <summary>
+		/// Returns the last child node of an element
+		/// </summary>
+		/// <value>
+		/// The last child.
+		/// </value>
+		virtual Node* lastChild() override; //: Node
+		
+		///// <summary>
+		///// Returns the namespace URI associated with a given prefix
+		///// </summary>
+		///// <param name="prefix">The prefix.</param>
+		///// <returns></returns>
+		//virtual tstring lookupNamespaceURI(tstring prefix) override; //: Node
+
+		///// <summary>
+		///// Returns the prefix associated with a given namespace URI
+		///// </summary>
+		///// <param name="namespaceURI">The namespace URI.</param>
+		///// <returns></returns>
+		//virtual tstring lookupPrefix(tstring namespaceURI) override; //: Node
+
+		/// <summary>
+		/// Returns the next node at the same node tree level
+		/// </summary>
+		/// <value>
+		/// The next sibling.
+		/// </value>
+		virtual Node* nextSibling() override; //: Node
+
+		/// <summary>
+		/// Returns the name of a node
+		/// </summary>
+		/// <value>
+		/// The name of the node.
+		/// </value>
+		virtual tstring nodeName() override; //: Node
+
+		/// <summary>
+		/// Returns the node type of a node
+		/// </summary>
+		/// <value>
+		/// The type of the node.
+		/// </value>
+		virtual int nodeType() override; //: Node
+
+		/// <summary>
+		/// Sets or returns the value of a node
+		/// </summary>
+		/// <value>
+		/// The node value.
+		/// </value>
+		virtual tstring nodeValue() override; //: Node
+		virtual void nodeValue(tstring value) override; //: Node
+
+		/// <summary>
+		/// Joins adjacent text nodes and removes empty text nodes in an element
+		/// </summary>
+		virtual void normalize() override; //: Node
+
+		/// <summary>
+		/// Returns the root element (document object) for an element
+		/// </summary>
+		/// <value>
+		/// The owner document.
+		/// </value>
+		virtual Document* ownerDocument() override; //: Node
+
+		/// <summary>
+		/// Returns the parent node of an element
+		/// </summary>
+		/// <value>
+		/// The parent node.
+		/// </value>
+		virtual Node* parentNode() override; //: Node
+
+		///// <summary>
+		///// Sets or returns the namespace prefix of a node
+		///// </summary>
+		///// <value>
+		///// The prefix.
+		///// </value>
+		//virtual tstring prefix() override; //: Node
+		//virtual void prefix(tstring value) override; //: Node
+
+		/// <summary>
+		/// Returns the previous node at the same node tree level
+		/// </summary>
+		/// <value>
+		/// The previous sibling.
+		/// </value>
+		virtual Node* previousSibling() override; //: Node
+
+		/// <summary>
+		/// Removes a child node from an element
+		/// </summary>
+		/// <param name="node">The node.</param>
+		/// <returns></returns>
+		virtual Node* removeChild(Node* node) override; //: Node
+
+		/// <summary>
+		/// Replaces a child node in an element
+		/// </summary>
+		/// <param name="newnode">The newnode.</param>
+		/// <param name="oldnode">The oldnode.</param>
+		/// <returns></returns>
+		virtual Node* replaceChild(Node* newnode, Node* oldnode) override; //: Node
+
+		/// <summary>
+		/// Sets or returns the textual content of a node and its descendants
+		/// </summary>
+		/// <value>
+		/// The content of the text.
+		/// </value>
+		virtual tstring textContent() override; //: Node
+		virtual void textContent(tstring value) override; //: Node
+
 		/// <summary>
 		/// Returns the name of an attribute
 		/// </summary>
@@ -278,6 +477,8 @@ namespace litehtml
 		NodeList(elements_vector& elements);
 		~NodeList();
 		Node* operator[](int index);
+		Node* item(int index);
+		int length();
 	};
 
 	/// <summary>
