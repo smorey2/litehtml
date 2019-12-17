@@ -16,6 +16,7 @@ namespace litehtml
 		friend class html_tag;
 		friend class el_table;
 		friend class document;
+		friend class Document;
 		friend class Element;
 	public:
 		typedef std::shared_ptr<litehtml::element>			ptr;

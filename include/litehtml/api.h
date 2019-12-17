@@ -149,9 +149,13 @@ namespace litehtml
 	/// Document
 	/// https://www.w3schools.com/jsref/dom_obj_document.asp
 	/// </summary>
-	class Document
+	class Document : public Node // public NodeList
 	{
+	protected:
+		document* _doc;
 	public:
+		Document();
+
 		/// <summary>
 		/// Returns the currently focused element in the document
 		/// </summary>
@@ -184,6 +188,13 @@ namespace litehtml
 		HTMLCollection& anchors();
 
 		/// <summary>
+		/// Adds a new child node, to an element, as the last child node
+		/// </summary>
+		/// <param name="node">The node.</param>
+		/// <returns></returns>
+		virtual Node* appendChild(Node* node) override; //: Node
+
+		/// <summary>
 		/// Returns a collection of all <applet> elements in the document
 		/// </summary>
 		/// <value>
@@ -192,12 +203,20 @@ namespace litehtml
 		HTMLCollection& applets();
 
 		/// <summary>
+		/// NotSupported - Returns a NamedNodeMap of an element's attributes
+		/// </summary>
+		/// <value>
+		/// The attributes.
+		/// </value>
+		virtual NamedNodeMap attributes() override; //: Node
+
+		/// <summary>
 		/// Returns the absolute base URI of a document
 		/// </summary>
 		/// <value>
 		/// The base URI.
 		/// </value>
-		tstring baseURI();
+		virtual tstring baseURI() override; //: Node
 
 		/// <summary>
 		/// Sets or returns the document's body (the <body> element)
@@ -209,9 +228,36 @@ namespace litehtml
 		void body(Element* value);
 
 		/// <summary>
+		/// Returns the character encoding for the document
+		/// </summary>
+		/// <value>
+		/// The character set.
+		/// </value>
+		tstring characterSet();
+
+		/// <summary>
+		/// Returns a collection of an element's child nodes (including text and comment nodes)
+		/// </summary>
+		virtual NodeList childNodes() override; //: Node
+
+		/// <summary>
+		/// Clones an element
+		/// </summary>
+		/// <param name="deep">if set to <c>true</c> [deep].</param>
+		/// <returns></returns>
+		virtual Node* cloneNode(bool deep = false) override; //: Node
+
+		/// <summary>
 		/// Closes the output stream previously opened with document.open()
 		/// </summary>
 		void close();
+
+		/// <summary>
+		/// Compares the document position of two elements
+		/// </summary>
+		/// <param name="node">The node.</param>
+		/// <returns></returns>
+		virtual int compareDocumentPosition(Node* node) override; //: Node
 
 		/// <summary>
 		/// Returns all name/value pairs of cookies in the document
@@ -221,14 +267,6 @@ namespace litehtml
 		/// </value>
 		tstring cookie();
 		void cookie(tstring value);
-
-		/// <summary>
-		/// Returns the character encoding for the document
-		/// </summary>
-		/// <value>
-		/// The character set.
-		/// </value>
-		tstring characterSet();
 
 		/// <summary>
 		/// Creates an attribute node
@@ -339,6 +377,14 @@ namespace litehtml
 		bool execCommand(tstring command, bool showUI, void* value = nullptr);
 
 		/// <summary>
+		/// Returns the first child node of an element
+		/// </summary>
+		/// <value>
+		/// The first child.
+		/// </value>
+		virtual Node* firstChild() override; //: Node
+
+		/// <summary>
 		/// Returns a collection of all <form> elements in the document
 		/// </summary>
 		/// <value>
@@ -389,6 +435,14 @@ namespace litehtml
 		NodeList getElementsByTagName(tstring tagname);
 
 		/// <summary>
+		/// Returns true if an element has any child nodes, otherwise false
+		/// </summary>
+		/// <returns>
+		///   <c>true</c> if [has child nodes]; otherwise, <c>false</c>.
+		/// </returns>
+		virtual bool hasChildNodes() override; //: Node
+
+		/// <summary>
 		/// Returns a Boolean value indicating whether the document has focus
 		/// </summary>
 		/// <returns>
@@ -437,6 +491,41 @@ namespace litehtml
 		tstring inputEncoding();
 
 		/// <summary>
+		/// Returns true if a specified namespaceURI is the default, otherwise false
+		/// </summary>
+		/// <param name="namespaceURI">The namespace URI.</param>
+		/// <returns>
+		///   <c>true</c> if [is default namespace] [the specified namespace URI]; otherwise, <c>false</c>.
+		/// </returns>
+		virtual bool isDefaultNamespace(tstring namespaceURI) override; //: Node
+
+		/// <summary>
+		/// Checks if two elements are equal
+		/// </summary>
+		/// <param name="node">The node.</param>
+		/// <returns>
+		///   <c>true</c> if [is equal node] [the specified node]; otherwise, <c>false</c>.
+		/// </returns>
+		virtual bool isEqualNode(Node* node) override; //: Node
+
+		/// <summary>
+		/// Checks if two elements are the same node
+		/// </summary>
+		/// <param name="node">The node.</param>
+		/// <returns>
+		///   <c>true</c> if [is same node] [the specified node]; otherwise, <c>false</c>.
+		/// </returns>
+		virtual bool isSameNode(Node* node) override; //: Node
+
+		/// <summary>
+		/// Returns the last child node of an element
+		/// </summary>
+		/// <value>
+		/// The last child.
+		/// </value>
+		virtual Node* lastChild() override; //: Node
+
+		/// <summary>
 		/// Returns the date and time the document was last modified
 		/// </summary>
 		/// <value>
@@ -453,9 +542,42 @@ namespace litehtml
 		HTMLCollection& links();
 
 		/// <summary>
+		/// Returns the next node at the same node tree level
+		/// </summary>
+		/// <value>
+		/// The next sibling.
+		/// </value>
+		virtual Node* nextSibling() override; //: Node
+
+		/// <summary>
+		/// Returns the name of a node
+		/// </summary>
+		/// <value>
+		/// The name of the node.
+		/// </value>
+		virtual tstring nodeName() override; //: Node
+
+		/// <summary>
+		/// Returns the node type of a node
+		/// </summary>
+		/// <value>
+		/// The type of the node.
+		/// </value>
+		virtual int nodeType() override; //: Node
+
+		/// <summary>
+		/// Sets or returns the value of a node
+		/// </summary>
+		/// <value>
+		/// The node value.
+		/// </value>
+		virtual tstring nodeValue() override; //: Node
+		virtual void nodeValue(tstring value) override; //: Node
+
+		/// <summary>
 		/// Removes empty Text nodes, and joins adjacent nodes
 		/// </summary>
-		void normalize();
+		virtual void normalize() override; //: Node
 
 		/// <summary>
 		/// Opens an HTML output stream to collect output from document.write()
@@ -463,6 +585,30 @@ namespace litehtml
 		/// <param name="MIMEtype">The mim etype.</param>
 		/// <param name="replace">The replace.</param>
 		void open(tstring MIMEtype = nullptr, tstring replace = nullptr);
+
+		/// <summary>
+		/// Returns the root element (document object) for an element
+		/// </summary>
+		/// <value>
+		/// The owner document.
+		/// </value>
+		virtual Document* ownerDocument() override; //: Node
+
+		/// <summary>
+		/// Returns the parent node of an element
+		/// </summary>
+		/// <value>
+		/// The parent node.
+		/// </value>
+		virtual Node* parentNode() override; //: Node
+
+		/// <summary>
+		/// Returns the previous node at the same node tree level
+		/// </summary>
+		/// <value>
+		/// The previous sibling.
+		/// </value>
+		virtual Node* previousSibling() override; //: Node
 
 		/// <summary>
 		/// Returns the first element that matches a specified CSS selector(s) in the document
@@ -495,6 +641,13 @@ namespace litehtml
 		tstring referrer();
 
 		/// <summary>
+		/// Removes a child node from an element
+		/// </summary>
+		/// <param name="node">The node.</param>
+		/// <returns></returns>
+		virtual Node* removeChild(Node* node) override; //: Node
+
+		/// <summary>
 		/// Removes an event handler from the document (that has been attached with the addEventListener() method)
 		/// </summary>
 		/// <param name="event">The event.</param>
@@ -503,13 +656,21 @@ namespace litehtml
 		void removeEventListener(tstring event, tstring function, bool useCapture = false);
 
 		/// <summary>
-		/// Renames the specified node
+		/// NotSupported - Renames the specified node
 		/// </summary>
 		/// <param name="node">The node.</param>
 		/// <param name="namespaceURI">The namespace URI.</param>
 		/// <param name="nodename">The nodename.</param>
 		/// <returns></returns>
 		Node* renameNode(Node* node, tstring namespaceURI, tstring nodename);
+
+		/// <summary>
+		/// Replaces a child node in an element
+		/// </summary>
+		/// <param name="newnode">The newnode.</param>
+		/// <param name="oldnode">The oldnode.</param>
+		/// <returns></returns>
+		virtual Node* replaceChild(Node* newnode, Node* oldnode) override; //: Node
 
 		/// <summary>
 		/// Returns a collection of <script> elements in the document
@@ -520,13 +681,13 @@ namespace litehtml
 		HTMLCollection& scripts();
 
 		/// <summary>
-		/// Sets or returns whether error-checking is enforced or not
+		/// Sets or returns the textual content of a node and its descendants
 		/// </summary>
 		/// <value>
-		///   <c>true</c> if [strict error checking]; otherwise, <c>false</c>.
+		/// The content of the text.
 		/// </value>
-		bool strictErrorChecking();
-		void strictErrorChecking(bool value);
+		virtual tstring textContent() override; //: Node
+		virtual void textContent(tstring value) override; //: Node
 
 		/// <summary>
 		/// Sets or returns the title of the document
