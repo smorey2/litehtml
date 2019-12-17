@@ -66,7 +66,7 @@ namespace litehtml
 	/// The attributes.
 	/// </value>
 	NamedNodeMap Attr::attributes() { return NamedNodeMap::Empty; } //: Node
-	
+
 	/// <summary>
 	/// Returns the absolute base URI of a node
 	/// </summary>
@@ -107,7 +107,15 @@ namespace litehtml
 	/// The first child.
 	/// </value>
 	Node* Attr::firstChild() { return nullptr; } //: Node
-	
+
+	/// <summary>
+	/// Not Supported - Returns true if the specified node has any attributes, otherwise false
+	/// </summary>
+	/// <returns>
+	///   <c>true</c> if this instance has attributes; otherwise, <c>false</c>.
+	/// </returns>
+	bool Attr::hasAttributes() { return false; } //: Node
+
 	/// <summary>
 	/// Returns true if an element has any child nodes, otherwise false
 	/// </summary>
@@ -175,7 +183,7 @@ namespace litehtml
 	/// The name of the node.
 	/// </value>
 	tstring Attr::nodeName() { return _name; } //: Node
-	
+
 	/// <summary>
 	/// Returns the node type of a node
 	/// </summary>
@@ -229,7 +237,7 @@ namespace litehtml
 	/// The previous sibling.
 	/// </value>
 	Node* Attr::previousSibling() { return nullptr; } //: Node
-	
+
 
 	/// <summary>
 	/// Removes a child node from an element

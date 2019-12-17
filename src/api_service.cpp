@@ -28,7 +28,7 @@ namespace litehtml
 	/// <summary>
 	/// Defines a function to be called when the readyState property changes
 	/// </summary>
-	void XMLHttpRequest::onreadystatechange() { }
+	//void XMLHttpRequest::onreadystatechange() { }
 
 	/// <summary>
 	/// Specifies the request

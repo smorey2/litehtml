@@ -73,6 +73,14 @@ namespace litehtml
 		virtual Node* firstChild() = 0;
 
 		/// <summary>
+		/// Returns true if the specified node has any attributes, otherwise false
+		/// </summary>
+		/// <returns>
+		///   <c>true</c> if this instance has attributes; otherwise, <c>false</c>.
+		/// </returns>
+		virtual bool hasAttributes() = 0;
+
+		/// <summary>
 		/// Returns true if an element has any child nodes, otherwise false
 		/// </summary>
 		/// <returns>
@@ -289,12 +297,20 @@ namespace litehtml
 		virtual Node* firstChild() override; //: Node
 
 		/// <summary>
+		/// Not Supported - Returns true if the specified node has any attributes, otherwise false
+		/// </summary>
+		/// <returns>
+		///   <c>true</c> if this instance has attributes; otherwise, <c>false</c>.
+		/// </returns>
+		virtual bool hasAttributes() override; //: Node
+
+		/// <summary>
 		/// Returns true if an element has any child nodes, otherwise false
 		/// </summary>
 		/// <returns>
 		///   <c>true</c> if [has child nodes]; otherwise, <c>false</c>.
 		/// </returns>
-		virtual bool hasChildNodes() override;//: Node
+		virtual bool hasChildNodes() override; //: Node
 
 		/// <summary>
 		/// Returns true if a specified namespaceURI is the default, otherwise false

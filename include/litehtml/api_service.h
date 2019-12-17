@@ -1,6 +1,7 @@
 #ifndef LH_API_SERVICE_H
 #define LH_API_SERVICE_H
 
+#include <functional>
 #include <string>
 
 namespace litehtml
@@ -36,7 +37,7 @@ namespace litehtml
 		/// <summary>
 		/// Defines a function to be called when the readyState property changes
 		/// </summary>
-		void onreadystatechange();
+		std::function<void(XMLHttpRequest*)> onreadystatechange;
 
 		/// <summary>
 		/// Specifies the request
