@@ -25,10 +25,10 @@
     <ClCompile Include="test\api_StyleTest.cpp" />
     <ClCompile Include="test\api_WindowTest.cpp" />
     <ClCompile Include="test\web_colorTest.cpp" />
-    <ClCompile Include="test\nodeTest.cpp" />
+    <ClCompile Include="test\api_nodeTest.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\master.css.inc" />
+    <None Include="test\master.css.inc" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">

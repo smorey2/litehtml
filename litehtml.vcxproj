@@ -363,6 +363,7 @@
     <ClCompile Include="src\web_color.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\litehtml\api_any.h" />
     <ClInclude Include="include\litehtml\api_node.h" />
     <ClInclude Include="include\litehtml\api_service.h" />
     <ClInclude Include="include\litehtml\attributes.h" />

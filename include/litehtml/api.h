@@ -1,6 +1,7 @@
 #ifndef LH_API_H
 #define LH_API_H
 
+#include "api_any.h"
 #include "api_node.h"
 #include "api_service.h"
 #include "events.h"
@@ -65,7 +66,7 @@ namespace litehtml
 		/// </summary>
 		/// <param name="expression">The expression.</param>
 		/// <param name="message">The message.</param>
-		void Assert(void* expression, void* message);
+		void assert_(void* expression, tany message);
 
 		/// <summary>
 		/// Clears the console
@@ -82,7 +83,7 @@ namespace litehtml
 		/// Outputs an error message to the console
 		/// </summary>
 		/// <param name="message">The message.</param>
-		void error(void* message);
+		void error(tany message);
 
 		/// <summary>
 		/// Creates a new inline group in the console. This indents following console messages by an additional level, until console.groupEnd() is called
@@ -105,20 +106,20 @@ namespace litehtml
 		/// Outputs an informational message to the console
 		/// </summary>
 		/// <param name="message">The message.</param>
-		void info(void* message);
+		void info(tany message);
 
 		/// <summary>
 		/// Outputs a message to the console
 		/// </summary>
 		/// <param name="message">The message.</param>
-		void log(void* message);
+		void log(tany message);
 
 		/// <summary>
 		/// Displays tabular data as a table
 		/// </summary>
 		/// <param name="tabledata">The tabledata.</param>
 		/// <param name="tablecolumns">The tablecolumns.</param>
-		void table(void* tabledata, void** tablecolumns = nullptr);
+		void table(void* tabledata, tstring tablecolumns[] = nullptr);
 
 		/// <summary>
 		/// Starts a timer (can track how long an operation takes)
@@ -142,14 +143,14 @@ namespace litehtml
 		/// Outputs a warning message to the console
 		/// </summary>
 		/// <param name="message">The message.</param>
-		void warn(void* message);
+		void warn(tany message);
 	};
 
 	/// <summary>
 	/// Document
 	/// https://www.w3schools.com/jsref/dom_obj_document.asp
 	/// </summary>
-	class Document : public Node // public NodeList
+	class Document : public Node
 	{
 	protected:
 		document* _doc;
@@ -238,7 +239,7 @@ namespace litehtml
 		/// <summary>
 		/// Returns a collection of an element's child nodes (including text and comment nodes)
 		/// </summary>
-		virtual NodeList childNodes() override; //: Node
+		virtual NodeList<Node> childNodes() override; //: Node
 
 		/// <summary>
 		/// Clones an element
@@ -418,21 +419,21 @@ namespace litehtml
 		/// </summary>
 		/// <param name="classname">The classname.</param>
 		/// <returns></returns>
-		NodeList getElementsByClassName(tstring classname);
+		NodeList<Element> getElementsByClassName(tstring classname);
 
 		/// <summary>
 		/// Returns a NodeList containing all elements with a specified name
 		/// </summary>
 		/// <param name="name">The name.</param>
 		/// <returns></returns>
-		NodeList getElementsByName(tstring name);
+		NodeList<Element> getElementsByName(tstring name);
 
 		/// <summary>
 		/// Returns a NodeList containing all elements with the specified tag name
 		/// </summary>
 		/// <param name="tagname">The tagname.</param>
 		/// <returns></returns>
-		NodeList getElementsByTagName(tstring tagname);
+		NodeList<Element> getElementsByTagName(tstring tagname);
 
 		/// <summary>
 		/// Not Supported - Returns true if the specified node has any attributes, otherwise false
@@ -630,7 +631,7 @@ namespace litehtml
 		/// </summary>
 		/// <param name="selectors">The selectors.</param>
 		/// <returns></returns>
-		NodeList querySelectorAll(tstring selectors);
+		NodeList<Element> querySelectorAll(tstring selectors);
 
 		/// <summary>
 		/// Returns the (loading) status of the document
@@ -794,7 +795,7 @@ namespace litehtml
 		/// <summary>
 		/// Returns a collection of an element's child nodes (including text and comment nodes)
 		/// </summary>
-		virtual NodeList childNodes() override; //: Node
+		virtual NodeList<Node> childNodes() override; //: Node
 
 		/// <summary>
 		/// Returns a collection of an element's child element (excluding text and comment nodes)
@@ -915,7 +916,7 @@ namespace litehtml
 		/// <value>
 		/// The first element child.
 		/// </value>
-		Node* firstElementChild();
+		Element* firstElementChild();
 
 		/// <summary>
 		/// Gives focus to an element
@@ -947,14 +948,14 @@ namespace litehtml
 		/// </summary>
 		/// <param name="classname">The classname.</param>
 		/// <returns></returns>
-		NodeList getElementsByClassName(tstring classname);
+		NodeList<Element> getElementsByClassName(tstring classname);
 
 		/// <summary>
 		/// Returns a collection of all child elements with the specified tag name
 		/// </summary>
 		/// <param name="tagname">The tagname.</param>
 		/// <returns></returns>
-		NodeList getElementsByTagName(tstring tagname);
+		NodeList<Element> getElementsByTagName(tstring tagname);
 
 		/// <summary>
 		/// Returns true if an element has the specified attribute, otherwise false
@@ -1094,7 +1095,7 @@ namespace litehtml
 		/// <value>
 		/// The last element child.
 		/// </value>
-		Node* lastElementChild();
+		Element* lastElementChild();
 
 		/// <summary>
 		/// Returns the namespace URI of an element
@@ -1118,7 +1119,7 @@ namespace litehtml
 		/// <value>
 		/// The next element sibling.
 		/// </value>
-		Node* nextElementSibling();
+		Element* nextElementSibling();
 
 		/// <summary>
 		/// Returns the name of a node
@@ -1228,7 +1229,7 @@ namespace litehtml
 		/// <value>
 		/// The previous element sibling.
 		/// </value>
-		Node* previousElementSibling();
+		Element* previousElementSibling();
 
 		/// <summary>
 		/// Returns the first child element that matches a specified CSS selector(s) of an element
@@ -1242,7 +1243,7 @@ namespace litehtml
 		/// </summary>
 		/// <param name="selectors">The selectors.</param>
 		/// <returns></returns>
-		NodeList querySelectorAll(tstring selectors);
+		NodeList<Element> querySelectorAll(tstring selectors);
 
 		/// <summary>
 		/// Removes a specified attribute from an element
@@ -1306,6 +1307,7 @@ namespace litehtml
 		/// The scroll left.
 		/// </value>
 		int scrollLeft();
+		void scrollLeft(int value);
 
 		/// <summary>
 		/// Sets or returns the number of pixels an element's content is scrolled vertically
@@ -1314,6 +1316,7 @@ namespace litehtml
 		/// The scroll top.
 		/// </value>
 		int scrollTop();
+		void scrollTop(int value);
 
 		/// <summary>
 		/// Returns the entire width of an element, including padding
@@ -1351,8 +1354,8 @@ namespace litehtml
 		/// <value>
 		/// The index of the tab.
 		/// </value>
-		int tabIndex();
-		void tabIndex(int value);
+		tstring tabIndex();
+		void tabIndex(tstring value);
 
 		/// <summary>
 		/// Returns the tag name of an element

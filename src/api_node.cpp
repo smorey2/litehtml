@@ -78,7 +78,7 @@ namespace litehtml
 	/// <summary>
 	/// Returns a collection of an element's child nodes (including text and comment nodes)
 	/// </summary>
-	NodeList Attr::childNodes() { return NodeList(); } //: Node
+	NodeList<Node> Attr::childNodes() { return NodeList<Node>(); } //: Node
 
 	/// <summary>
 	/// Clones an element
@@ -305,16 +305,25 @@ namespace litehtml
 /// </summary>
 namespace litehtml
 {
-	NodeList::NodeList() : list((elements_vector)0) { }
-	NodeList::NodeList(elements_vector& elements) : list(elements) { }
-	NodeList::~NodeList()
+	template<class TNode>
+	NodeList<TNode>::NodeList() : list((elements_vector)0) { }
+	template<class TNode>
+	NodeList<TNode>::NodeList(elements_vector& elements) : list(elements) { }
+	template<class TNode>
+	NodeList<TNode>::~NodeList()
 	{
 		if (list != (elements_vector)0)
 			list.clear();
 	}
-	Node* NodeList::operator[](int index) { return list != (elements_vector)0 ? list[index].get() : nullptr; }
-	Node* NodeList::item(int index) { return list != (elements_vector)0 ? list[index].get() : nullptr; }
-	int NodeList::length() { return list != (elements_vector)0 ? (int)list.size() : 0; }
+	template<class TNode>
+	TNode* NodeList<TNode>::operator[](int index) { return list != (elements_vector)0 ? list[index].get() : nullptr; }
+	template<class TNode>
+	TNode* NodeList<TNode>::item(int index) { return list != (elements_vector)0 ? list[index].get() : nullptr; }
+	template<class TNode>
+	int NodeList<TNode>::length() { return list != (elements_vector)0 ? (int)list.size() : 0; }
+
+	template class NodeList<Node>;
+	template class NodeList<Element>;
 }
 
 /// <summary>

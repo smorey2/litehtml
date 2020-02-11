@@ -32,7 +32,7 @@ static void AttribTest() {
 		assert(!t_strcmp(_t("myFunction()"), x.c_str()));
 	}
 	{
-		auto x = (Element*)document->getElementsByTagName(_t("IMG"))[0];
+		auto x = document->getElementsByTagName(_t("IMG"))[0];
 		x->getAttributeNode(_t("src"))->value(_t("pic_bulbon.gif"));
 		assert(!t_strcmp(_t("pic_bulbon.gif"), x->getAttributeNode(_t("src"))->value().c_str()));
 	}
@@ -58,7 +58,7 @@ static void NodemapTest() {
 
 	// https://www.w3schools.com/jsref/met_namednodemap_getnameditem.asp
 	{
-		auto btn = (Element*)document->getElementsByTagName(_t("BUTTON"))[0];
+		auto btn = document->getElementsByTagName(_t("BUTTON"))[0];
 		auto x = btn->attributes().getNamedItem(_t("onclick"))->value();
 		assert(!t_strcmp(_t("myFunction()"), x.c_str()));
 	}
@@ -150,7 +150,7 @@ static void PropertyTest() {
 
 		myFunction = [document](XMLHttpRequest* xml)
 		{
-			NodeList x; int i; Document* xmlDoc; tstring txt;
+			NodeList<Element> x; int i; Document* xmlDoc; tstring txt;
 			xmlDoc = xml->responseXML();
 			txt = _t("");
 			x = xmlDoc->getElementsByTagName(_t("title"));
@@ -185,7 +185,7 @@ static void PropertyTest() {
 
 		myFunction = [document](XMLHttpRequest* xml)
 		{
-			NodeList x; int i; Document* xmlDoc; tstring txt;
+			NodeList<Node> x; int i; Document* xmlDoc; tstring txt;
 			xmlDoc = xml->responseXML();
 			txt = _t("");
 			x = xmlDoc->childNodes();
@@ -314,9 +314,9 @@ static void PropertyTest() {
 			auto x = xmlDoc->getElementsByTagName(_t("title"))[0];
 			auto y = get_nextsibling(x);
 			document->getElementById(_t("demo"))->innerHTML(x->nodeName() + _t(" = ") +
-				std::to_wstring(x->childNodes()[0]->nodeValue()) +
+				x->childNodes()[0]->nodeValue() +
 				_t("<br>Next sibling: ") + y->nodeName() + _t(" = ") +
-				std::to_wstring(y->childNodes()[0]->nodeValue()));
+				y->childNodes()[0]->nodeValue());
 		};
 
 		//wait
@@ -478,7 +478,7 @@ static void PropertyTest() {
 
 		myFunction = [document](XMLHttpRequest* xml)
 		{
-			NodeList x; int i; Document* xmlDoc; tstring txt;
+			NodeList<Element> x; int i; Document* xmlDoc; tstring txt;
 			xmlDoc = xml->responseXML();
 			txt = _t("");
 			x = xmlDoc->getElementsByTagName(_t("title"));
@@ -529,9 +529,9 @@ static void PropertyTest() {
 			auto x = xmlDoc->getElementsByTagName(_t("author"))[0];
 			auto y = get_previoussibling(x);
 			document->getElementById(_t("demo"))->innerHTML(x->nodeName() + _t(" = ") +
-				std::to_wstring(x->childNodes()[0]->nodeValue()) +
+				x->childNodes()[0]->nodeValue() +
 				_t("<br>Previous sibling: ") + y->nodeName() + _t(" = ") +
-				std::to_wstring(y->childNodes()[0]->nodeValue()));
+				y->childNodes()[0]->nodeValue());
 		};
 
 		//wait
@@ -557,7 +557,7 @@ static void PropertyTest() {
 
 		myFunction = [document](XMLHttpRequest* xml)
 		{
-			NodeList x; int i; Document* xmlDoc; tstring txt;
+			NodeList<Element> x; int i; Document* xmlDoc; tstring txt;
 			xmlDoc = xml->responseXML();
 			txt = _t("");
 			x = xmlDoc->getElementsByTagName(_t("book"));
@@ -633,12 +633,12 @@ static void MethodTest() {
 
 		myFunction = [document](XMLHttpRequest* xml)
 		{
-			Node* x; NodeList y; Node* cloneNode; int i; Document* xmlDoc; tstring txt;
+			Node* x; NodeList<Element> y; Node* cloneNode; int i; Document* xmlDoc; tstring txt;
 			xmlDoc = xml->responseXML();
 			txt = _t("");
 			x = xmlDoc->getElementsByTagName(_t("book"))[0];
 			cloneNode = x->cloneNode(true);
-			xmlDoc->documentElement->appendChild(cloneNode);
+			xmlDoc->documentElement()->appendChild(cloneNode);
 
 			// Output all titles
 			y = xmlDoc->getElementsByTagName(_t("title"));
@@ -942,7 +942,7 @@ static void MethodTest() {
 
 		myFunction = [document](XMLHttpRequest* xml)
 		{
-			Element* x; Node* y; NodeList z; int i; Element* newNode; Element* newTitle; Node* newText; Document* xmlDoc; tstring txt;
+			Element* x; Node* y; NodeList<Element> z; int i; Element* newNode; Element* newTitle; Node* newText; Document* xmlDoc; tstring txt;
 			xmlDoc = xml->responseXML();
 			txt = _t("");
 			x = xmlDoc->documentElement();
@@ -967,7 +967,7 @@ static void MethodTest() {
 			// Output all titles
 			for (i = 0; i < z.length(); i++)
 			{
-				txt += std::to_wstring(z[i]->childNodes()[0]->nodeValue()) + _t("<br>");
+				txt += z[i]->childNodes()[0]->nodeValue() + _t("<br>");
 			}
 			document->getElementById(_t("demo"))->innerHTML(txt);
 		};

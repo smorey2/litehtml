@@ -135,7 +135,7 @@
     <ClCompile Include="test\contextTest.cpp" />
     <ClCompile Include="test\cssTest.cpp" />
     <ClCompile Include="test\documentTest.cpp" />
-    <ClCompile Include="test\nodeTest.cpp" />
+    <ClCompile Include="test\api_nodeTest.cpp" />
     <ClCompile Include="test\media_queryTest.cpp" />
     <ClCompile Include="test\program.cpp" />
     <ClCompile Include="test\web_colorTest.cpp" />

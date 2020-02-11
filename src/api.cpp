@@ -2,6 +2,96 @@
 #include "document.h"
 
 /// <summary>
+/// Console
+/// </summary>
+namespace litehtml
+{
+	/// <summary>
+	/// Writes an error message to the console if the assertion is false
+	/// </summary>
+	/// <param name="expression">The expression.</param>
+	/// <param name="message">The message.</param>
+	void Console::assert_(void* expression, tany message) { }
+
+	/// <summary>
+	/// Clears the console
+	/// </summary>
+	void Console::clear() { }
+
+	/// <summary>
+	/// Logs the number of times that this particular call to count() has been called
+	/// </summary>
+	/// <param name="label">The label.</param>
+	void Console::count(tstring label /*= nullptr*/) { }
+
+	/// <summary>
+	/// Outputs an error message to the console
+	/// </summary>
+	/// <param name="message">The message.</param>
+	void Console::error(tany message) { }
+
+	/// <summary>
+	/// Creates a new inline group in the console. This indents following console messages by an additional level, until console.groupEnd() is called
+	/// </summary>
+	/// <param name="label">The label.</param>
+	void Console::group(tstring label /*= nullptr*/) { }
+
+	/// <summary>
+	/// Creates a new inline group in the console. However, the new group is created collapsed. The user will need to use the disclosure button to expand it
+	/// </summary>
+	/// <param name="label">The label.</param>
+	void Console::groupCollapsed(tstring label /*= nullptr*/) { }
+
+	/// <summary>
+	/// Exits the current inline group in the console
+	/// </summary>
+	void Console::groupEnd() { }
+
+	/// <summary>
+	/// Outputs an informational message to the console
+	/// </summary>
+	/// <param name="message">The message.</param>
+	void Console::info(tany message) { }
+
+	/// <summary>
+	/// Outputs a message to the console
+	/// </summary>
+	/// <param name="message">The message.</param>
+	void Console::log(tany message) { }
+
+	/// <summary>
+	/// Displays tabular data as a table
+	/// </summary>
+	/// <param name="tabledata">The tabledata.</param>
+	/// <param name="tablecolumns">The tablecolumns.</param>
+	void Console::table(void* tabledata, tstring tablecolumns[] /*= nullptr*/) { }
+
+	/// <summary>
+	/// Starts a timer (can track how long an operation takes)
+	/// </summary>
+	/// <param name="label">The label.</param>
+	void Console::time(tstring label /*= nullptr*/) { }
+
+	/// <summary>
+	/// Stops a timer that was previously started by console.time()
+	/// </summary>
+	/// <param name="label">The label.</param>
+	void Console::timeEnd(tstring label /*= nullptr*/) { }
+
+	/// <summary>
+	/// Outputs a stack trace to the console
+	/// </summary>
+	/// <param name="label">The label.</param>
+	void Console::trace(tstring label /*= nullptr*/) { }
+
+	/// <summary>
+	/// Outputs a warning message to the console
+	/// </summary>
+	/// <param name="message">The message.</param>
+	void Console::warn(tany message) { }
+};
+
+/// <summary>
 /// Document
 /// </summary>
 namespace litehtml
@@ -93,7 +183,7 @@ namespace litehtml
 	/// <summary>
 	/// Returns a collection of an element's child nodes (including text and comment nodes)
 	/// </summary>
-	NodeList Document::childNodes() { return NodeList(_doc->m_root->m_children); } //: Node
+	NodeList<Node> Document::childNodes() { return NodeList<Node>(_doc->m_root->m_children); } //: Node
 
 	/// <summary>
 	/// Clones an element
@@ -283,14 +373,14 @@ namespace litehtml
 	/// </summary>
 	/// <param name="classname">The classname.</param>
 	/// <returns></returns>
-	NodeList Document::getElementsByClassName(tstring classname) { return _doc->m_root->getElementsByClassName(classname); }
+	NodeList<Element> Document::getElementsByClassName(tstring classname) { return _doc->m_root->getElementsByClassName(classname); }
 
 	/// <summary>
 	/// Returns a NodeList containing all elements with a specified name
 	/// </summary>
 	/// <param name="name">The name.</param>
 	/// <returns></returns>
-	NodeList Document::getElementsByName(tstring name)
+	NodeList<Element> Document::getElementsByName(tstring name)
 	{
 		css_element_selector elem;
 		css_attribute_selector attr;
@@ -299,7 +389,7 @@ namespace litehtml
 		attr.attribute = _t("name");
 		elem.m_attrs.push_back(attr);
 		css_selector sel(elem);
-		return NodeList(_doc->m_root->select_all(sel));
+		return NodeList<Element>(_doc->m_root->select_all(sel));
 	}
 
 	/// <summary>
@@ -307,7 +397,7 @@ namespace litehtml
 	/// </summary>
 	/// <param name="tagname">The tagname.</param>
 	/// <returns></returns>
-	NodeList Document::getElementsByTagName(tstring tagname) { return _doc->m_root->getElementsByTagName(tagname); }
+	NodeList<Element> Document::getElementsByTagName(tstring tagname) { return _doc->m_root->getElementsByTagName(tagname); }
 
 	/// <summary>
 	/// Not Supported - Returns true if the specified node has any attributes, otherwise false
@@ -505,7 +595,7 @@ namespace litehtml
 	/// </summary>
 	/// <param name="selectors">The selectors.</param>
 	/// <returns></returns>
-	NodeList Document::querySelectorAll(tstring selectors) { return NodeList(); }
+	NodeList<Element> Document::querySelectorAll(tstring selectors) { return NodeList<Element>(); }
 
 	/// <summary>
 	/// Returns the (loading) status of the document
@@ -670,7 +760,7 @@ namespace litehtml
 	/// <summary>
 	/// Returns a collection of an element's child nodes (including text and comment nodes)
 	/// </summary>
-	NodeList Element::childNodes() { return NodeList(_elem->m_children); } //: Node
+	NodeList<Node> Element::childNodes() { return NodeList<Node>(_elem->m_children); } //: Node
 
 	/// <summary>
 	/// Returns a collection of an element's child element (excluding text and comment nodes)
@@ -797,7 +887,7 @@ namespace litehtml
 	/// <value>
 	/// The first element child.
 	/// </value>
-	Node* Element::firstElementChild() { return !_elem->m_children.empty() ? _elem->m_children[0].get() : nullptr; }
+	Element* Element::firstElementChild() { return !_elem->m_children.empty() ? _elem->m_children[0].get() : nullptr; }
 
 	/// <summary>
 	/// Gives focus to an element
@@ -829,7 +919,7 @@ namespace litehtml
 	/// </summary>
 	/// <param name="classname">The classname.</param>
 	/// <returns></returns>
-	NodeList Element::getElementsByClassName(tstring classname)
+	NodeList<Element> Element::getElementsByClassName(tstring classname)
 	{
 		css_element_selector elem;
 		css_attribute_selector attr;
@@ -838,7 +928,7 @@ namespace litehtml
 		attr.attribute = _t("class");
 		elem.m_attrs.push_back(attr);
 		css_selector sel(elem);
-		return NodeList(_elem->select_all(sel));
+		return NodeList<Element>(_elem->select_all(sel));
 	}
 
 	/// <summary>
@@ -846,13 +936,13 @@ namespace litehtml
 	/// </summary>
 	/// <param name="tagname">The tagname.</param>
 	/// <returns></returns>
-	NodeList Element::getElementsByTagName(tstring tagname)
+	NodeList<Element> Element::getElementsByTagName(tstring tagname)
 	{
 		css_element_selector elem;
 		elem.m_tag = tagname;
 		litehtml::lcase(elem.m_tag);
 		css_selector sel(elem);
-		return NodeList(_elem->select_all(sel));
+		return NodeList<Element>(_elem->select_all(sel));
 	}
 
 	/// <summary>
@@ -994,7 +1084,7 @@ namespace litehtml
 	/// <value>
 	/// The last element child.
 	/// </value>
-	Node* Element::lastElementChild() { return !_elem->m_children.empty() ? _elem->m_children[_elem->m_children.size() - 1].get() : nullptr; }
+	Element* Element::lastElementChild() { return !_elem->m_children.empty() ? _elem->m_children[_elem->m_children.size() - 1].get() : nullptr; }
 
 	/// <summary>
 	/// Returns the namespace URI of an element
@@ -1018,7 +1108,7 @@ namespace litehtml
 	/// <value>
 	/// The next element sibling.
 	/// </value>
-	Node* Element::nextElementSibling() { return nullptr; }
+	Element* Element::nextElementSibling() { return nullptr; }
 
 	/// <summary>
 	/// Returns the name of a node
@@ -1128,7 +1218,7 @@ namespace litehtml
 	/// <value>
 	/// The previous element sibling.
 	/// </value>
-	Node* Element::previousElementSibling() { return nullptr; }
+	Element* Element::previousElementSibling() { return nullptr; }
 
 	/// <summary>
 	/// Returns the first child element that matches a specified CSS selector(s) of an element
@@ -1142,7 +1232,7 @@ namespace litehtml
 	/// </summary>
 	/// <param name="selectors">The selectors.</param>
 	/// <returns></returns>
-	NodeList Element::querySelectorAll(tstring selectors) { return NodeList(); }
+	NodeList<Element> Element::querySelectorAll(tstring selectors) { return NodeList<Element>(); }
 
 	/// <summary>
 	/// Removes a specified attribute from an element
@@ -1206,6 +1296,7 @@ namespace litehtml
 	/// The scroll left.
 	/// </value>
 	int Element::scrollLeft() { return 0; }
+	void Element::scrollLeft(int value) { }
 
 	/// <summary>
 	/// Sets or returns the number of pixels an element's content is scrolled vertically
@@ -1214,6 +1305,7 @@ namespace litehtml
 	/// The scroll top.
 	/// </value>
 	int Element::scrollTop() { return 0; }
+	void Element::scrollTop(int value) { }
 
 	/// <summary>
 	/// Returns the entire width of an element, including padding
@@ -1251,8 +1343,8 @@ namespace litehtml
 	/// <value>
 	/// The index of the tab.
 	/// </value>
-	int Element::tabIndex() { return 0; }
-	void Element::tabIndex(int value) { }
+	tstring Element::tabIndex() { return 0; }
+	void Element::tabIndex(tstring value) { }
 
 	/// <summary>
 	/// Returns the tag name of an element

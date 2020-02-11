@@ -7,7 +7,7 @@ namespace litehtml
 {
 	class Document;
 	class Attr;
-	class NodeList;
+	template<class TNode> class NodeList;
 	class NamedNodeMap;
 	class element;
 	class html_tag;
@@ -48,7 +48,7 @@ namespace litehtml
 		/// <summary>
 		/// Returns a collection of an element's child nodes (including text and comment nodes)
 		/// </summary>
-		virtual NodeList childNodes() = 0;
+		virtual NodeList<Node> childNodes() = 0;
 
 		/// <summary>
 		/// Clones an element
@@ -272,7 +272,7 @@ namespace litehtml
 		/// <summary>
 		/// Returns a collection of an element's child nodes (including text and comment nodes)
 		/// </summary>
-		virtual NodeList childNodes() override; //: Node
+		virtual NodeList<Node> childNodes() override; //: Node
 
 		/// <summary>
 		/// Clones an element
@@ -485,6 +485,7 @@ namespace litehtml
 	/// <summary>
 	/// NodeList
 	/// </summary>
+	template<class TNode>
 	class NodeList
 	{
 		elements_vector list;
@@ -492,8 +493,8 @@ namespace litehtml
 		NodeList();
 		NodeList(elements_vector& elements);
 		~NodeList();
-		Node* operator[](int index);
-		Node* item(int index);
+		TNode* operator[](int index);
+		TNode* item(int index);
 		int length();
 	};
 

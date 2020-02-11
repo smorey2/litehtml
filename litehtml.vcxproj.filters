@@ -385,5 +385,8 @@
     <ClInclude Include="include\litehtml\api_service.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\litehtml\api_any.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
